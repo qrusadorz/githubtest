@@ -51,35 +51,33 @@ class Qrcode extends React.Component {
     const { text } = this.state;
 
     const user = this.context;
-    const signed = !!user;
-    console.log("★★　qrcontext:", this.context);
-    console.log("★★　signed:", signed);
+    const auth = !!user;
+    console.log("★★　qr context:", this.context);
+    console.log("★★　qr auth:", auth);
 
     return (
       //   <div className={classes.root}>
       <>
-        {
-          <Paper className={classes.paper} elevation={1}>
-            <Typography variant="h5" component="h3">
-              QRCode Generator.
-            </Typography>
-            <Typography component="p">
-              入力した文字列に対応したQRコードを生成します。
-            </Typography>
-            <TextField className={classes.form} label={signed ? "文字を入力" : "ログインしてください"} onChange={this.handleInputText} value={text} disabled={!signed} />
-            <Typography component="p">
-              文字数:{text.length}
-            </Typography>
-            <QRCode
-              bgColor="#FFFFFF"
-              fgColor="#000000"
-              level="Q"
-              // style={{ width: 256 }}
-              // style={{ width: 800 }}
-              value={text}
-            />
-          </Paper>
-        }
+        <Paper className={classes.paper} elevation={1}>
+          <Typography variant="h5" component="h3">
+            QRCode Generator.
+          </Typography>
+          <Typography component="p">
+            入力した文字列に対応したQRコードを生成します。
+          </Typography>
+          <TextField className={classes.form} label={auth ? "文字を入力" : "ログインしてください"} onChange={this.handleInputText} value={text} disabled={!auth} />
+          <Typography component="p">
+            文字数:{text.length}
+          </Typography>
+          <QRCode
+            bgColor="#FFFFFF"
+            fgColor="#000000"
+            level="Q"
+            // style={{ width: 256 }}
+            // style={{ width: 800 }}
+            value={text}
+          />
+        </Paper>
       </>
     );
   }
