@@ -11,7 +11,8 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 
-import { UserContext } from '../contexts/user'
+import { UserContext } from '../contexts/user';
+import withSystemContext from './WithSystemContext';
 
 import firebase from '../firebase/firebase'
 
@@ -46,9 +47,13 @@ class MenuAppBar extends React.Component {
   };
 
   handleClick = () => {
-    // TODO logout
-    firebase.auth().signOut().then(function() {
+    // TODO ()=>にするかでthisの違い
+    // firebase.auth().signOut().then(function() {
+    firebase.auth().signOut().then(() => {
       // Sign-out successful.
+      // TODO 
+      this.props.system.updateSnackbarMessage("テスト");    
+
     }).catch(function(error) {
       // An error happened.
     });
@@ -57,15 +62,12 @@ class MenuAppBar extends React.Component {
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes, user } = this.props;
     const { anchorEl } = this.state;
     const open = Boolean(anchorEl);
 
-    const user = this.context;
+    // const user = this.context;
     const auth = !!user;
-
-    console.log("★★　br context:", this.context);
-    console.log("★★　br auth:", auth);    
 
     return (
       <div className={classes.root}>
@@ -83,7 +85,7 @@ class MenuAppBar extends React.Component {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" color="inherit" className={classes.grow}>
-              coming now...
+              coming soon...
             </Typography>
             {auth && (
               <div>
@@ -127,10 +129,15 @@ class MenuAppBar extends React.Component {
   }
 }
 
-MenuAppBar.contextType = UserContext;
+// MenuAppBar.contextType = UserContext;
 
 MenuAppBar.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(MenuAppBar);
+// const BlogPostWithSubscription = withSystemContext(
+//   MenuAppBar,
+//   // (DataSource, props) => DataSource.getBlogPost(props.id)
+// );
+
+export default withStyles(styles)(withSystemContext(MenuAppBar));

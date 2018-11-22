@@ -52,8 +52,8 @@ class Qrcode extends React.Component {
 
     const user = this.context;
     const auth = !!user;
-    console.log("★★　qr context:", this.context);
-    console.log("★★　qr auth:", auth);
+    // console.log("★★　qr context:", this.context);
+    // console.log("★★　qr auth:", auth);
 
     return (
       //   <div className={classes.root}>
