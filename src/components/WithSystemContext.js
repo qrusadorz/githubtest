@@ -36,16 +36,16 @@ function withSystemContext(WrappedComponent) {
             // Notice that we pass through any additional props
             return (
                 <SystemContext.Consumer>
-                {system => (
-                  <UserContext.Consumer>
-                    {user => (
-                    //   <ProfilePage user={user} theme={theme} />
-                    //   <WrappedComponent data={this.state.data} {...this.props} />
-                      <WrappedComponent user={user} system={system} {...this.props} />
+                    {system => (
+                        <UserContext.Consumer>
+                            {user => (
+                                //   <ProfilePage user={user} theme={theme} />
+                                //   <WrappedComponent data={this.state.data} {...this.props} />
+                                <WrappedComponent user={user} system={system} {...this.props} />
+                            )}
+                        </UserContext.Consumer>
                     )}
-                  </UserContext.Consumer>
-                )}
-              </SystemContext.Consumer>
+                </SystemContext.Consumer>
             );
         }
     };

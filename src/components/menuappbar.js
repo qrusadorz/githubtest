@@ -52,13 +52,13 @@ class MenuAppBar extends React.Component {
     firebase.auth().signOut().then(() => {
       // Sign-out successful.
       // TODO 
-      this.props.system.updateSnackbarMessage("テスト");    
+      this.props.system.updateSnackbarMessage("テスト");
 
-    }).catch(function(error) {
+    }).catch(function (error) {
       // An error happened.
     });
     // TODO finallyにしたほうがいい？
-    this.handleClose();    
+    this.handleClose();
   };
 
   render() {

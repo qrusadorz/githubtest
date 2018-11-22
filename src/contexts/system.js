@@ -2,7 +2,7 @@ import React from 'react';
 
 export const SystemContext = React.createContext({
     snackbarMessage: "",
-    updateSnackbarMessage: () => {},
+    updateSnackbarMessage: () => { },
 });
 
 export default SystemContext;
