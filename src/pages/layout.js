@@ -45,17 +45,18 @@ class Layout extends React.Component {
                 } = user;
                 console.log("★★ User is signed in:", user);
                 this.handleLogin(user);
-                this.state.system.updateSnackbarMessage("ログインしました");
+                this.updateSnackbarMessage("ログインしました");
             } else {
                 // User is signed out.
                 console.log("★★ User is signed out.");
                 this.handleLogout(user);
-                this.state.system.updateSnackbarMessage("ログアウトしました");
+                this.updateSnackbarMessage("ログアウトしました");
             }
             console.log("public:" + process.env.PUBLIC_URL);
         });
     }
 
+    // TODO コンストラクタの時はstate = {}はNG？
     // state = {
     //     system: {
     //         snackbarMessage: "",
@@ -90,7 +91,7 @@ class Layout extends React.Component {
                     {
                         !!this.state.user || <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
                     }
-                    <Qrcode />
+                    {/* <Qrcode /> */}
                     <SnackBar message={this.state.system.snackbarMessage} />
                 </UserContext.Provider>
             </SystemContext.Provider>

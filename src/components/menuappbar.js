@@ -11,7 +11,6 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 
-import { UserContext } from '../contexts/user';
 import withSystemContext from './WithSystemContext';
 
 import firebase from '../firebase/firebase'
@@ -52,7 +51,7 @@ class MenuAppBar extends React.Component {
     firebase.auth().signOut().then(() => {
       // Sign-out successful.
       // TODO 
-      this.props.system.updateSnackbarMessage("テスト");
+      this.props.system.updateSnackbarMessage("メニューからログアウトを実行。");
 
     }).catch(function (error) {
       // An error happened.
@@ -134,10 +133,5 @@ class MenuAppBar extends React.Component {
 MenuAppBar.propTypes = {
   classes: PropTypes.object.isRequired,
 };
-
-// const BlogPostWithSubscription = withSystemContext(
-//   MenuAppBar,
-//   // (DataSource, props) => DataSource.getBlogPost(props.id)
-// );
 
 export default withStyles(styles)(withSystemContext(MenuAppBar));

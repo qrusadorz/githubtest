@@ -20,17 +20,19 @@ function Snackbar(props) {
     const { classes, message } = props;
 
     return (
-        <div>
-            <SnackbarContent className={classes.snackbar} message={message} action={action} />
-            <SnackbarContent
+        <>
+            <SnackbarContent className={classes.snackbar} message={message} 
+            // action={action}
+             />
+            {/* <SnackbarContent
                 className={classes.snackbar}
                 message={
                     'I love candy. I love cookies. I love cupcakes. \
-          I love cheesecake. I love chocolate.'
+                     I love cheesecake. I love chocolate.'
                 }
                 action={action}
-            />
-        </div>
+            /> */}
+        </>
     );
 }
 
