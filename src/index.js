@@ -9,3 +9,5 @@ ReactDOM.render(<Index />, document.getElementById('root'));
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: http://bit.ly/CRA-PWA
 serviceWorker.unregister();
+// TODO ServiceWorkerを有効にする際に解除
+// serviceWorker.register();
