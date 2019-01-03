@@ -4,6 +4,8 @@ import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import withRoot from '../withRoot';
 
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
 import { UserContext } from '../contexts/user'
 import { SystemContext } from '../contexts/system'
 
@@ -13,6 +15,7 @@ import firebase, { uiConfig } from '../firebase/firebase'
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 
+import Main from './main'
 import SwipeableTemporaryDrawer from '../components/SwipeableTemporaryDrawer'
 import MenuAppBar from '../components/menuappbar';
 import SimpleSnackBar from '../components/snackbar';
@@ -33,36 +36,7 @@ const styles = theme => ({
         height: '100vh',
         overflow: 'auto',
     },
-
-    // footer: {
-    //     backgroundColor: theme.palette.background.paper,
-    //     padding: theme.spacing.unit * 6,
-    // },
-    footer: {
-        marginTop: theme.spacing.unit * 8,
-        borderTop: `1px solid ${theme.palette.divider}`,
-        padding: `${theme.spacing.unit * 6}px 0`,
-    },
 });
-
-const footers = [
-    {
-      title: 'Company',
-      description: ['Team', 'History', 'Contact us', 'Locations'],
-    },
-    {
-      title: 'Features',
-      description: ['Cool stuff', 'Random feature', 'Team feature', 'Developer stuff', 'Another one'],
-    },
-    {
-      title: 'Resources',
-      description: ['Resource', 'Resource name', 'Another resource', 'Final resource'],
-    },
-    {
-      title: 'Legal',
-      description: ['プライバシー', '利用規約'],
-    },
-  ];
 
 class Layout extends React.Component {
     constructor(props) {
@@ -90,12 +64,9 @@ class Layout extends React.Component {
                     uid,
                     providerData,
                 } = user;
-                console.log("★★ User is signed in:", user);
                 this.handleLogin(user);
                 this.updateSnackbarMessage("ログインしました");
             } else {
-                // User is signed out.
-                console.log("★★ User is signed out.");
                 this.handleLogout(user);
                 this.updateSnackbarMessage("ログアウトしました");
             }
@@ -113,11 +84,6 @@ class Layout extends React.Component {
 
     handleLogin = (user) => { this.setState({ user }); }
     handleLogout = () => { this.setState({ user: null }); }
-    // uiConfigPlus = {
-    //   ...uiConfig, callbacks: {
-    //     }
-    //   }
-    // };
     updateSnackbarMessage = message => {
         this.setState({
             system: {
@@ -155,47 +121,8 @@ class Layout extends React.Component {
                 <UserContext.Provider value={this.state.user}>
                     <SwipeableTemporaryDrawer />
                     <MenuAppBar />
-                    <main className={classes.content}>
-                        <div className={classes.appBarSpacer} />
-                        {
-                            !!this.state.user || <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
-                        }
-                        <Typography variant="h4" gutterBottom component="h2">
-                            Orders
-                        </Typography>
-                        <AlignItemsList />
-                        {/* <Qrcode /> */}
-                        <SimpleSnackBar />
-                        {/* mainから出したいがスクロール問題でNG */}
-                        {/* Footer */}
-                        {/* <footer className={classes.footer}>
-                            <Typography variant="h6" align="center" gutterBottom>
-                                Footer
-                            </Typography>
-                            <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-                                Something here to give the footer a purpose!
-                            </Typography>
-                        </footer> */}
-                        {/* End footer */}
-                        {/* Footer */}
-                        <footer className={classNames(classes.footer, classes.layout)}>
-                            <Grid container spacing={32} justify="space-evenly">
-                            {footers.map(footer => (
-                                <Grid item xs key={footer.title}>
-                                <Typography variant="h6" color="textPrimary" gutterBottom>
-                                    {footer.title}
-                                </Typography>
-                                {footer.description.map(item => (
-                                    <Typography key={item} variant="subtitle1" color="textSecondary">
-                                    {item}
-                                    </Typography>
-                                ))}
-                                </Grid>
-                            ))}
-                            </Grid>
-                        </footer>
-                        {/* End footer */}
-                    </main>
+                    <div className={classes.appBarSpacer} />
+                    <Main className={classes.content} />
                 </UserContext.Provider>
             </SystemContext.Provider>
         );
