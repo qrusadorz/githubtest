@@ -13,7 +13,7 @@ import Typography from '@material-ui/core/Typography';
 
 import SwipeableTemporaryDrawer from '../components/SwipeableTemporaryDrawer'
 import MenuAppBar from '../components/menuappbar';
-import SnackBar from '../components/snackbar';
+import SimpleSnackBar from '../components/snackbar';
 import AlignItemsList from '../components/itemsList';
 import Qrcode from '../components/qrcode';
 
@@ -119,24 +119,23 @@ class Layout extends React.Component {
     render() {
         const { classes } = this.props;
 
-        console.log("★★ redraw for snackbar :", this.state.system);
         return (
             <SystemContext.Provider value={this.state.system}>
                 <UserContext.Provider value={this.state.user}>
                     <SwipeableTemporaryDrawer />
                     <MenuAppBar />
-                    {
-                        !!this.state.user || <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
-                    }
                     <main className={classes.content}>
                         <div className={classes.appBarSpacer} />
+                        {
+                            !!this.state.user || <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
+                        }
                         <Typography variant="h4" gutterBottom component="h2">
                             Orders
                         </Typography>
                         <AlignItemsList />
+                        {/* <Qrcode /> */}
+                        <SimpleSnackBar message={this.state.system.snackbarMessage} />
                     </main>
-                    {/* <Qrcode /> */}
-                    <SnackBar message={this.state.system.snackbarMessage} />
                 </UserContext.Provider>
             </SystemContext.Provider>
         );
