@@ -9,8 +9,11 @@ import { SystemContext } from '../contexts/system'
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import firebase, { uiConfig } from '../firebase/firebase'
 
+import Typography from '@material-ui/core/Typography';
+
 import MenuAppBar from '../components/menuappbar';
 import SnackBar from '../components/snackbar';
+import AlignItemsList from '../components/itemsList';
 import Qrcode from '../components/qrcode';
 
 const styles = theme => ({
@@ -18,6 +21,15 @@ const styles = theme => ({
     //     textAlign: 'center',
     //     paddingTop: theme.spacing.unit * 20,
     //   },
+
+    // TODO original test
+    appBarSpacer: theme.mixins.toolbar,
+    content: {
+      flexGrow: 1,
+      padding: theme.spacing.unit * 3,
+      height: '100vh',
+      overflow: 'auto',
+    },
 });
 
 class Layout extends React.Component {
@@ -91,6 +103,13 @@ class Layout extends React.Component {
                     {
                         !!this.state.user || <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
                     }
+                    <main className={classes.content}>
+                        <div className={classes.appBarSpacer} />
+                        <Typography variant="h4" gutterBottom component="h2">
+                            Orders
+                        </Typography>
+                        <AlignItemsList />
+                    </main>
                     {/* <Qrcode /> */}
                     <SnackBar message={this.state.system.snackbarMessage} />
                 </UserContext.Provider>
