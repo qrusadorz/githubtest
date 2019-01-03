@@ -134,7 +134,7 @@ class Layout extends React.Component {
                         </Typography>
                         <AlignItemsList />
                         {/* <Qrcode /> */}
-                        <SimpleSnackBar message={this.state.system.snackbarMessage} />
+                        <SimpleSnackBar />
                     </main>
                 </UserContext.Provider>
             </SystemContext.Provider>
