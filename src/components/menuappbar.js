@@ -60,6 +60,11 @@ class MenuAppBar extends React.Component {
     this.handleClose();
   };
 
+  handleDrawer = () => {
+    console.log(this.props.system);
+    this.props.system.openDrawer();
+  };
+
   render() {
     const { classes, user } = this.props;
     const { anchorEl } = this.state;
@@ -80,7 +85,9 @@ class MenuAppBar extends React.Component {
         </FormGroup> */}
         <AppBar position="static">
           <Toolbar>
-            <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
+            <IconButton className={classes.menuButton} color="inherit" aria-label="Menu"
+              onClick={this.handleDrawer}
+            >
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" color="inherit" className={classes.grow}>

@@ -11,6 +11,7 @@ import firebase, { uiConfig } from '../firebase/firebase'
 
 import Typography from '@material-ui/core/Typography';
 
+import SwipeableTemporaryDrawer from '../components/SwipeableTemporaryDrawer'
 import MenuAppBar from '../components/menuappbar';
 import SnackBar from '../components/snackbar';
 import AlignItemsList from '../components/itemsList';
@@ -40,6 +41,9 @@ class Layout extends React.Component {
             system: {
                 snackbarMessage: "",
                 updateSnackbarMessage: this.updateSnackbarMessage,
+                drawerOpen: false,
+                openDrawer: this.openDrawer,
+                closeDrawer: this.closeDrawer,
             },
         };
 
@@ -92,6 +96,26 @@ class Layout extends React.Component {
         });
     }
 
+    openDrawer = () => {
+        this.setState({
+            system: {
+                ...this.state.system,
+                drawerOpen: true,
+            }
+        });
+        console.log("openDrawer");
+    }
+
+    closeDrawer = () => {
+        this.setState({
+            system: {
+                ...this.state.system,
+                drawerOpen: false,
+            }
+        });
+        console.log("closeDrawer");
+    }
+
     render() {
         const { classes } = this.props;
 
@@ -99,6 +123,7 @@ class Layout extends React.Component {
         return (
             <SystemContext.Provider value={this.state.system}>
                 <UserContext.Provider value={this.state.user}>
+                    <SwipeableTemporaryDrawer />
                     <MenuAppBar />
                     {
                         !!this.state.user || <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
