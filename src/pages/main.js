@@ -4,10 +4,7 @@ import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import withRoot from '../withRoot';
 
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-
-import { UserContext } from '../contexts/user'
-import { SystemContext } from '../contexts/system'
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import firebase, { uiConfig } from '../firebase/firebase'
@@ -15,11 +12,8 @@ import firebase, { uiConfig } from '../firebase/firebase'
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 
-import SwipeableTemporaryDrawer from '../components/SwipeableTemporaryDrawer'
-import MenuAppBar from '../components/menuappbar';
 import SimpleSnackBar from '../components/snackbar';
 import AlignItemsList from '../components/itemsList';
-import Qrcode from '../components/qrcode';
 
 const styles = theme => ({
     //   root: {
@@ -101,9 +95,11 @@ class Main extends React.Component {
                             {footer.title}
                         </Typography>
                         {footer.description.map(item => (
-                            <Typography key={item} variant="subtitle1" color="textSecondary">
-                            {item}
-                            </Typography>
+                            <Link to="/privacy">
+                                <Typography key={item} variant="subtitle1" color="textSecondary">
+                                {item}
+                                </Typography>
+                            </Link>
                         ))}
                         </Grid>
                     ))}

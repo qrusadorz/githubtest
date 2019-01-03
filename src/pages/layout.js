@@ -1,26 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import withRoot from '../withRoot';
 
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 
 import { UserContext } from '../contexts/user'
 import { SystemContext } from '../contexts/system'
 
-import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import firebase, { uiConfig } from '../firebase/firebase'
 
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
-
 import Main from './main'
+import Privacy from './privacy'
+import Terms from './terms'
 import SwipeableTemporaryDrawer from '../components/SwipeableTemporaryDrawer'
 import MenuAppBar from '../components/menuappbar';
-import SimpleSnackBar from '../components/snackbar';
-import AlignItemsList from '../components/itemsList';
-import Qrcode from '../components/qrcode';
 
 const styles = theme => ({
     //   root: {
@@ -117,18 +111,26 @@ class Layout extends React.Component {
         const { classes } = this.props;
 
         return (
-            <SystemContext.Provider value={this.state.system}>
-                <UserContext.Provider value={this.state.user}>
-                    <SwipeableTemporaryDrawer />
-                    <MenuAppBar />
-                    <div className={classes.appBarSpacer} />
-                    <Main className={classes.content} />
-                </UserContext.Provider>
-            </SystemContext.Provider>
+            <Router>
+                <SystemContext.Provider value={this.state.system}>
+                    <UserContext.Provider value={this.state.user}>
+                        <SwipeableTemporaryDrawer />
+                        <MenuAppBar />
+                        <div className={classes.appBarSpacer} />
+                            <Switch>
+                                {/* <Route exact path="/" component={Main} /> */}
+                                <Route path="/privacy" component={Privacy} />
+                                <Route path="/terms" component={Terms} />
+                                <Route component={Main} />
+                                {/* <Main className={classes.content} /> */}
+                            </Switch>
+                    </UserContext.Provider>
+                </SystemContext.Provider>
+            </Router>
         );
     }
 }
-
+  
 Layout.propTypes = {
     classes: PropTypes.object.isRequired,
 };
