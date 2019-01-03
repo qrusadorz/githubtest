@@ -16,7 +16,7 @@ import withSystemContext from './WithSystemContext';
 
 const styles = {
   list: {
-    width: 250,
+    width: 300,
   },
   fullList: {
     width: 'auto',
