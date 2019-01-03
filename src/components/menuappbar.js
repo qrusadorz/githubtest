@@ -83,7 +83,7 @@ class MenuAppBar extends React.Component {
             label={auth ? 'Logout' : 'Login'}
           />
         </FormGroup> */}
-        <AppBar position="static">
+        <AppBar position="fixed">
           <Toolbar>
             <IconButton className={classes.menuButton} color="inherit" aria-label="Menu"
               onClick={this.handleDrawer}
@@ -91,7 +91,7 @@ class MenuAppBar extends React.Component {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" color="inherit" className={classes.grow}>
-              coming soon...
+              Title
             </Typography>
             {auth && (
               <div>
@@ -125,7 +125,7 @@ class MenuAppBar extends React.Component {
             )}
             {(!auth) && (
               <div>
-                <Button color="inherit">Loginしてください</Button>
+                <Button color="inherit">ログイン</Button>
               </div>
             )}
           </Toolbar>
