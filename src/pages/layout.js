@@ -14,6 +14,7 @@ import Main from './main'
 import Privacy from './privacy'
 import Terms from './terms'
 import itemDetail from './itemDetail'
+import ScrollToTop from '../components/scrollToTop'
 import SwipeableTemporaryDrawer from '../components/SwipeableTemporaryDrawer'
 import MenuAppBar from '../components/menuappbar';
 
@@ -146,21 +147,23 @@ class Layout extends React.Component {
 
         return (
             <Router>
-                <SystemContext.Provider value={this.state.system}>
-                    <UserContext.Provider value={this.state.user}>
-                        <SwipeableTemporaryDrawer />
-                        <MenuAppBar />
-                        <div className={classes.appBarSpacer} />
-                            <Switch>
-                                {/* <Route exact path="/" component={Main} /> */}
-                                <Route path="/items/:id" component={itemDetail} />
-                                <Route path="/privacy" component={Privacy} />
-                                <Route path="/terms" component={Terms} />
-                                <Route component={Main} />
-                                {/* <Main className={classes.content} /> */}
-                            </Switch>
-                    </UserContext.Provider>
-                </SystemContext.Provider>
+                <ScrollToTop>
+                    <SystemContext.Provider value={this.state.system}>
+                        <UserContext.Provider value={this.state.user}>
+                            <SwipeableTemporaryDrawer />
+                            <MenuAppBar />
+                            <div className={classes.appBarSpacer} />
+                                <Switch>
+                                    {/* <Route exact path="/" component={Main} /> */}
+                                    <Route path="/items/:id" component={itemDetail} />
+                                    <Route path="/privacy" component={Privacy} />
+                                    <Route path="/terms" component={Terms} />
+                                    <Route component={Main} />
+                                    {/* <Main className={classes.content} /> */}
+                                </Switch>
+                        </UserContext.Provider>
+                    </SystemContext.Provider>
+                </ScrollToTop>
             </Router>
         );
     }
