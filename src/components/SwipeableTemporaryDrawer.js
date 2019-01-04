@@ -65,7 +65,7 @@ class SwipeableTemporaryDrawer extends React.Component {
         <Divider />
         <List>
           {['ヘルプ', 'フィードバックを送信'].map((text, index) => (
-            <ListItem button key={text}>
+            <ListItem button key={text} onClick={() => this.props.history.push('/items/5533')}>
               <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>

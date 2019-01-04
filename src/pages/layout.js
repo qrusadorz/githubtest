@@ -13,6 +13,7 @@ import firebase from '../firebase/firebase'
 import Main from './main'
 import Privacy from './privacy'
 import Terms from './terms'
+import itemDetail from './itemDetail'
 import SwipeableTemporaryDrawer from '../components/SwipeableTemporaryDrawer'
 import MenuAppBar from '../components/menuappbar';
 
@@ -152,6 +153,7 @@ class Layout extends React.Component {
                         <div className={classes.appBarSpacer} />
                             <Switch>
                                 {/* <Route exact path="/" component={Main} /> */}
+                                <Route path="/items/:id" component={itemDetail} />
                                 <Route path="/privacy" component={Privacy} />
                                 <Route path="/terms" component={Terms} />
                                 <Route component={Main} />
