@@ -16,6 +16,7 @@ import withSystemContext from '../components/WithSystemContext';
 
 import SimpleSnackBar from '../components/snackbar';
 import AlignItemsList from '../components/itemsList';
+import Album from '../components/top';
 
 const styles = theme => ({
     //   root: {
@@ -77,11 +78,12 @@ class Main extends React.Component {
                     //     {user.uid}
                     // </Typography>
                 }
-                <Typography variant="h4" gutterBottom component="h2">
+                {/* <Typography variant="h4" gutterBottom component="h2">
                     Orders
-                </Typography>
+                </Typography> */}
                 {/* <AlignItemsList /> */}
                 {/* <Qrcode /> */}
+                <Album />
                 <SimpleSnackBar />
                 {/* mainから出したいがスクロール問題でNG */}
                 {/* Footer */}

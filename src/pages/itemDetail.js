@@ -161,7 +161,7 @@ function ItemDetail(props) {
                   subheader={tier.subheader}
                   titleTypographyProps={{ align: 'center' }}
                   subheaderTypographyProps={{ align: 'center' }}
-                  action={tier.title === 'Free' ? <StarIcon /> : null}
+                  action={tier.title === 'タイトルA' ? <StarIcon /> : null}
                   className={classes.cardHeader}
                 />
                 <CardContent>
