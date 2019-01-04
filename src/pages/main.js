@@ -28,7 +28,8 @@ const styles = theme => ({
     content: {
         flexGrow: 1,
         padding: theme.spacing.unit * 3,
-        height: '100vh',
+        // height: '100vh',
+        height: '100%',
         overflow: 'auto',
     },
 
@@ -79,7 +80,7 @@ class Main extends React.Component {
                 <Typography variant="h4" gutterBottom component="h2">
                     Orders
                 </Typography>
-                <AlignItemsList />
+                {/* <AlignItemsList /> */}
                 {/* <Qrcode /> */}
                 <SimpleSnackBar />
                 {/* mainから出したいがスクロール問題でNG */}

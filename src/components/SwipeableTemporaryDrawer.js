@@ -15,7 +15,7 @@ import SearchIcon from '@material-ui/icons/Search';
 
 import Typography from '@material-ui/core/Typography';
 
-import { BrowserRouter as Router, Route, Link, Switch, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 import withSystemContext from './WithSystemContext';
 
@@ -40,7 +40,6 @@ class SwipeableTemporaryDrawer extends React.Component {
     this.setState({
       [side]: open,
     });
-    // TODO TEST
     if (open) return;
     this.props.system.closeDrawer();
   };
