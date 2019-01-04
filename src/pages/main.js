@@ -6,11 +6,13 @@ import withRoot from '../withRoot';
 
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 
-import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
-import firebase, { uiConfig } from '../firebase/firebase'
+// import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
+// import firebase, { uiConfig } from '../firebase/firebase'
 
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
+
+import withSystemContext from '../components/WithSystemContext';
 
 import SimpleSnackBar from '../components/snackbar';
 import AlignItemsList from '../components/itemsList';
@@ -63,11 +65,16 @@ const footers = [
 class Main extends React.Component {
     render() {
         const { classes, user } = this.props;
+        console.log("main user:", user);
 
         return (
             <main className={classes.content}>
                 {
-                    !!user || <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
+                    // !!user || <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
+                    // user &&
+                    // <Typography variant="h4" gutterBottom component="h2">
+                    //     {user.uid}
+                    // </Typography>
                 }
                 <Typography variant="h4" gutterBottom component="h2">
                     Orders
@@ -115,4 +122,4 @@ Main.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withRoot(withStyles(styles)(Main));
+export default withRoot(withStyles(styles)(withSystemContext(Main)));

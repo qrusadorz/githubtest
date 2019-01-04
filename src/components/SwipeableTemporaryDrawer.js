@@ -10,6 +10,9 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
+import HomeIcon from '@material-ui/icons/Home';
+import SearchIcon from '@material-ui/icons/Search';
+
 import Typography from '@material-ui/core/Typography';
 
 import withSystemContext from './WithSystemContext';
@@ -54,7 +57,7 @@ class SwipeableTemporaryDrawer extends React.Component {
         <List>
           {['ホーム', '調べる', '急上昇ワード'].map((text, index) => (
             <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+              <ListItemIcon>{index % 2 === 0 ? <HomeIcon /> : <SearchIcon />}</ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
           ))}

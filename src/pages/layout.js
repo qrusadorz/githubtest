@@ -8,7 +8,7 @@ import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import { UserContext } from '../contexts/user'
 import { SystemContext } from '../contexts/system'
 
-import firebase, { uiConfig } from '../firebase/firebase'
+import firebase from '../firebase/firebase'
 
 import Main from './main'
 import Privacy from './privacy'
@@ -38,6 +38,8 @@ class Layout extends React.Component {
 
         this.state = {
             system: {
+                login: this.handleLoginButton,
+                logout: this.handleLogoutButton,
                 snackbarMessage: "",
                 updateSnackbarMessage: this.updateSnackbarMessage,
                 drawerOpen: false,
@@ -65,6 +67,7 @@ class Layout extends React.Component {
                 this.updateSnackbarMessage("ログアウトしました");
             }
             console.log("public:" + process.env.PUBLIC_URL);
+            console.log("user:", user);
         });
     }
 
@@ -78,6 +81,37 @@ class Layout extends React.Component {
 
     handleLogin = (user) => { this.setState({ user }); }
     handleLogout = () => { this.setState({ user: null }); }
+    handleLoginButton = () => {
+        const provider = new firebase.auth.GoogleAuthProvider();
+        firebase.auth().signInWithPopup(provider).then(result => {
+            // This gives you a Google Access Token. You can use it to access the Google API.
+            const token = result.credential.accessToken;
+            // The signed-in user info.
+            const user = result.user;
+            // ...
+          }).catch(error => {
+            // Handle Errors here.
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            // The email of the user's account used.
+            const email = error.email;
+            // The firebase.auth.AuthCredential type that was used.
+            const credential = error.credential;
+            // ...
+          });
+    }
+
+    handleLogoutButton = () => {
+        // TODO ()=>にするかでthisの違い
+        // firebase.auth().signOut().then(function() {
+        firebase.auth().signOut().then(() => {
+            // Sign-out successful.
+            // this.props.system.updateSnackbarMessage("メニューからログアウトを実行。");
+          }).catch(function (error) {
+            // An error happened.
+          });      
+    }
+
     updateSnackbarMessage = message => {
         this.setState({
             system: {
@@ -94,7 +128,6 @@ class Layout extends React.Component {
                 drawerOpen: true,
             }
         });
-        console.log("openDrawer");
     }
 
     closeDrawer = () => {
@@ -104,11 +137,11 @@ class Layout extends React.Component {
                 drawerOpen: false,
             }
         });
-        console.log("closeDrawer");
     }
 
     render() {
         const { classes } = this.props;
+        console.log("render layout user:", this.state.user);
 
         return (
             <Router>

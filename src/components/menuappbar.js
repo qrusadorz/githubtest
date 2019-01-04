@@ -13,8 +13,6 @@ import Menu from '@material-ui/core/Menu';
 
 import withSystemContext from './WithSystemContext';
 
-import firebase from '../firebase/firebase'
-
 const styles = {
   root: {
     flexGrow: 1,
@@ -45,23 +43,16 @@ class MenuAppBar extends React.Component {
     this.setState({ anchorEl: null });
   };
 
-  handleClick = () => {
-    // TODO ()=>にするかでthisの違い
-    // firebase.auth().signOut().then(function() {
-    firebase.auth().signOut().then(() => {
-      // Sign-out successful.
-      // TODO 
-      this.props.system.updateSnackbarMessage("メニューからログアウトを実行。");
+  handleLogin = () => {
+    this.props.system.login();
+  };
 
-    }).catch(function (error) {
-      // An error happened.
-    });
-    // TODO finallyにしたほうがいい？
+  handleClick = () => {
     this.handleClose();
+    this.props.system.logout();
   };
 
   handleDrawer = () => {
-    console.log(this.props.system);
     this.props.system.openDrawer();
   };
 
@@ -125,7 +116,7 @@ class MenuAppBar extends React.Component {
             )}
             {(!auth) && (
               <div>
-                <Button color="inherit">ログイン</Button>
+                <Button color="inherit" onClick={this.handleLogin}>ログイン</Button>
               </div>
             )}
           </Toolbar>
