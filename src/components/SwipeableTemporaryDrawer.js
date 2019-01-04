@@ -15,6 +15,8 @@ import SearchIcon from '@material-ui/icons/Search';
 
 import Typography from '@material-ui/core/Typography';
 
+import { BrowserRouter as Router, Route, Link, Switch, withRouter } from "react-router-dom";
+
 import withSystemContext from './WithSystemContext';
 
 const styles = {
@@ -40,8 +42,7 @@ class SwipeableTemporaryDrawer extends React.Component {
     });
     // TODO TEST
     if (open) return;
-    const { system } = this.props;
-    system.closeDrawer();
+    this.props.system.closeDrawer();
   };
 
   render() {
@@ -56,7 +57,7 @@ class SwipeableTemporaryDrawer extends React.Component {
         <Divider />
         <List>
           {['ホーム', '調べる', '急上昇ワード'].map((text, index) => (
-            <ListItem button key={text}>
+            <ListItem button key={text} onClick={() => this.props.history.push('/') }>
               <ListItemIcon>{index % 2 === 0 ? <HomeIcon /> : <SearchIcon />}</ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
@@ -171,4 +172,4 @@ SwipeableTemporaryDrawer.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(withSystemContext(SwipeableTemporaryDrawer));
+export default withStyles(styles)(withRouter(withSystemContext(SwipeableTemporaryDrawer)));
