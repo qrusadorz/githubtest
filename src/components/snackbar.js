@@ -54,9 +54,9 @@ class SimpleSnackbar extends React.Component {
           }}
           message={<span id="message-id">{snackbarMessage}</span>}
           action={[
-            <Button key="undo" color="secondary" size="small" onClick={this.handleClose}>
-              UNDO
-            </Button>,
+            // <Button key="undo" color="secondary" size="small" onClick={this.handleClose}>
+            //   UNDO
+            // </Button>,
             <IconButton
               key="close"
               aria-label="Close"

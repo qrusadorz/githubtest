@@ -93,14 +93,12 @@ function Album(props) {
               タイトル
             </Typography>
             <Typography variant="h6" align="center" color="textSecondary" paragraph>
-              世界中の検索トレンドをチェックしましょう。
-              Make it short and sweet, but not too short so folks don&apos;t simply skip over it
-              entirely.
+              商品をチェックしましょう。
             </Typography>
             <div align='center'>
-                <CustomizedInputBase />
+              <CustomizedInputBase />
             </div>
-            <div className={classes.heroButtons}>
+            {/* <div className={classes.heroButtons}>
               <Grid container spacing={16} justify="center">
                 <Grid item>
                   <Button variant="contained" color="primary">
@@ -113,7 +111,7 @@ function Album(props) {
                   </Button>
                 </Grid>
               </Grid>
-            </div>
+            </div> */}
           </div>
         </div>
         <div className={classNames(classes.layout, classes.cardGrid)}>
@@ -131,8 +129,8 @@ function Album(props) {
                     <Typography variant="h5" component="h2">
                       商品名
                     </Typography>
-                    <Typography gutterBottom  color="textSecondary">
-                        テスト
+                    <Typography gutterBottom color="textSecondary">
+                    ¥30000円
                     </Typography>
                     <Typography>
                       商品名概要。商品に関する概要を記入する。何を記入するかは未定。

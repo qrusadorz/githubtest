@@ -91,7 +91,7 @@ class Layout extends React.Component {
             // The signed-in user info.
             const user = result.user;
             // ...
-          }).catch(error => {
+        }).catch(error => {
             // Handle Errors here.
             const errorCode = error.code;
             const errorMessage = error.message;
@@ -100,7 +100,7 @@ class Layout extends React.Component {
             // The firebase.auth.AuthCredential type that was used.
             const credential = error.credential;
             // ...
-          });
+        });
     }
 
     handleLogoutButton = () => {
@@ -109,9 +109,9 @@ class Layout extends React.Component {
         firebase.auth().signOut().then(() => {
             // Sign-out successful.
             // this.props.system.updateSnackbarMessage("メニューからログアウトを実行。");
-          }).catch(function (error) {
+        }).catch(function (error) {
             // An error happened.
-          });      
+        });
     }
 
     updateSnackbarMessage = message => {
@@ -153,14 +153,14 @@ class Layout extends React.Component {
                             <SwipeableTemporaryDrawer />
                             <MenuAppBar />
                             <div className={classes.appBarSpacer} />
-                                <Switch>
-                                    {/* <Route exact path="/" component={Main} /> */}
-                                    <Route path="/items/:id" component={itemDetail} />
-                                    <Route path="/privacy" component={Privacy} />
-                                    <Route path="/terms" component={Terms} />
-                                    <Route component={Main} />
-                                    {/* <Main className={classes.content} /> */}
-                                </Switch>
+                            <Switch>
+                                {/* <Route exact path="/" component={Main} /> */}
+                                <Route path="/items/:id" component={itemDetail} />
+                                <Route path="/privacy" component={Privacy} />
+                                <Route path="/terms" component={Terms} />
+                                <Route component={Main} />
+                                {/* <Main className={classes.content} /> */}
+                            </Switch>
                         </UserContext.Provider>
                     </SystemContext.Provider>
                 </ScrollToTop>
@@ -168,7 +168,7 @@ class Layout extends React.Component {
         );
     }
 }
-  
+
 Layout.propTypes = {
     classes: PropTypes.object.isRequired,
 };

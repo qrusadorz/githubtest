@@ -47,22 +47,22 @@ const styles = theme => ({
 
 const footers = [
     {
-      title: 'Company',
-      description: ['Team', 'History', 'Contact us', 'Locations'],
+        title: 'Company',
+        description: ['Team', 'History', 'Contact us', 'Locations'],
     },
     {
-      title: 'Features',
-      description: ['Cool stuff', 'Random feature', 'Team feature', 'Developer stuff', 'Another one'],
+        title: 'Features',
+        description: ['Cool stuff', 'Random feature', 'Team feature', 'Developer stuff', 'Another one'],
     },
     {
-      title: 'Resources',
-      description: ['Resource', 'Resource name', 'Another resource', 'Final resource'],
+        title: 'Resources',
+        description: ['Resource', 'Resource name', 'Another resource', 'Final resource'],
     },
     {
-      title: 'Legal',
-      description: ['プライバシー', '利用規約'],
+        title: 'Legal',
+        description: ['プライバシー', '利用規約'],
     },
-  ];
+];
 
 class Main extends React.Component {
     render() {
@@ -99,20 +99,20 @@ class Main extends React.Component {
                 {/* Footer */}
                 <footer className={classNames(classes.footer, classes.layout)}>
                     <Grid container spacing={32} justify="space-evenly">
-                    {footers.map(footer => (
-                        <Grid item xs key={footer.title}>
-                        <Typography variant="h6" color="textPrimary" gutterBottom>
-                            {footer.title}
-                        </Typography>
-                        {footer.description.map(item => (
-                            <Link to="/privacy">
-                                <Typography key={item} variant="subtitle1" color="textSecondary">
-                                {item}
+                        {footers.map(footer => (
+                            <Grid item xs key={footer.title}>
+                                <Typography variant="h6" color="textPrimary" gutterBottom>
+                                    {footer.title}
                                 </Typography>
-                            </Link>
+                                {footer.description.map(item => (
+                                    <Link to="/privacy">
+                                        <Typography key={item} variant="subtitle1" color="textSecondary">
+                                            {item}
+                                        </Typography>
+                                    </Link>
+                                ))}
+                            </Grid>
                         ))}
-                        </Grid>
-                    ))}
                     </Grid>
                 </footer>
                 {/* End footer */}

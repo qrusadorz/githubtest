@@ -14,6 +14,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 
+import OpenInNewIcon from '@material-ui/icons/OpenInNew';
+
 const styles = theme => ({
   '@global': {
     body: {
@@ -147,7 +149,7 @@ function ItemDetail(props) {
           </Typography>
           <Typography variant="h6" align="center" color="textSecondary" component="p">
             アイテムの説明をここに記述する。長い文章をずらずら書いた際にどうなるかのテスト。
-            It&apos;s built <br/>2019/01/04更新
+            It&apos;s built <br />2019/01/04更新
           </Typography>
         </div>
         {/* End hero unit */}
@@ -167,7 +169,7 @@ function ItemDetail(props) {
                 <CardContent>
                   <div className={classes.cardPricing}>
                     <Typography component="h2" variant="h3" color="textPrimary">
-                    ¥{tier.price}
+                      ¥{tier.price}
                     </Typography>
                     <Typography variant="h6" color="textSecondary">
                       円
@@ -180,8 +182,8 @@ function ItemDetail(props) {
                   ))}
                 </CardContent>
                 <CardActions className={classes.cardActions}>
-                  <Button fullWidth variant={tier.buttonVariant} color="primary">
-                    {tier.buttonText}
+                  <Button fullWidth variant={tier.buttonVariant} color="primary" onClick={() => {}}>
+                    {tier.buttonText}<OpenInNewIcon />
                   </Button>
                 </CardActions>
               </Card>

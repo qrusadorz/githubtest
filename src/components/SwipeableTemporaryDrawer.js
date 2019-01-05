@@ -51,12 +51,12 @@ class SwipeableTemporaryDrawer extends React.Component {
     const sideList = (
       <div className={classes.list}>
         <Typography variant="h3" gutterBottom component="h2">
-          Title
+          タイトル
         </Typography>
         <Divider />
         <List>
           {['ホーム', '調べる', '急上昇ワード'].map((text, index) => (
-            <ListItem button key={text} onClick={() => this.props.history.push('/') }>
+            <ListItem button key={text} onClick={() => this.props.history.push('/')}>
               <ListItemIcon>{index % 2 === 0 ? <HomeIcon /> : <SearchIcon />}</ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
