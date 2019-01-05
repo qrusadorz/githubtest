@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import withRoot from '../withRoot';
 
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 // import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 // import firebase, { uiConfig } from '../firebase/firebase'

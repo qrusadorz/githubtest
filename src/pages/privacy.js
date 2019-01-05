@@ -108,7 +108,6 @@ const featuredPosts = [
 ];
 
 // const posts = [post1, post2, post3];
-const posts = [];
 
 const archives = [
   'March 2020',

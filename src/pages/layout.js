@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import withRoot from '../withRoot';
 
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import { UserContext } from '../contexts/user'
 import { SystemContext } from '../contexts/system'
@@ -56,15 +56,15 @@ class Layout extends React.Component {
             console.log("onAuthStateChanged user:", user);
             if (user) {
                 // User is signed in.
-                const {
-                    displayName,
-                    email,
-                    emailVerified,
-                    photoURL,
-                    isAnonymous,
-                    uid,
-                    providerData,
-                } = user;
+                // const {
+                //     displayName,
+                //     email,
+                //     emailVerified,
+                //     photoURL,
+                //     isAnonymous,
+                //     uid,
+                //     providerData,
+                // } = user;
                 this.handleLogin(user);
                 this.updateSnackbarMessage("ログインしました");
             } else {
@@ -88,20 +88,20 @@ class Layout extends React.Component {
     handleLoginButton = () => {
         const provider = new firebase.auth.GoogleAuthProvider();
         firebase.auth().signInWithPopup(provider).then(result => {
-            // This gives you a Google Access Token. You can use it to access the Google API.
-            const token = result.credential.accessToken;
-            // The signed-in user info.
-            const user = result.user;
-            // ...
+            // // This gives you a Google Access Token. You can use it to access the Google API.
+            // const token = result.credential.accessToken;
+            // // The signed-in user info.
+            // const user = result.user;
+            // // ...
         }).catch(error => {
-            // Handle Errors here.
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            // The email of the user's account used.
-            const email = error.email;
-            // The firebase.auth.AuthCredential type that was used.
-            const credential = error.credential;
-            // ...
+            // // Handle Errors here.
+            // const errorCode = error.code;
+            // const errorMessage = error.message;
+            // // The email of the user's account used.
+            // const email = error.email;
+            // // The firebase.auth.AuthCredential type that was used.
+            // const credential = error.credential;
+            // // ...
         });
     }
 
