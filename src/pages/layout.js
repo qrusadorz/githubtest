@@ -18,6 +18,7 @@ import ScrollToTop from '../components/scrollToTop'
 import SwipeableTemporaryDrawer from '../components/SwipeableTemporaryDrawer'
 import MenuAppBar from '../components/menuappbar';
 import SimpleSnackBar from '../components/snackbar';
+import { ItemsContext, items, getItems } from '../contexts/items';
 
 const styles = theme => ({
     //   root: {
@@ -48,6 +49,10 @@ class Layout extends React.Component {
                 drawerOpen: false,
                 openDrawer: this.openDrawer,
                 closeDrawer: this.closeDrawer,
+            },
+            items: {
+                items,
+                getItems: this.handleGetItems,
             },
         };
 
@@ -126,6 +131,17 @@ class Layout extends React.Component {
         });
     }
 
+    handleGetItems = () => {
+        console.log("getItems:");
+        const items = getItems();
+        this.setState({
+            items: {
+                ...this.state.items,
+                items,
+            }
+        });
+    }
+
     openDrawer = () => {
         this.setState({
             system: {
@@ -146,25 +162,28 @@ class Layout extends React.Component {
 
     render() {
         const { classes } = this.props;
-        console.log("render layout user:", this.state.user);
+        console.log("layout render props:", this.props);
+        console.log("layout render state:", this.state);
 
         return (
             <Router>
                 <ScrollToTop>
                     <SystemContext.Provider value={this.state.system}>
                         <UserContext.Provider value={this.state.user}>
-                            <SwipeableTemporaryDrawer />
-                            <MenuAppBar />
-                            <div className={classes.appBarSpacer} />
-                            <Switch>
-                                {/* <Route exact path="/" component={Main} /> */}
-                                <Route path="/items/:id" component={itemDetail} />
-                                <Route path="/privacy" component={Privacy} />
-                                <Route path="/terms" component={Terms} />
-                                <Route component={Main} />
-                                {/* <Main className={classes.content} /> */}
-                            </Switch>
-                            <SimpleSnackBar />
+                            <ItemsContext.Provider value={this.state.items}>
+                                <SwipeableTemporaryDrawer />
+                                <MenuAppBar />
+                                <div className={classes.appBarSpacer} />
+                                <Switch>
+                                    {/* <Route exact path="/" component={Main} /> */}
+                                    <Route path="/items/:id" component={itemDetail} />
+                                    <Route path="/privacy" component={Privacy} />
+                                    <Route path="/terms" component={Terms} />
+                                    <Route component={Main} />
+                                    {/* <Main className={classes.content} /> */}
+                                </Switch>
+                                <SimpleSnackBar />
+                            </ItemsContext.Provider>
                         </UserContext.Provider>
                     </SystemContext.Provider>
                 </ScrollToTop>

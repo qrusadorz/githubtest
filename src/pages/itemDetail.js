@@ -16,6 +16,8 @@ import { withStyles } from '@material-ui/core/styles';
 
 import OpenInNewIcon from '@material-ui/icons/OpenInNew';
 
+import WithItemsContext from '../components/WithItemsContext';
+
 const styles = theme => ({
   '@global': {
     body: {
@@ -122,11 +124,20 @@ const tiers = [
 //   },
 // ];
 
-function ItemDetail(props) {
-  const { classes } = props;
-  const { id } = props.match.params;
-  console.log("itemDetail props:", props);
-  console.log("itemDetail match params id:", props.match.params.id);
+// function ItemDetail(props) {
+class ItemDetail extends React.Component {
+  componentDidMount() {
+    console.log("componentDidMount this.props:", this.props);
+    this.props.items.getItems();
+  }
+
+render() {
+  const { classes, items } = this.props;
+  const { id } = this.props.match.params;
+  console.log("itemDetail match params id:", this.props.match.params.id);
+  console.log("itemDetail items:", items);
+
+  const item = items.items[id] || { price1: 0 };
 
   return (
     <React.Fragment>
@@ -148,7 +159,7 @@ function ItemDetail(props) {
         {/* Hero unit */}
         <div className={classes.heroContent}>
           <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-            アイテム名:{id}
+            アイテム名:{item.title}
           </Typography>
           <Typography variant="h6" align="center" color="textSecondary" component="p">
             アイテムの説明をここに記述する。長い文章をずらずら書いた際にどうなるかのテスト。
@@ -172,7 +183,7 @@ function ItemDetail(props) {
                 <CardContent>
                   <div className={classes.cardPricing}>
                     <Typography component="h2" variant="h3" color="textPrimary">
-                      ¥{tier.price}
+                      ¥{item.price1}
                     </Typography>
                     <Typography variant="h6" color="textSecondary">
                       円
@@ -215,9 +226,10 @@ function ItemDetail(props) {
     </React.Fragment>
   );
 }
+}
 
 ItemDetail.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(ItemDetail);
+export default withStyles(styles)(WithItemsContext(ItemDetail));
