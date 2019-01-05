@@ -66,45 +66,42 @@ const styles = theme => ({
   },
 });
 
-const tiers = [
-  {
-    title: 'タイトルA',
-    subheader: '人気No1',
-    price: '30000',
-    description: [
-      '10 users included',
-      '2 GB of storage',
-      'Help center access',
-      'Email support'
-    ],
-    buttonText: 'Go',
-    buttonVariant: 'contained',
-  },
-  {
-    title: 'タイトルB',
-    price: '28000',
-    description: [
-      '20 users included',
-      '10 GB of storage',
-      'Help center access',
-      'Priority email support',
-    ],
-    buttonText: 'Go',
-    buttonVariant: 'outlined',
-  },
-  {
-    title: 'EタイトルC',
-    price: '27000',
-    description: [
-      '50 users included',
-      '30 GB of storage',
-      'Help center access',
-      'Phone & email support',
-    ],
-    buttonText: 'Go',
-    buttonVariant: 'outlined',
-  },
-];
+// const tiers = [
+//   {
+//     title: 'タイトルA',
+//     subheader: '人気No1',
+//     price: '30000',
+//     description: [
+//       '10 users included',
+//       '2 GB of storage',
+//       'Help center access',
+//       'Email support'
+//     ],
+//     buttonVariant: 'contained',
+//   },
+//   {
+//     title: 'タイトルB',
+//     price: '28000',
+//     description: [
+//       '20 users included',
+//       '10 GB of storage',
+//       'Help center access',
+//       'Priority email support',
+//     ],
+//     buttonVariant: 'outlined',
+//   },
+//   {
+//     title: 'EタイトルC',
+//     price: '27000',
+//     description: [
+//       '50 users included',
+//       '30 GB of storage',
+//       'Help center access',
+//       'Phone & email support',
+//     ],
+//     buttonVariant: 'outlined',
+//   },
+// ];
 // const footers = [
 //   {
 //     title: 'Company',
@@ -127,7 +124,6 @@ const tiers = [
 // function ItemDetail(props) {
 class ItemDetail extends React.Component {
   componentDidMount() {
-    console.log("componentDidMount this.props:", this.props);
     this.props.items.getItems();
   }
 
@@ -135,9 +131,25 @@ render() {
   const { classes, items } = this.props;
   const { id } = this.props.match.params;
   console.log("itemDetail match params id:", this.props.match.params.id);
-  console.log("itemDetail items:", items);
+  console.log("itemDetail items.items[id]:", items.items[0]);
+  console.log("itemDetail typeof id:", typeof id);
+  // console.log("itemDetail items.items[id].shops:", items.items[0]);
+  // console.log("itemDetail items.items[id] typeof :", typeof items.items[0].title);
 
-  const item = items.items[id] || { price1: 0 };
+  const item = items.items.find(item => item.id === parseInt(id)) || {
+    title: "",
+    subheader: "",
+    price: "",
+    shops:[
+      { title: "11", price: "0", subheader: "", description: ["a","b","x",],}, 
+      { title: "22", price: "0", subheader: "", description: ["g","f","d",],}, 
+      { title: "33", price: "0", subheader: "", description: ["d","g","a",],}, 
+    ], 
+    
+  }; 
+  const { shops } = item;
+  console.log("itemDetail item:", item);
+  console.log("itemDetail item.shops:", shops);
 
   return (
     <React.Fragment>
@@ -168,22 +180,22 @@ render() {
         </div>
         {/* End hero unit */}
         <Grid container spacing={40} alignItems="flex-end">
-          {tiers.map(tier => (
+          {shops.map((tier, index) => (
             // Enterprise card is full width at sm breakpoint
             <Grid item key={tier.title} xs={12} sm={tier.title === 'Enterprise' ? 12 : 6} md={4}>
               <Card>
                 <CardHeader
                   title={tier.title}
-                  subheader={tier.subheader}
+                  subheader={index === 0 ? "人気No1." : tier.subheader}
                   titleTypographyProps={{ align: 'center' }}
                   subheaderTypographyProps={{ align: 'center' }}
-                  action={tier.title === 'タイトルA' ? <StarIcon /> : null}
+                  action={index === 0 ? <StarIcon /> : null}
                   className={classes.cardHeader}
                 />
                 <CardContent>
                   <div className={classes.cardPricing}>
                     <Typography component="h2" variant="h3" color="textPrimary">
-                      ¥{item.price1}
+                      ¥{tier.price}
                     </Typography>
                     <Typography variant="h6" color="textSecondary">
                       円
@@ -196,8 +208,9 @@ render() {
                   ))}
                 </CardContent>
                 <CardActions className={classes.cardActions}>
-                  <Button fullWidth variant={tier.buttonVariant} color="primary" onClick={() => {}}>
-                    {tier.buttonText}<OpenInNewIcon />
+                  {/* <Button fullWidth variant={tier.buttonVariant} color="primary" onClick={() => {}}> */}
+                  <Button fullWidth variant="contained" color="primary" onClick={() => {}}>
+                    Go<OpenInNewIcon />
                   </Button>
                 </CardActions>
               </Card>

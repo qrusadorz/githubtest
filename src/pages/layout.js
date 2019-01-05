@@ -80,14 +80,6 @@ class Layout extends React.Component {
         });
     }
 
-    // TODO コンストラクタの時はstate = {}はNG？
-    // state = {
-    //     system: {
-    //         snackbarMessage: "",
-    //         updateSnackbarMessage: this.updateSnackbarMessage,
-    //     },
-    // };
-
     handleLogin = (user) => { this.setState({ user }); }
     handleLogout = () => { this.setState({ user: null }); }
     handleLoginButton = () => {

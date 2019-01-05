@@ -18,6 +18,8 @@ import { withRouter } from "react-router-dom";
 
 import CustomizedInputBase from './searchField'
 
+import WithItemsContext from '../components/WithItemsContext';
+
 const styles = theme => ({
   appBar: {
     position: 'relative',
@@ -66,26 +68,35 @@ const styles = theme => ({
   },
 });
 
-const cards = [
-  { id:1, title:"アイテムN", price1:"30000", price2:"29000", price3:"28000", },
-  { id:2, title:"アイテムP", price1:"22000", price2:"21000", price3:"20000", },
-  { id:3, title:"アイテムA", price1:"17500", price2:"17000", price3:"13000", },
-  { id:4, title:"B", price1:"", price2:"", price3:"", },
-  { id:5, title:"C", price1:"", price2:"", price3:"", },
-  { id:6, title:"D", price1:"", price2:"", price3:"", },
-  { id:7, title:"E", price1:"", price2:"", price3:"", },
-  { id:8, title:"F", price1:"", price2:"", price3:"", },
-  { id:9, title:"G", price1:"", price2:"", price3:"", },
-  { id:10, title:"H", price1:"", price2:"", price3:"", },
-];
+// const items = [
+//   { id:1, title:"アイテムN", price1:"30000", price2:"29000", price3:"28000", },
+//   { id:2, title:"アイテムP", price1:"22000", price2:"21000", price3:"20000", },
+//   { id:3, title:"アイテムA", price1:"17500", price2:"17000", price3:"13000", },
+//   { id:4, title:"B", price1:"", price2:"", price3:"", },
+//   { id:5, title:"C", price1:"", price2:"", price3:"", },
+//   { id:6, title:"D", price1:"", price2:"", price3:"", },
+//   { id:7, title:"E", price1:"", price2:"", price3:"", },
+//   { id:8, title:"F", price1:"", price2:"", price3:"", },
+//   { id:9, title:"G", price1:"", price2:"", price3:"", },
+//   { id:10, title:"H", price1:"", price2:"", price3:"", },
+// ];
 
-function Album(props) {
-  const { classes } = props;
+// function Album(props) {
+class Album extends React.Component {
+  componentDidMount() {
+    this.props.items.getItems();
+  }
+
+  render() {
+  const { classes } = this.props;
+  const { items } = this.props.items;
+  
+  console.log("top items:", items);
 
   // const toDetail = item => props.history.push({
   //   pathname: `/items/${item.id}`, item
   // });
-  const toDetail = item => props.history.push(`/items/${item.id}`);
+  const toDetail = item => this.props.history.push(`/items/${item.id}`);
 
   return (
     <React.Fragment>
@@ -130,7 +141,7 @@ function Album(props) {
         <div className={classNames(classes.layout, classes.cardGrid)}>
           {/* End hero unit */}
           <Grid container spacing={40}>
-            {cards.map(item => (
+            {items.map(item => (
               <Grid item key={item.id} sm={6} md={4} lg={3}>
                 <Card className={classes.card}>
                   <CardMedia
@@ -143,7 +154,7 @@ function Album(props) {
                       {item.title}
                     </Typography>
                     <Typography gutterBottom color="textSecondary">
-                    ¥{item.price1}円
+                    ¥{item.price}円
                     </Typography>
                     <Typography>
                       商品名概要。商品に関する概要を記入する。何を記入するかは未定。
@@ -176,9 +187,10 @@ function Album(props) {
     </React.Fragment>
   );
 }
+}
 
 Album.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(withRouter(Album));
+export default withStyles(styles)(withRouter(WithItemsContext(Album)));

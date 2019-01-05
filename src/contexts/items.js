@@ -1,21 +1,107 @@
 import React from 'react';
 
-export const items = {};
+export const items = [];
+
+export const defaultItems = {
+    title: "",
+    subheader: "",
+    price: "",
+    shops:[
+      { title: "11", price: "0", subheader: "", description: ["a","b","x",],}, 
+      { title: "22", price: "0", subheader: "", description: ["g","f","d",],}, 
+      { title: "33", price: "0", subheader: "", description: ["d","g","a",],}, 
+    ], 
+  }; 
+
 export const getItems = id => {
     console.log("getItems()");
     // TODO: データ取得
-    const items = {
-        1: { title:"アイテムN", price1:"30000", price2:"29000", price3:"28000", },
-        2: { title:"アイテムP", price1:"22000", price2:"21000", price3:"20000", },
-        3: { title:"アイテムA", price1:"17500", price2:"17000", price3:"13000", },
-        4: { title:"B", price1:"", price2:"", price3:"", },
-        5: { title:"C", price1:"", price2:"", price3:"", },
-        6: { title:"D", price1:"", price2:"", price3:"", },
-        7: { title:"E", price1:"", price2:"", price3:"", },
-        8: { title:"F", price1:"", price2:"", price3:"", },
-        9: { title:"G", price1:"", price2:"", price3:"", },
-        10: { title:"H", price1:"", price2:"", price3:"", },
-    };
+    const items = [
+        {
+            id: 1,
+            title:"アイテムN", 
+            price: 30000,
+            shops: [
+                {
+                    id: 1,
+                    title: "ショップA",
+                    price: 30000,
+                    url: "",
+                    description: [],
+                },
+                {
+                    id: 2,
+                    title: "ショップB",
+                    price: 30000,
+                    url: "",
+                    description: [],
+                },
+                {
+                    id: 3,
+                    title: "ショップC",
+                    price: 30000,
+                    url: "",
+                    description: [],
+                },
+            ],
+        },
+        {
+            id: 2,
+            title:"アイテムP", 
+            price: 22000,
+            shops: [
+                {
+                    id: 1,
+                    title: "ショップA",
+                    price: 22000,
+                    url: "",
+                    description: [],
+                },
+                {
+                    id: 2,
+                    title: "ショップB",
+                    price: 21000,
+                    url: "",
+                    description: [],
+                },
+                {
+                    id: 3,
+                    title: "ショップC",
+                    price: 20000,
+                    url: "",
+                    description: [],
+                },
+            ],
+        },
+        {
+            id: 3,
+            title:"アイテムS", 
+            price: 17500,
+            shops: [
+                {
+                    id: 1,
+                    title: "ショップA",
+                    price: 17500,
+                    url: "",
+                    description: [],
+                },
+                {
+                    id: 2,
+                    title: "ショップB",
+                    price: 17000,
+                    url: "",
+                    description: [],
+                },
+                {
+                    id: 3,
+                    title: "ショップC",
+                    price: 16000,
+                    url: "",
+                    description: [],
+                },
+            ],
+        },
+    ];
 
     return items;
 };
@@ -23,9 +109,6 @@ export const getItems = id => {
 export const ItemsContext = React.createContext({
     items,
     getItems,
-    // setItems: (items) => {
-    //     // TODO: 
-    // },
 });
 
 export default ItemsContext;
