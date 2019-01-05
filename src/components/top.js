@@ -66,13 +66,26 @@ const styles = theme => ({
   },
 });
 
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+const cards = [
+  { id:1, title:"アイテムN", price1:"30000", price2:"29000", price3:"28000", },
+  { id:2, title:"アイテムP", price1:"22000", price2:"21000", price3:"20000", },
+  { id:3, title:"アイテムA", price1:"17500", price2:"17000", price3:"13000", },
+  { id:4, title:"B", price1:"", price2:"", price3:"", },
+  { id:5, title:"C", price1:"", price2:"", price3:"", },
+  { id:6, title:"D", price1:"", price2:"", price3:"", },
+  { id:7, title:"E", price1:"", price2:"", price3:"", },
+  { id:8, title:"F", price1:"", price2:"", price3:"", },
+  { id:9, title:"G", price1:"", price2:"", price3:"", },
+  { id:10, title:"H", price1:"", price2:"", price3:"", },
+];
 
 function Album(props) {
   const { classes } = props;
 
-  // TODO TEST
-  const toDetail = (number) => props.history.push(`/items/${number}`);
+  // const toDetail = item => props.history.push({
+  //   pathname: `/items/${item.id}`, item
+  // });
+  const toDetail = item => props.history.push(`/items/${item.id}`);
 
   return (
     <React.Fragment>
@@ -117,8 +130,8 @@ function Album(props) {
         <div className={classNames(classes.layout, classes.cardGrid)}>
           {/* End hero unit */}
           <Grid container spacing={40}>
-            {cards.map(card => (
-              <Grid item key={card} sm={6} md={4} lg={3}>
+            {cards.map(item => (
+              <Grid item key={item.id} sm={6} md={4} lg={3}>
                 <Card className={classes.card}>
                   <CardMedia
                     className={classes.cardMedia}
@@ -127,17 +140,17 @@ function Album(props) {
                   />
                   <CardContent className={classes.cardContent}>
                     <Typography variant="h5" component="h2">
-                      商品名
+                      {item.title}
                     </Typography>
                     <Typography gutterBottom color="textSecondary">
-                    ¥30000円
+                    ¥{item.price1}円
                     </Typography>
                     <Typography>
                       商品名概要。商品に関する概要を記入する。何を記入するかは未定。
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Button size="small" color="primary" onClick={() => toDetail(card)}>
+                    <Button size="small" color="primary" onClick={() => toDetail(item)}>
                       詳細
                     </Button>
                     {/* <Button size="small" color="primary">

@@ -124,6 +124,9 @@ const tiers = [
 
 function ItemDetail(props) {
   const { classes } = props;
+  const { id } = props.match.params;
+  console.log("itemDetail props:", props);
+  console.log("itemDetail match params id:", props.match.params.id);
 
   return (
     <React.Fragment>
@@ -145,7 +148,7 @@ function ItemDetail(props) {
         {/* Hero unit */}
         <div className={classes.heroContent}>
           <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-            アイテム名
+            アイテム名:{id}
           </Typography>
           <Typography variant="h6" align="center" color="textSecondary" component="p">
             アイテムの説明をここに記述する。長い文章をずらずら書いた際にどうなるかのテスト。
