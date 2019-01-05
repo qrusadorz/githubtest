@@ -209,9 +209,11 @@ render() {
                 </CardContent>
                 <CardActions className={classes.cardActions}>
                   {/* <Button fullWidth variant={tier.buttonVariant} color="primary" onClick={() => {}}> */}
-                  <Button fullWidth variant="contained" color="primary" onClick={() => {}}>
-                    Go<OpenInNewIcon />
-                  </Button>
+                  <a href ="https://www.google.co.jp" target="_blank" rel="noopener" >
+                    <Button fullWidth variant="contained" color="primary" onClick={() => {}}>
+                      Go<OpenInNewIcon />
+                    </Button>
+                  </a>
                 </CardActions>
               </Card>
             </Grid>
