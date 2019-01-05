@@ -65,9 +65,7 @@ const footers = [
 
 class Main extends React.Component {
     render() {
-        const { classes, user } = this.props;
-        console.log("main user:", user);
-
+        const { classes } = this.props;
         return (
             <main className={classes.content}>
                 {
@@ -103,7 +101,7 @@ class Main extends React.Component {
                                     {footer.title}
                                 </Typography>
                                 {footer.description.map(item => (
-                                    <Link to="/privacy">
+                                    <Link to="/privacy" key={item}>
                                         <Typography key={item} variant="subtitle1" color="textSecondary">
                                             {item}
                                         </Typography>
