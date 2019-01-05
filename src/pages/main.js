@@ -14,8 +14,7 @@ import Grid from '@material-ui/core/Grid';
 
 import withSystemContext from '../components/WithSystemContext';
 
-import SimpleSnackBar from '../components/snackbar';
-import AlignItemsList from '../components/itemsList';
+// import AlignItemsList from '../components/itemsList';
 import Album from '../components/top';
 
 const styles = theme => ({
@@ -84,7 +83,6 @@ class Main extends React.Component {
                 {/* <AlignItemsList /> */}
                 {/* <Qrcode /> */}
                 <Album />
-                <SimpleSnackBar />
                 {/* mainから出したいがスクロール問題でNG */}
                 {/* Footer */}
                 {/* <footer className={classes.footer}>

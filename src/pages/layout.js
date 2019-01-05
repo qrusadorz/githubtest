@@ -17,6 +17,7 @@ import itemDetail from './itemDetail'
 import ScrollToTop from '../components/scrollToTop'
 import SwipeableTemporaryDrawer from '../components/SwipeableTemporaryDrawer'
 import MenuAppBar from '../components/menuappbar';
+import SimpleSnackBar from '../components/snackbar';
 
 const styles = theme => ({
     //   root: {
@@ -50,7 +51,9 @@ class Layout extends React.Component {
             },
         };
 
+        console.log("layout constructor");
         firebase.auth().onAuthStateChanged((user) => {
+            console.log("onAuthStateChanged user:", user);
             if (user) {
                 // User is signed in.
                 const {
@@ -69,7 +72,6 @@ class Layout extends React.Component {
                 this.updateSnackbarMessage("ログアウトしました");
             }
             console.log("public:" + process.env.PUBLIC_URL);
-            console.log("user:", user);
         });
     }
 
@@ -115,6 +117,7 @@ class Layout extends React.Component {
     }
 
     updateSnackbarMessage = message => {
+        console.log("updateSnackbarMessage:", message);
         this.setState({
             system: {
                 ...this.state.system,
@@ -161,6 +164,7 @@ class Layout extends React.Component {
                                 <Route component={Main} />
                                 {/* <Main className={classes.content} /> */}
                             </Switch>
+                            <SimpleSnackBar />
                         </UserContext.Provider>
                     </SystemContext.Provider>
                 </ScrollToTop>
