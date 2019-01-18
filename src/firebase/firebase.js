@@ -1,5 +1,11 @@
+// import firebase from 'firebase';
 import firebase from 'firebase/app';
 import 'firebase/auth';
+// import 'firebase/firebase-database';
+// import 'firebase/firebase-firestore';
+// import 'firebase/firebase-functions';
+// import 'firebase/messaging';
+// import 'firebase/firebase-storage';
 import config from '../configs/firebase';
 
 // Initialize Firebase
