@@ -209,7 +209,7 @@ render() {
                 </CardContent>
                 <CardActions className={classes.cardActions}>
                   {/* <Button fullWidth variant={tier.buttonVariant} color="primary" onClick={() => {}}> */}
-                  <a href ="https://www.google.co.jp" target="_blank" rel="noopener" >
+                  <a href ="https://www.google.co.jp" target="_blank" rel="noopener noreferrer" >
                     <Button fullWidth variant="contained" color="primary" onClick={() => {}}>
                       Go<OpenInNewIcon />
                     </Button>
