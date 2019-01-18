@@ -9,6 +9,10 @@ import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import DirectionsIcon from '@material-ui/icons/Directions';
 
+// import Downshift from 'downshift'
+// import Select from 'react-select';
+// import Autosuggest from 'react-autosuggest';
+
 const styles = {
   root: {
     padding: '2px 4px',

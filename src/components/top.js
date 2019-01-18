@@ -17,6 +17,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { withRouter } from "react-router-dom";
 
 import CustomizedInputBase from './searchField'
+import IntegrationReactSelect from './integrationReactSelect'
 
 import WithItemsContext from '../components/WithItemsContext';
 
@@ -120,7 +121,8 @@ class Album extends React.Component {
               商品をチェックしましょう。
             </Typography>
             <div align='center'>
-              <CustomizedInputBase />
+              {/* <CustomizedInputBase /> */}
+              <IntegrationReactSelect />
             </div>
             {/* <div className={classes.heroButtons}>
               <Grid container spacing={16} justify="center">
