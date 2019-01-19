@@ -84,13 +84,13 @@ const styles = theme => ({
 
 // function Album(props) {
 class Album extends React.Component {
-  componentDidMount() {
-    this.props.items.getItems();
+  async componentDidMount() {
+    await this.props.items.getItems();
   }
 
   render() {
   const { classes } = this.props;
-  const { items } = this.props.items;
+  const { items = [] } = this.props.items;
   
   console.log("top items:", items);
 

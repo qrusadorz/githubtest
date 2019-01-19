@@ -123,8 +123,8 @@ const styles = theme => ({
 
 // function ItemDetail(props) {
 class ItemDetail extends React.Component {
-  componentDidMount() {
-    this.props.items.getItems();
+  async componentDidMount() {
+    await this.props.items.getItems();
   }
 
 render() {

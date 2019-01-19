@@ -18,7 +18,7 @@ import ScrollToTop from '../components/scrollToTop'
 import SwipeableTemporaryDrawer from '../components/SwipeableTemporaryDrawer'
 import MenuAppBar from '../components/menuappbar';
 import SimpleSnackBar from '../components/snackbar';
-import { ItemsContext, items, getItems } from '../contexts/items';
+import { ItemsContext, getItems } from '../contexts/items';
 
 const styles = theme => ({
     //   root: {
@@ -51,7 +51,8 @@ class Layout extends React.Component {
                 closeDrawer: this.closeDrawer,
             },
             items: {
-                items,
+                // TODO 後で初期値見直し
+                items: [], //items,
                 getItems: this.handleGetItems,
             },
         };
@@ -123,9 +124,9 @@ class Layout extends React.Component {
         });
     }
 
-    handleGetItems = () => {
+    handleGetItems = async () => {
         console.log("getItems:");
-        const items = getItems();
+        const items = await getItems();
         this.setState({
             items: {
                 ...this.state.items,

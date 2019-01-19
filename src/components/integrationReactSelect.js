@@ -13,7 +13,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import { emphasize } from '@material-ui/core/styles/colorManipulator';
 
 import WithItemsContext from '../components/WithItemsContext';
-import { getItems } from '../contexts/items';
+import { getItems, items } from '../contexts/items';
 
 import { withRouter } from "react-router-dom";
 
@@ -27,7 +27,10 @@ import { withRouter } from "react-router-dom";
 //   label: suggestion.label,
 // }));
 
-const suggestions = getItems().map(suggestion => ({
+// const suggestions = (await getItems()).map(suggestion => ({
+// const suggestions = getItems().then(result => result.map(suggestion => ({
+// const suggestions = getItems().map(suggestion => ({
+const suggestions = items.map(suggestion => ({
     value: suggestion.title,
     label: suggestion.title,
     id: suggestion.id,
@@ -178,6 +181,10 @@ class IntegrationReactSelect extends React.Component {
     single: null,
     multi: null,
   };
+
+  componentDidMount() {
+    this.props.items.getItems();
+  }
 
   handleChange = name => value => {
     this.setState({
