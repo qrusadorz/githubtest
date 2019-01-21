@@ -36,9 +36,9 @@ function withItemsContext(WrappedComponent) {
             return (
                 <ItemsContext.Consumer>
                     {items => (
-                                //   <ProfilePage user={user} theme={theme} />
-                                //   <WrappedComponent data={this.state.data} {...this.props} />
-                                <WrappedComponent items={items} {...this.props} />
+                        //   <ProfilePage user={user} theme={theme} />
+                        //   <WrappedComponent data={this.state.data} {...this.props} />
+                        <WrappedComponent items={items} {...this.props} />
                     )}
                 </ItemsContext.Consumer>
             );

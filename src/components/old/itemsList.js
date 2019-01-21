@@ -11,7 +11,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 
-import items from '../userdata/items';
+import items from '../../userdata/items';
 
 const styles = theme => ({
   root: {

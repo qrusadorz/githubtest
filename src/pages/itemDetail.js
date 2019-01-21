@@ -127,34 +127,34 @@ class ItemDetail extends React.Component {
     await this.props.items.getItems();
   }
 
-render() {
-  const { classes, items } = this.props;
-  const { id } = this.props.match.params;
-  console.log("itemDetail match params id:", this.props.match.params.id);
-  console.log("itemDetail items.items[id]:", items.items[0]);
-  console.log("itemDetail typeof id:", typeof id);
-  // console.log("itemDetail items.items[id].shops:", items.items[0]);
-  // console.log("itemDetail items.items[id] typeof :", typeof items.items[0].title);
+  render() {
+    const { classes, items } = this.props;
+    const { id } = this.props.match.params;
+    console.log("itemDetail match params id:", this.props.match.params.id);
+    console.log("itemDetail items.items[id]:", items.items[0]);
+    console.log("itemDetail typeof id:", typeof id);
+    // console.log("itemDetail items.items[id].shops:", items.items[0]);
+    // console.log("itemDetail items.items[id] typeof :", typeof items.items[0].title);
 
-  const item = items.items.find(item => item.id === parseInt(id)) || {
-    title: "",
-    subheader: "",
-    price: "",
-    shops:[
-      { title: "11", price: "0", subheader: "", description: ["a","b","x",],}, 
-      { title: "22", price: "0", subheader: "", description: ["g","f","d",],}, 
-      { title: "33", price: "0", subheader: "", description: ["d","g","a",],}, 
-    ], 
-    
-  }; 
-  const { shops } = item;
-  console.log("itemDetail item:", item);
-  console.log("itemDetail item.shops:", shops);
+    const item = items.items.find(item => item.id === parseInt(id)) || {
+      title: "",
+      subheader: "",
+      price: "",
+      shops: [
+        { title: "11", price: "0", subheader: "", description: ["a", "b", "x",], },
+        { title: "22", price: "0", subheader: "", description: ["g", "f", "d",], },
+        { title: "33", price: "0", subheader: "", description: ["d", "g", "a",], },
+      ],
 
-  return (
-    <React.Fragment>
-      <CssBaseline />
-      {/* <AppBar position="static" color="default" className={classes.appBar}>
+    };
+    const { shops } = item;
+    console.log("itemDetail item:", item);
+    console.log("itemDetail item.shops:", shops);
+
+    return (
+      <React.Fragment>
+        <CssBaseline />
+        {/* <AppBar position="static" color="default" className={classes.appBar}>
         <Toolbar>
           <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
             Company name
@@ -167,61 +167,61 @@ render() {
           </Button>
         </Toolbar>
       </AppBar> */}
-      <main className={classes.layout}>
-        {/* Hero unit */}
-        <div className={classes.heroContent}>
-          <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-            アイテム名:{item.title}
-          </Typography>
-          <Typography variant="h6" align="center" color="textSecondary" component="p">
-            アイテムの説明をここに記述する。長い文章をずらずら書いた際にどうなるかのテスト。
+        <main className={classes.layout}>
+          {/* Hero unit */}
+          <div className={classes.heroContent}>
+            <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
+              アイテム名:{item.title}
+            </Typography>
+            <Typography variant="h6" align="center" color="textSecondary" component="p">
+              アイテムの説明をここに記述する。長い文章をずらずら書いた際にどうなるかのテスト。
             It&apos;s built <br />2019/01/04更新
           </Typography>
-        </div>
-        {/* End hero unit */}
-        <Grid container spacing={40} alignItems="flex-end">
-          {shops.map((tier, index) => (
-            // Enterprise card is full width at sm breakpoint
-            <Grid item key={tier.title} xs={12} sm={tier.title === 'Enterprise' ? 12 : 6} md={4}>
-              <Card>
-                <CardHeader
-                  title={tier.title}
-                  subheader={index === 0 ? "人気No1." : tier.subheader}
-                  titleTypographyProps={{ align: 'center' }}
-                  subheaderTypographyProps={{ align: 'center' }}
-                  action={index === 0 ? <StarIcon /> : null}
-                  className={classes.cardHeader}
-                />
-                <CardContent>
-                  <div className={classes.cardPricing}>
-                    <Typography component="h2" variant="h3" color="textPrimary">
-                      ¥{tier.price}
+          </div>
+          {/* End hero unit */}
+          <Grid container spacing={40} alignItems="flex-end">
+            {shops.map((tier, index) => (
+              // Enterprise card is full width at sm breakpoint
+              <Grid item key={tier.title} xs={12} sm={tier.title === 'Enterprise' ? 12 : 6} md={4}>
+                <Card>
+                  <CardHeader
+                    title={tier.title}
+                    subheader={index === 0 ? "人気No1." : tier.subheader}
+                    titleTypographyProps={{ align: 'center' }}
+                    subheaderTypographyProps={{ align: 'center' }}
+                    action={index === 0 ? <StarIcon /> : null}
+                    className={classes.cardHeader}
+                  />
+                  <CardContent>
+                    <div className={classes.cardPricing}>
+                      <Typography component="h2" variant="h3" color="textPrimary">
+                        ¥{tier.price}
+                      </Typography>
+                      <Typography variant="h6" color="textSecondary">
+                        円
                     </Typography>
-                    <Typography variant="h6" color="textSecondary">
-                      円
-                    </Typography>
-                  </div>
-                  {tier.description.map(line => (
-                    <Typography variant="subtitle1" align="center" key={line}>
-                      {line}
-                    </Typography>
-                  ))}
-                </CardContent>
-                <CardActions className={classes.cardActions}>
-                  {/* <Button fullWidth variant={tier.buttonVariant} color="primary" onClick={() => {}}> */}
-                  <a href ="https://www.google.co.jp" target="_blank" rel="noopener noreferrer" >
-                    <Button fullWidth variant="contained" color="primary" onClick={() => {}}>
-                      Go<OpenInNewIcon />
-                    </Button>
-                  </a>
-                </CardActions>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
-      </main>
-      {/* Footer */}
-      {/* <footer className={classNames(classes.footer, classes.layout)}>
+                    </div>
+                    {tier.description.map(line => (
+                      <Typography variant="subtitle1" align="center" key={line}>
+                        {line}
+                      </Typography>
+                    ))}
+                  </CardContent>
+                  <CardActions className={classes.cardActions}>
+                    {/* <Button fullWidth variant={tier.buttonVariant} color="primary" onClick={() => {}}> */}
+                    <a href="https://www.google.co.jp" target="_blank" rel="noopener noreferrer" >
+                      <Button fullWidth variant="contained" color="primary" onClick={() => { }}>
+                        Go<OpenInNewIcon />
+                      </Button>
+                    </a>
+                  </CardActions>
+                </Card>
+              </Grid>
+            ))}
+          </Grid>
+        </main>
+        {/* Footer */}
+        {/* <footer className={classNames(classes.footer, classes.layout)}>
         <Grid container spacing={32} justify="space-evenly">
           {footers.map(footer => (
             <Grid item xs key={footer.title}>
@@ -237,10 +237,10 @@ render() {
           ))}
         </Grid>
       </footer> */}
-      {/* End footer */}
-    </React.Fragment>
-  );
-}
+        {/* End footer */}
+      </React.Fragment>
+    );
+  }
 }
 
 ItemDetail.propTypes = {

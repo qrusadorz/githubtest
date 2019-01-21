@@ -7,91 +7,91 @@ import firebase from '../firebase/firebase';
 // 配列化はクライアントにさせ、データとしてはIDでアクセスできる形式が効率よさげ。
 // TODO しばらく暫定
 export const defaultItems = [
-        {
-            id: 1,
-            title:"アイテムN", 
-            price: 30000,
-            shops: [
-                {
-                    id: 1,
-                    title: "ショップA",
-                    price: 30000,
-                    url: "https:www.google.co.jp",
-                    description: [],
-                },
-                {
-                    id: 2,
-                    title: "ショップB",
-                    price: 30000,
-                    url: "https:www.google.co.jp",
-                    description: [],
-                },
-                {
-                    id: 3,
-                    title: "ショップC",
-                    price: 30000,
-                    url: "https:www.google.co.jp",
-                    description: [],
-                },
-            ],
-        },
-        {
-            id: 2,
-            title:"アイテムP", 
-            price: 22000,
-            shops: [
-                {
-                    id: 1,
-                    title: "ショップA",
-                    price: 22000,
-                    url: "https:www.google.co.jp",
-                    description: [],
-                },
-                {
-                    id: 2,
-                    title: "ショップB",
-                    price: 21000,
-                    url: "https:www.google.co.jp",
-                    description: [],
-                },
-                {
-                    id: 3,
-                    title: "ショップC",
-                    price: 20000,
-                    url: "https:www.google.co.jp",
-                    description: [],
-                },
-            ],
-        },
-        {
-            id: 3,
-            title:"アイテムS", 
-            price: 17500,
-            shops: [
-                {
-                    id: 1,
-                    title: "ショップA",
-                    price: 17500,
-                    url: "https:www.google.co.jp",
-                    description: [],
-                },
-                {
-                    id: 2,
-                    title: "ショップB",
-                    price: 17000,
-                    url: "https:www.google.co.jp",
-                    description: [],
-                },
-                {
-                    id: 3,
-                    title: "ショップC",
-                    price: 16000,
-                    url: "https:www.google.co.jp",
-                    description: [],
-                },
-            ],
-        },
-    ];
+    {
+        id: 1,
+        title: "アイテムN",
+        price: 30000,
+        shops: [
+            {
+                id: 1,
+                title: "ショップA",
+                price: 30000,
+                url: "https:www.google.co.jp",
+                description: [],
+            },
+            {
+                id: 2,
+                title: "ショップB",
+                price: 30000,
+                url: "https:www.google.co.jp",
+                description: [],
+            },
+            {
+                id: 3,
+                title: "ショップC",
+                price: 30000,
+                url: "https:www.google.co.jp",
+                description: [],
+            },
+        ],
+    },
+    {
+        id: 2,
+        title: "アイテムP",
+        price: 22000,
+        shops: [
+            {
+                id: 1,
+                title: "ショップA",
+                price: 22000,
+                url: "https:www.google.co.jp",
+                description: [],
+            },
+            {
+                id: 2,
+                title: "ショップB",
+                price: 21000,
+                url: "https:www.google.co.jp",
+                description: [],
+            },
+            {
+                id: 3,
+                title: "ショップC",
+                price: 20000,
+                url: "https:www.google.co.jp",
+                description: [],
+            },
+        ],
+    },
+    {
+        id: 3,
+        title: "アイテムS",
+        price: 17500,
+        shops: [
+            {
+                id: 1,
+                title: "ショップA",
+                price: 17500,
+                url: "https:www.google.co.jp",
+                description: [],
+            },
+            {
+                id: 2,
+                title: "ショップB",
+                price: 17000,
+                url: "https:www.google.co.jp",
+                description: [],
+            },
+            {
+                id: 3,
+                title: "ショップC",
+                price: 16000,
+                url: "https:www.google.co.jp",
+                description: [],
+            },
+        ],
+    },
+];
 export let items = [];
 
 // export const defaultItems = {
