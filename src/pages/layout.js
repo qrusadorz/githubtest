@@ -155,8 +155,8 @@ class Layout extends React.Component {
 
     render() {
         const { classes } = this.props;
-        console.log("layout render props:", this.props);
-        console.log("layout render state:", this.state);
+        // console.log("layout render props:", this.props);
+        // console.log("layout render state:", this.state);
 
         return (
             <Router>

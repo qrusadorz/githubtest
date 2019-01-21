@@ -2,6 +2,9 @@ import React from 'react';
 
 import firebase from '../firebase/firebase';
 
+// case firestore
+const db = firebase.app().firestore();
+
 // TODO: データ収集の形式に応じて変更が必要。
 // 例えば完全に並列実行の場合、どちらかといえばShopごとに取得するため商品ごとだと微妙。
 // 配列化はクライアントにさせ、データとしてはIDでアクセスできる形式が効率よさげ。
@@ -96,7 +99,7 @@ export let items = [];
 
 export const defaultItem = {
     // 部分一致検索としてまとまって必要
-    id: 0,
+    id: 0,  // nameからMD5?
     name: "",
     // TODO priceは部分一致にあればベストだが更新されやすいので切り離しが妥当と思う。
     price: 1000,
@@ -108,7 +111,7 @@ export const defaultItem = {
     // TODO クエリーに任せるといいかもしれない。
     shops: [
         { 
-            id: 1,
+            id: 1, // nameからMD5?
             name: "ショップ", 
             price: 30000, 
             url: "https:www.google.co.jp", 
@@ -137,23 +140,24 @@ const itemTitles = [
     },
 ];
 
-export const findItems = text => {
-    console.log("findItems() text:", text);
+// export const findItems = text => {
+//     console.log("findItems() text:", text);
 
-    // TODO upperlowwer
+//     // TODO upperlowwer
 
-    // TODO Find
-    const items = itemTitles.find(element => {
-        return element.name.includes(text);
-    });
+//     // TODO Find
+//     const items = itemTitles.find(element => {
+//         return element.name.includes(text);
+//     });
 
-    return items;
-};
+//     return items;
+// };
 
 export const getItems = async (id) => {
     console.log("getItems() length:", items.length);
     if (items.length > 0) {
-        console.log("getItems() cached:", items);
+        // console.log("getItems() cached:", items);
+        console.log("getItems() cached");
         return items;
     }
 
@@ -175,18 +179,18 @@ export const getItems = async (id) => {
     //     return [];
     // };
 
-    // case firestore
-    const db = firebase.app().firestore();
     try {
         // write
         // await createTestItems();
+        // delete
+        // await deleteTestItems();
         const collectionRef = db.collection("items");
         // one read
         const docRef = collectionRef.doc("Dwnt22xauW0F8AZIb6rh");
         const result = await docRef.get();
-        console.log("getItems() result:", result);
+        // console.log("getItems() result:", result);
         items = result.data().store || [];
-        console.log("getItems() items:", items);
+        // console.log("getItems() items:", items);
         // query one read
         // const result = await docRef.get();
         // const result = await collectionRef.where("store.price", "==", 22000).get();
@@ -219,8 +223,6 @@ export const getItems = async (id) => {
 };
 
 const createTestItems = async () => {
-    const db = firebase.app().firestore();
-
     // TODO create testdata
     const testItems = { store : [] };
     for (let i = 0; i < 1000; i++) {
@@ -255,6 +257,19 @@ const createTestItems = async () => {
     }
 
     await db.collection("items").add(testItems);
+}
+
+const deleteTestItems = async () => {
+    try {
+        await db.collection("items").doc("80Je3jq0UypPpPKOouEh").delete();
+    } catch (e) {
+        // Getting the Error details.
+        // const code = e.code;
+        // const message = e.message;
+        // const details = e.details;
+        // ...
+        console.error("error:", e);
+    };
 }
 
 export const ItemsContext = React.createContext({
