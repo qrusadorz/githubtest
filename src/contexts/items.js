@@ -179,10 +179,10 @@ export const getItems = async (id) => {
     const db = firebase.app().firestore();
     try {
         // write
-        // const result = await db.collection("items").add(defaultItems);
+        // await db.collection("items").add(defaultItems);
         const collectionRef = db.collection("items");
         // one read
-        const docRef = collectionRef.doc("7fIiwMd74s2EYYU2HVdN");
+        const docRef = collectionRef.doc("9fZs9o8pRJCNpoPLEJ94");
         const result = await docRef.get();
         console.log("getItems() result:", result);
         items = result.data().store || [];
