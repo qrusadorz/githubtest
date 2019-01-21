@@ -92,7 +92,8 @@ class Album extends React.Component {
     const { classes } = this.props;
     const { items = [] } = this.props.items;
 
-    console.log("top items:", items);
+    // console.log("top items:", items);
+    const renderItems = items.slice(0, 20);
 
     // const toDetail = item => props.history.push({
     //   pathname: `/items/${item.id}`, item
@@ -143,7 +144,7 @@ class Album extends React.Component {
           <div className={classNames(classes.layout, classes.cardGrid)}>
             {/* End hero unit */}
             <Grid container spacing={40}>
-              {items.map(item => (
+              {renderItems.map(item => (
                 <Grid item key={item.id} sm={6} md={4} lg={3}>
                   <Card className={classes.card}>
                     <CardMedia

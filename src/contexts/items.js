@@ -179,10 +179,10 @@ export const getItems = async (id) => {
     const db = firebase.app().firestore();
     try {
         // write
-        // await db.collection("items").add(defaultItems);
+        // await createTestItems();
         const collectionRef = db.collection("items");
         // one read
-        const docRef = collectionRef.doc("9fZs9o8pRJCNpoPLEJ94");
+        const docRef = collectionRef.doc("Dwnt22xauW0F8AZIb6rh");
         const result = await docRef.get();
         console.log("getItems() result:", result);
         items = result.data().store || [];
@@ -217,6 +217,45 @@ export const getItems = async (id) => {
     };
 
 };
+
+const createTestItems = async () => {
+    const db = firebase.app().firestore();
+
+    // TODO create testdata
+    const testItems = { store : [] };
+    for (let i = 0; i < 1000; i++) {
+        testItems.store.push({
+            id: i + 1,
+            name: "アイテム" + (i + 1),
+            price: 30000,
+            shops: [
+                {
+                    id: 1,
+                    name: "ショップA" + i,
+                    price: 30000,
+                    url: "https:www.google.co.jp",
+                    description: [],
+                },
+                {
+                    id: 2,
+                    name: "ショップB" + i,
+                    price: 30000,
+                    url: "https:www.google.co.jp",
+                    description: [],
+                },
+                {
+                    id: 3,
+                    name: "ショップC" + i,
+                    price: 30000,
+                    url: "https:www.google.co.jp",
+                    description: [],
+                },
+            ],
+        });
+    }
+
+    await db.collection("items").add(testItems);
+}
 
 export const ItemsContext = React.createContext({
     items,

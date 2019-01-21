@@ -177,6 +177,7 @@ class IntegrationReactSelect extends React.Component {
       [name]: value,
     });
 
+    if (!value) return;
     // TODO page jump
     console.log("select name:", name);
     console.log("select value:", value);
@@ -185,7 +186,7 @@ class IntegrationReactSelect extends React.Component {
 
   render() {
     const { classes, theme, items } = this.props;
-    console.log("select items:", items.items);
+    // console.log("select items:", items.items);
 
     const suggestions = (items.items || []).map(suggestion => ({
       value: suggestion.name,
@@ -215,6 +216,7 @@ class IntegrationReactSelect extends React.Component {
             onChange={this.handleChange('single')}
             placeholder="Search a item (start with a)"
             isClearable
+            openMenuOnClick={false}
           />
         </NoSsr>
       </div>
