@@ -13,15 +13,14 @@ import MenuItem from '@material-ui/core/MenuItem';
 import { emphasize } from '@material-ui/core/styles/colorManipulator';
 
 import WithItemsContext from '../components/contexts/WithItemsContext';
-import { items } from '../contexts/items';
 
 import { withRouter } from "react-router-dom";
 
-const suggestions = items.map(suggestion => ({
-  value: suggestion.name,
-  label: suggestion.name,
-  id: suggestion.id,
-}));
+// const suggestions = items.map(suggestion => ({
+//   value: suggestion.name,
+//   label: suggestion.name,
+//   id: suggestion.id,
+// }));
 
 const styles = theme => ({
   root: {
@@ -185,8 +184,15 @@ class IntegrationReactSelect extends React.Component {
   };
 
   render() {
-    const { classes, theme } = this.props;
+    const { classes, theme, items } = this.props;
+    console.log("select items:", items.items);
 
+    const suggestions = (items.items || []).map(suggestion => ({
+      value: suggestion.name,
+      label: suggestion.name,
+      id: suggestion.id,
+    }));
+        
     const selectStyles = {
       input: base => ({
         ...base,
