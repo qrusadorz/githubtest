@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ItemsContext } from '../contexts/items'
+import { ItemsContext } from '../../contexts/items'
 
 // This function takes a component...
 // function withSystemContext(WrappedComponent, selectData) {

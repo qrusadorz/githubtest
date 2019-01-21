@@ -2,7 +2,7 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
 // import 'firebase/firebase-database';
-// import 'firebase/firebase-firestore';
+import 'firebase/firebase-firestore';
 import 'firebase/firebase-functions';
 // import 'firebase/messaging';
 // import 'firebase/firebase-storage';

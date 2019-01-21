@@ -12,14 +12,14 @@ import Paper from '@material-ui/core/Paper';
 import MenuItem from '@material-ui/core/MenuItem';
 import { emphasize } from '@material-ui/core/styles/colorManipulator';
 
-import WithItemsContext from '../components/WithItemsContext';
+import WithItemsContext from '../components/contexts/WithItemsContext';
 import { items } from '../contexts/items';
 
 import { withRouter } from "react-router-dom";
 
 const suggestions = items.map(suggestion => ({
-  value: suggestion.title,
-  label: suggestion.title,
+  value: suggestion.name,
+  label: suggestion.name,
   id: suggestion.id,
 }));
 

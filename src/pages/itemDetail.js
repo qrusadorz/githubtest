@@ -16,7 +16,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 import OpenInNewIcon from '@material-ui/icons/OpenInNew';
 
-import WithItemsContext from '../components/WithItemsContext';
+import WithItemsContext from '../components/contexts/WithItemsContext';
 
 const styles = theme => ({
   '@global': {
@@ -68,7 +68,7 @@ const styles = theme => ({
 
 // const tiers = [
 //   {
-//     title: 'タイトルA',
+//     name: 'タイトルA',
 //     subheader: '人気No1',
 //     price: '30000',
 //     description: [
@@ -80,7 +80,7 @@ const styles = theme => ({
 //     buttonVariant: 'contained',
 //   },
 //   {
-//     title: 'タイトルB',
+//     name: 'タイトルB',
 //     price: '28000',
 //     description: [
 //       '20 users included',
@@ -91,7 +91,7 @@ const styles = theme => ({
 //     buttonVariant: 'outlined',
 //   },
 //   {
-//     title: 'EタイトルC',
+//     name: 'EタイトルC',
 //     price: '27000',
 //     description: [
 //       '50 users included',
@@ -133,17 +133,15 @@ class ItemDetail extends React.Component {
     console.log("itemDetail match params id:", this.props.match.params.id);
     console.log("itemDetail items.items[id]:", items.items[0]);
     console.log("itemDetail typeof id:", typeof id);
-    // console.log("itemDetail items.items[id].shops:", items.items[0]);
-    // console.log("itemDetail items.items[id] typeof :", typeof items.items[0].title);
 
     const item = items.items.find(item => item.id === parseInt(id)) || {
-      title: "",
+      name: "",
       subheader: "",
       price: "",
       shops: [
-        { title: "11", price: "0", subheader: "", description: ["a", "b", "x",], },
-        { title: "22", price: "0", subheader: "", description: ["g", "f", "d",], },
-        { title: "33", price: "0", subheader: "", description: ["d", "g", "a",], },
+        { name: "11", price: "0", subheader: "", description: ["a", "b", "x",], },
+        { name: "22", price: "0", subheader: "", description: ["g", "f", "d",], },
+        { name: "33", price: "0", subheader: "", description: ["d", "g", "a",], },
       ],
 
     };
@@ -171,7 +169,7 @@ class ItemDetail extends React.Component {
           {/* Hero unit */}
           <div className={classes.heroContent}>
             <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-              アイテム名:{item.title}
+              アイテム名:{item.name}
             </Typography>
             <Typography variant="h6" align="center" color="textSecondary" component="p">
               アイテムの説明をここに記述する。長い文章をずらずら書いた際にどうなるかのテスト。
@@ -182,10 +180,10 @@ class ItemDetail extends React.Component {
           <Grid container spacing={40} alignItems="flex-end">
             {shops.map((tier, index) => (
               // Enterprise card is full width at sm breakpoint
-              <Grid item key={tier.title} xs={12} sm={tier.title === 'Enterprise' ? 12 : 6} md={4}>
+              <Grid item key={tier.name} xs={12} sm={tier.name === 'Enterprise' ? 12 : 6} md={4}>
                 <Card>
                   <CardHeader
-                    title={tier.title}
+                    title={tier.name}
                     subheader={index === 0 ? "人気No1." : tier.subheader}
                     titleTypographyProps={{ align: 'center' }}
                     subheaderTypographyProps={{ align: 'center' }}

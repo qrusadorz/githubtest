@@ -9,26 +9,26 @@ import firebase from '../firebase/firebase';
 export const defaultItems = [
     {
         id: 1,
-        title: "アイテムN",
+        name: "アイテムN",
         price: 30000,
         shops: [
             {
                 id: 1,
-                title: "ショップA",
+                name: "ショップA",
                 price: 30000,
                 url: "https:www.google.co.jp",
                 description: [],
             },
             {
                 id: 2,
-                title: "ショップB",
+                name: "ショップB",
                 price: 30000,
                 url: "https:www.google.co.jp",
                 description: [],
             },
             {
                 id: 3,
-                title: "ショップC",
+                name: "ショップC",
                 price: 30000,
                 url: "https:www.google.co.jp",
                 description: [],
@@ -37,26 +37,26 @@ export const defaultItems = [
     },
     {
         id: 2,
-        title: "アイテムP",
+        name: "アイテムP",
         price: 22000,
         shops: [
             {
                 id: 1,
-                title: "ショップA",
+                name: "ショップA",
                 price: 22000,
                 url: "https:www.google.co.jp",
                 description: [],
             },
             {
                 id: 2,
-                title: "ショップB",
+                name: "ショップB",
                 price: 21000,
                 url: "https:www.google.co.jp",
                 description: [],
             },
             {
                 id: 3,
-                title: "ショップC",
+                name: "ショップC",
                 price: 20000,
                 url: "https:www.google.co.jp",
                 description: [],
@@ -65,26 +65,26 @@ export const defaultItems = [
     },
     {
         id: 3,
-        title: "アイテムS",
+        name: "アイテムS",
         price: 17500,
         shops: [
             {
                 id: 1,
-                title: "ショップA",
+                name: "ショップA",
                 price: 17500,
                 url: "https:www.google.co.jp",
                 description: [],
             },
             {
                 id: 2,
-                title: "ショップB",
+                name: "ショップB",
                 price: 17000,
                 url: "https:www.google.co.jp",
                 description: [],
             },
             {
                 id: 3,
-                title: "ショップC",
+                name: "ショップC",
                 price: 16000,
                 url: "https:www.google.co.jp",
                 description: [],
@@ -94,20 +94,30 @@ export const defaultItems = [
 ];
 export let items = [];
 
-// export const defaultItems = {
-//     id: 0,
-//     title: "",
-//     subheader: "",
-//     // 以下変更されやすいデータ
-//     // TODO priceは廃止の可能性あり
-//     price: "",
-//     // TODO クエリーに任せるといいかもしれない。
-//     shops: [
-//         { id: 1, title: "11", price: 0, url: "", description: ["a", "b", "x",], },
-//         { id: 2, title: "22", price: 0, url: "", description: ["g", "f", "d",], },
-//         { id: 3, title: "33", price: 0, url: "", description: ["d", "g", "a",], },
-//     ],
-// };
+export const defaultItem = {
+    // 部分一致検索としてまとまって必要
+    id: 0,
+    name: "",
+    // TODO priceは部分一致にあればベストだが更新されやすいので切り離しが妥当と思う。
+    price: 1000,
+
+    // 詳細
+    // 説明概要
+    subheader: "",
+    // 以下変更されやすいデータ
+    // TODO クエリーに任せるといいかもしれない。
+    shops: [
+        { 
+            id: 1,
+            name: "ショップ", 
+            price: 30000, 
+            url: "https:www.google.co.jp", 
+            description: ["a", "b", "x",], 
+        },
+        { id: 2, name: "22", price: 0, url: "", description: ["g", "f", "d",], },
+        { id: 3, name: "33", price: 0, url: "", description: ["d", "g", "a",], },
+    ],
+};
 
 // TODO 部分一致検索として利用する。 オフラインデータとしてパフォーマンス優先のほうがよさそう。
 // TODO もう一つはFunctionsを利用して検索を実行された時のみサーバーで実行してデータをクライアントで持たない。＜＝サーバーレスだとデータ読み取り発生が多くてつらい。
@@ -115,26 +125,26 @@ export let items = [];
 const itemTitles = [
     {
         id: 1,
-        title: "アイテムN",
+        name: "アイテムN",
     },
     {
         id: 2,
-        title: "アイテムP",
+        name: "アイテムP",
     },
     {
         id: 3,
-        title: "アイテムS",
+        name: "アイテムS",
     },
 ];
 
 export const findItems = text => {
-    console.log("findItems() :", text);
+    console.log("findItems() text:", text);
 
     // TODO upperlowwer
 
     // TODO Find
     const items = itemTitles.find(element => {
-        return element.title.includes(text);
+        return element.name.includes(text);
     });
 
     return items;

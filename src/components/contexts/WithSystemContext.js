@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { UserContext } from '../contexts/user'
-import { SystemContext } from '../contexts/system'
+import { UserContext } from '../../contexts/user'
+import { SystemContext } from '../../contexts/system'
 
 // This function takes a component...
 // function withSystemContext(WrappedComponent, selectData) {
