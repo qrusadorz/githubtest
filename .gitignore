@@ -91,3 +91,6 @@ typings/
 
 # next.js build output
 .next
+
+# develop test
+src/userdata
