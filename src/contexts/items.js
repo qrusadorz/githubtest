@@ -5,117 +5,31 @@ import firebase from '../firebase/firebase';
 // case firestore
 const db = firebase.app().firestore();
 
-// TODO: データ収集の形式に応じて変更が必要。
-// 例えば完全に並列実行の場合、どちらかといえばShopごとに取得するため商品ごとだと微妙。
-// 配列化はクライアントにさせ、データとしてはIDでアクセスできる形式が効率よさげ。
-// TODO しばらく暫定
-export const defaultItems = [
-    {
-        id: 1,
-        name: "アイテムN",
-        price: 30000,
-        shops: [
-            {
-                id: 1,
-                name: "ショップA",
-                price: 30000,
-                url: "https:www.google.co.jp",
-                description: [],
-            },
-            {
-                id: 2,
-                name: "ショップB",
-                price: 30000,
-                url: "https:www.google.co.jp",
-                description: [],
-            },
-            {
-                id: 3,
-                name: "ショップC",
-                price: 30000,
-                url: "https:www.google.co.jp",
-                description: [],
-            },
-        ],
-    },
-    {
-        id: 2,
-        name: "アイテムP",
-        price: 22000,
-        shops: [
-            {
-                id: 1,
-                name: "ショップA",
-                price: 22000,
-                url: "https:www.google.co.jp",
-                description: [],
-            },
-            {
-                id: 2,
-                name: "ショップB",
-                price: 21000,
-                url: "https:www.google.co.jp",
-                description: [],
-            },
-            {
-                id: 3,
-                name: "ショップC",
-                price: 20000,
-                url: "https:www.google.co.jp",
-                description: [],
-            },
-        ],
-    },
-    {
-        id: 3,
-        name: "アイテムS",
-        price: 17500,
-        shops: [
-            {
-                id: 1,
-                name: "ショップA",
-                price: 17500,
-                url: "https:www.google.co.jp",
-                description: [],
-            },
-            {
-                id: 2,
-                name: "ショップB",
-                price: 17000,
-                url: "https:www.google.co.jp",
-                description: [],
-            },
-            {
-                id: 3,
-                name: "ショップC",
-                price: 16000,
-                url: "https:www.google.co.jp",
-                description: [],
-            },
-        ],
-    },
-];
 export let items = [];
 
 export const defaultItem = {
-    // 部分一致検索としてまとまって必要
-    id: 0,  // nameからMD5?
-    name: "",
-    // TODO priceは部分一致にあればベストだが更新されやすいので切り離しが妥当と思う。
-    price: 1000,
+    // 部分一致検索としてまとまって必須
+    id: "xxxxxx",   // nameからMD5。id
+    name: "",       // IDになるのでユニーク文字列かつ表示用。n
+
+    thumbnail: "",  // IDでいい気がする。同一商品で別のIDの画像を利用する場合のみ利用。tb
+    // TODO priceは部分一致にあればベストだが更新されやすいので切り離しが妥当。今後要検討。
+    price: 1000,    // 定価。p
+    percentage: 80, // 定価との割合。pt
+    timestamp: 0,   // 更新日
 
     // 詳細
     // 説明概要
     subheader: "",
-    // 以下変更されやすいデータ
-    // TODO クエリーに任せるといいかもしれない。
-    shops: [
+    // 以下変更されやすいデータ。データが大きくなったら分離予定。
+    // TODO 最終的にはクエリーに任せることも検討
+    sites: [
         { 
-            id: 1, // nameからMD5?
-            name: "ショップ", 
+            // id: "xxxxxx",   // 使うならnameからMD5でよさそうだ
+            // name: "ショップ", // 表示しないなら不要。
             price: 30000, 
             url: "https:www.google.co.jp", 
-            description: ["a", "b", "x",], 
+            description: ["a", "b", "x",],  // 現状未設定
         },
         { id: 2, name: "22", price: 0, url: "", description: ["g", "f", "d",], },
         { id: 3, name: "33", price: 0, url: "", description: ["d", "g", "a",], },
@@ -197,14 +111,13 @@ export const getItems = async (id) => {
 };
 
 const createTestItems = async () => {
-    // TODO create testdata
     const testItems = { store : [] };
     for (let i = 0; i < 1000; i++) {
         testItems.store.push({
             id: i + 1,
             name: "アイテム" + (i + 1),
             price: 30000,
-            shops: [
+            sites: [
                 {
                     id: 1,
                     name: "ショップA" + i,
@@ -233,9 +146,9 @@ const createTestItems = async () => {
     await db.collection("items").add(testItems);
 }
 
-const deleteTestItems = async () => {
+const deleteTestItems = async (id) => {
     try {
-        await db.collection("items").doc("80Je3jq0UypPpPKOouEh").delete();
+        await db.collection("items").doc(id).delete();
     } catch (e) {
         // Getting the Error details.
         // const code = e.code;
@@ -246,6 +159,7 @@ const deleteTestItems = async () => {
     };
 }
 
+// get item done.
 getItems();
 
 export const ItemsContext = React.createContext({

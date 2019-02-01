@@ -137,16 +137,16 @@ class ItemDetail extends React.Component {
       name: "",
       subheader: "",
       price: "",
-      shops: [
+      sites: [
         { name: "11", price: "0", subheader: "", description: ["a", "b", "x",], },
         { name: "22", price: "0", subheader: "", description: ["g", "f", "d",], },
         { name: "33", price: "0", subheader: "", description: ["d", "g", "a",], },
       ],
 
     };
-    const { shops } = item;
+    const { sites } = item;
     console.log("itemDetail item:", item);
-    console.log("itemDetail item.shops:", shops);
+    console.log("itemDetail item.sites:", sites);
 
     return (
       <React.Fragment>
@@ -171,19 +171,21 @@ class ItemDetail extends React.Component {
               アイテム名:{item.name}
             </Typography>
             <Typography variant="h6" align="center" color="textSecondary" component="p">
-              アイテムの説明をここに記述する。長い文章をずらずら書いた際にどうなるかのテスト。
-            It&apos;s built <br />2019/01/04更新
+              アイテムの説明をここに記述する。長い文章をずらずら書いた際にどうなるかのテスト。<br />
+              最新情報はリンク先でチェック。
+            It&apos;s built <br />{new Date(item.timestamp).toLocaleDateString()} 更新
           </Typography>
           </div>
           {/* End hero unit */}
           <Grid container spacing={40} alignItems="flex-end">
-            {shops.map((tier, index) => (
+            {sites.map((tier, index) => (
               // Enterprise card is full width at sm breakpoint
               <Grid item key={tier.name} xs={12} sm={tier.name === 'Enterprise' ? 12 : 6} md={4}>
                 <Card>
                   <CardHeader
                     title={tier.name}
-                    subheader={index === 0 ? "人気No1." : tier.subheader}
+                    // subheader={index === 0 ? "人気No1." : tier.subheader}
+                    subheader={`人気No.${index + 1}`}
                     titleTypographyProps={{ align: 'center' }}
                     subheaderTypographyProps={{ align: 'center' }}
                     action={index === 0 ? <StarIcon /> : null}

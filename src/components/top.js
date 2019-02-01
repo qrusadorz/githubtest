@@ -160,7 +160,7 @@ class Album extends React.Component {
                         ¥{item.price}円
                     </Typography>
                       <Typography>
-                        商品名概要。商品に関する概要を記入する。何を記入するかは未定。
+                        商品名概要。TODO:
                     </Typography>
                     </CardContent>
                     <CardActions>
