@@ -125,41 +125,14 @@ export const defaultItem = {
 // TODO 部分一致検索として利用する。 オフラインデータとしてパフォーマンス優先のほうがよさそう。
 // TODO もう一つはFunctionsを利用して検索を実行された時のみサーバーで実行してデータをクライアントで持たない。＜＝サーバーレスだとデータ読み取り発生が多くてつらい。
 // TODO コレクションの１MBの制限超過の可能性をどうするか…ドキュメントの読み取り	ドキュメント 100,000 点あたり $0.06
-const itemTitles = [
-    {
-        id: 1,
-        name: "アイテムN",
-    },
-    {
-        id: 2,
-        name: "アイテムP",
-    },
-    {
-        id: 3,
-        name: "アイテムS",
-    },
-];
-
-// export const findItems = text => {
-//     console.log("findItems() text:", text);
-
-//     // TODO upperlowwer
-
-//     // TODO Find
-//     const items = itemTitles.find(element => {
-//         return element.name.includes(text);
-//     });
-
-//     return items;
-// };
 
 export const getItems = async (id) => {
-    console.log("getItems() length:", items.length);
     if (items.length > 0) {
         // console.log("getItems() cached:", items);
         console.log("getItems() cached");
         return items;
     }
+    console.log("getItems() length:", items.length);
 
     // case functions
     // const functions = firebase.app().functions('asia-northeast1');
@@ -186,7 +159,8 @@ export const getItems = async (id) => {
         // await deleteTestItems();
         const collectionRef = db.collection("items");
         // one read
-        const docRef = collectionRef.doc("Dwnt22xauW0F8AZIb6rh");
+        // const docRef = collectionRef.doc("Dwnt22xauW0F8AZIb6rh");// 1000testdate
+        const docRef = collectionRef.doc("NxJsePb8yI6PdRMDPgad"); // real data
         const result = await docRef.get();
         // console.log("getItems() result:", result);
         items = result.data().store || [];
@@ -272,11 +246,11 @@ const deleteTestItems = async () => {
     };
 }
 
+getItems();
+
 export const ItemsContext = React.createContext({
     items,
     getItems,
-    // TODO TEST いずれItemsに統合するかもしれない
-    itemTitles,
 });
 
 export default ItemsContext;

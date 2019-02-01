@@ -168,9 +168,9 @@ class IntegrationReactSelect extends React.Component {
     multi: null,
   };
 
-  componentDidMount() {
-    this.props.items.getItems();
-  }
+  // async componentDidMount() {
+  //   await this.props.items.getItems();
+  // }
 
   handleChange = name => value => {
     this.setState({

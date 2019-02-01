@@ -131,10 +131,9 @@ class ItemDetail extends React.Component {
     const { classes, items } = this.props;
     const { id } = this.props.match.params;
     console.log("itemDetail match params id:", this.props.match.params.id);
-    console.log("itemDetail items.items[id]:", items.items[0]);
-    console.log("itemDetail typeof id:", typeof id);
+    console.log("itemDetail items.items[id]:", items.items[this.props.match.params.id]);
 
-    const item = items.items.find(item => item.id === parseInt(id)) || {
+    const item = items.items.find(item => item.id === id) || {
       name: "",
       subheader: "",
       price: "",
@@ -199,7 +198,7 @@ class ItemDetail extends React.Component {
                         円
                     </Typography>
                     </div>
-                    {tier.description.map(line => (
+                    {tier.description && tier.description.map(line => (
                       <Typography variant="subtitle1" align="center" key={line}>
                         {line}
                       </Typography>
@@ -207,7 +206,7 @@ class ItemDetail extends React.Component {
                   </CardContent>
                   <CardActions className={classes.cardActions}>
                     {/* <Button fullWidth variant={tier.buttonVariant} color="primary" onClick={() => {}}> */}
-                    <a href="https://www.google.co.jp" target="_blank" rel="noopener noreferrer" >
+                    <a href={tier.url} target="_blank" rel="noopener noreferrer" >
                       <Button fullWidth variant="contained" color="primary" onClick={() => { }}>
                         Go<OpenInNewIcon />
                       </Button>
