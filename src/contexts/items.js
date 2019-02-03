@@ -77,7 +77,7 @@ export const getItems = async (id) => {
         const docRef = collectionRef.doc("NxJsePb8yI6PdRMDPgad"); // real data
         const result = await docRef.get();
         // console.log("getItems() result:", result);
-        items = result.data().store || [];
+        const data = result.data().store || [];
         // console.log("getItems() items:", items);
         // query one read
         // const result = await docRef.get();
@@ -96,6 +96,9 @@ export const getItems = async (id) => {
 
         // console.log("★★★ is:", is);
         // console.log("★★★ is.keys:", Object.keys(is).map(key => is[key]));
+
+        // sort test
+        const items = data.sort((a, b) => b.percentage - a.percentage);
 
         return items;
     } catch (e) {
