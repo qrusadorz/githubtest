@@ -92,7 +92,8 @@ class Album extends React.Component {
     const { classes } = this.props;
     const { items = [] } = this.props.items;
 
-    // console.log("top items:", items);
+    // TODO propsデータのようでうまくソートしない
+    // items.sort((a, b) => b.percentage > a.percentage);
     const renderItems = items.slice(0, 20);
 
     // const toDetail = item => props.history.push({
@@ -157,7 +158,7 @@ class Album extends React.Component {
                         {item.name}
                       </Typography>
                       <Typography gutterBottom color="textSecondary">
-                        ¥{item.price}円
+                        ¥{item.price}円({item.percentage}%)
                     </Typography>
                       <Typography>
                         商品名概要。TODO:

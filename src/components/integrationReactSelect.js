@@ -190,7 +190,7 @@ class IntegrationReactSelect extends React.Component {
 
     const suggestions = (items.items || []).map(suggestion => ({
       value: suggestion.name,
-      label: suggestion.name,
+      label: suggestion.name + ` (${suggestion.percentage}%)`,
       id: suggestion.id,
     }));
         
