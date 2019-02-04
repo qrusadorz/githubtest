@@ -17,6 +17,7 @@
     "react-select": "^2.3.0"
   },
   "scripts": {
+    "analyze": "webpack-bundle-analyzer build/bundle-stats.json",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
@@ -27,5 +28,8 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "webpack-bundle-analyzer": "^3.0.3"
+  }
 }
