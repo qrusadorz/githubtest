@@ -14,9 +14,10 @@ export const defaultItem = {
 
     thumbnail: "",  // IDでいい気がする。同一商品で別のIDの画像を利用する場合のみ利用。tb
     // TODO priceは部分一致にあればベストだが更新されやすいので切り離しが妥当。今後要検討。
-    price: 1000,    // 定価。p
-    percentage: 80, // 定価との割合。pt
-    timestamp: 0,   // 更新日
+    price: 1000,     // 定価。p
+    bestprice: 1000, // 最高価格。p
+    percentage: 80,  // 定価との割合。pt
+    timestamp: 0,    // 更新日
 
     // 詳細
     // 説明概要
@@ -98,7 +99,7 @@ export const getItems = async (id) => {
         // console.log("★★★ is.keys:", Object.keys(is).map(key => is[key]));
 
         // sort test
-        const items = data.sort((a, b) => b.percentage - a.percentage);
+        items = data.sort((a, b) => b.percentage - a.percentage);
 
         return items;
     } catch (e) {
@@ -119,7 +120,8 @@ const createTestItems = async () => {
         testItems.store.push({
             id: i + 1,
             name: "アイテム" + (i + 1),
-            price: 30000,
+            price: 32000,
+            bestprice: 30000,
             sites: [
                 {
                     id: 1,
