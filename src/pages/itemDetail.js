@@ -131,12 +131,12 @@ class ItemDetail extends React.Component {
     const { classes, items } = this.props;
     const { id } = this.props.match.params;
     console.log("itemDetail match params id:", this.props.match.params.id);
-    console.log("itemDetail items.items[id]:", items.items[this.props.match.params.id]);
 
     const item = items.items.find(item => item.id === id) || {
       name: "",
       subheader: "",
       price: "",
+      bestprice: "",
       sites: [
         { name: "11", price: "0", subheader: "", description: ["a", "b", "x",], },
         { name: "22", price: "0", subheader: "", description: ["g", "f", "d",], },
@@ -146,7 +146,6 @@ class ItemDetail extends React.Component {
     };
     const { sites } = item;
     console.log("itemDetail item:", item);
-    console.log("itemDetail item.sites:", sites);
 
     return (
       <React.Fragment>
@@ -168,7 +167,8 @@ class ItemDetail extends React.Component {
           {/* Hero unit */}
           <div className={classes.heroContent}>
             <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-              アイテム名:{item.name}
+              {/* アイテム名:{item.name} */}
+              {item.name}
             </Typography>
             <Typography variant="h6" align="center" color="textSecondary" component="p">
               アイテムの説明をここに記述する。長い文章をずらずら書いた際にどうなるかのテスト。<br />
@@ -180,7 +180,7 @@ class ItemDetail extends React.Component {
           <Grid container spacing={40} alignItems="flex-end">
             {sites.map((tier, index) => (
               // Enterprise card is full width at sm breakpoint
-              <Grid item key={tier.name} xs={12} sm={tier.name === 'Enterprise' ? 12 : 6} md={4}>
+              <Grid item key={tier.index} xs={12} sm={tier.name === 'Enterprise' ? 12 : 6} md={4}>
                 <Card>
                   <CardHeader
                     title={tier.name}
@@ -198,7 +198,12 @@ class ItemDetail extends React.Component {
                       </Typography>
                       <Typography variant="h6" color="textSecondary">
                         円
-                    </Typography>
+                      </Typography>
+                      {/* // TODO TEST */}
+                      <br />
+                      <Typography variant="h6" color="textSecondary">
+                        ({Number.parseInt(tier.price / item.price * 100)}%)
+                      </Typography>
                     </div>
                     {tier.description && tier.description.map(line => (
                       <Typography variant="subtitle1" align="center" key={line}>
