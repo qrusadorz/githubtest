@@ -9,14 +9,17 @@ import CardContent from '@material-ui/core/CardContent';
 import CardHeader from '@material-ui/core/CardHeader';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
+import OpenInNewIcon from '@material-ui/icons/OpenInNew';
 import StarIcon from '@material-ui/icons/StarBorder';
 // import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 
-import OpenInNewIcon from '@material-ui/icons/OpenInNew';
+import ImageButton from '../components/imageButton';
 
 import WithItemsContext from '../components/contexts/WithItemsContext';
+
+
 
 const styles = theme => ({
   '@global': {
@@ -44,6 +47,10 @@ const styles = theme => ({
     maxWidth: 600,
     margin: '0 auto',
     padding: `${theme.spacing.unit * 8}px 0 ${theme.spacing.unit * 6}px`,
+  },
+  // TODO TEST
+  heroButtons: {
+    marginTop: theme.spacing.unit * 4,
   },
   cardHeader: {
     backgroundColor: theme.palette.grey[200],
@@ -170,11 +177,27 @@ class ItemDetail extends React.Component {
               {/* アイテム名:{item.name} */}
               {item.name}
             </Typography>
+            {/* TODO TEST */}
+            <ImageButton img={item.ogimg} url={item.url} />
             <Typography variant="h6" align="center" color="textSecondary" component="p">
               アイテムの説明をここに記述する。長い文章をずらずら書いた際にどうなるかのテスト。<br />
               最新情報はリンク先でチェック。
-            It&apos;s built <br />{new Date(item.timestamp).toLocaleDateString()} 更新
-          </Typography>
+              It&apos;s built <br />{new Date(item.timestamp).toLocaleDateString()} 更新
+            </Typography>
+            {/* <div className={classes.heroButtons}>
+              <Grid container spacing={16} justify="center">
+                <Grid item>
+                  <Button variant="contained" color="primary">
+                    公式サイト
+                  </Button>
+                </Grid>
+                <Grid item>
+                  <Button variant="outlined" color="primary">
+                    Secondary action
+                  </Button>
+                </Grid>
+              </Grid>
+            </div> */}
           </div>
           {/* End hero unit */}
           <Grid container spacing={40} alignItems="flex-end">
@@ -213,11 +236,11 @@ class ItemDetail extends React.Component {
                   </CardContent>
                   <CardActions className={classes.cardActions}>
                     {/* <Button fullWidth variant={tier.buttonVariant} color="primary" onClick={() => {}}> */}
-                    <a href={tier.url} target="_blank" rel="noopener noreferrer" >
-                      <Button fullWidth variant="contained" color="primary" onClick={() => { }}>
-                        Go<OpenInNewIcon />
-                      </Button>
-                    </a>
+                    {/* <a href={tier.url} target="_blank" rel="noopener noreferrer" > */}
+                    <Button fullWidth variant="contained" color="primary" href={tier.url} target="_blank" rel="noopener noreferrer" >
+                      Go<OpenInNewIcon />
+                    </Button>
+                    {/* </a> */}
                   </CardActions>
                 </Card>
               </Grid>
