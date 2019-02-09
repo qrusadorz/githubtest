@@ -152,7 +152,7 @@ class ItemDetail extends React.Component {
 
     };
     const { sites } = item;
-    console.log("itemDetail item:", item);
+    // console.log("itemDetail item:", item);
 
     return (
       <React.Fragment>
@@ -217,17 +217,17 @@ class ItemDetail extends React.Component {
                   <CardContent>
                     <div className={classes.cardPricing}>
                       <Typography component="h2" variant="h3" color="textPrimary">
-                        ¥{tier.price}
+                        {tier.price}
                       </Typography>
                       <Typography variant="h6" color="textSecondary">
                         円
                       </Typography>
-                      {/* // TODO TEST */}
-                      <br />
-                      <Typography variant="h6" color="textSecondary">
-                        ({Number.parseInt(tier.price / item.price * 100)}%)
-                      </Typography>
                     </div>
+                    {/* // TODO TEST */}
+                    {/* <Typography variant="h6" color="textSecondary"> */}
+                    <Typography variant="subtitle1" align="center" key={tier.incex}>
+                      {Number.parseInt(tier.price / item.price * 100)}%
+                    </Typography>
                     {tier.description && tier.description.map(line => (
                       <Typography variant="subtitle1" align="center" key={line}>
                         {line}
@@ -237,7 +237,7 @@ class ItemDetail extends React.Component {
                   <CardActions className={classes.cardActions}>
                     {/* <Button fullWidth variant={tier.buttonVariant} color="primary" onClick={() => {}}> */}
                     {/* <a href={tier.url} target="_blank" rel="noopener noreferrer" > */}
-                    <Button fullWidth variant="contained" color="primary" href={tier.url} target="_blank" rel="noopener noreferrer" >
+                    <Button fullWidth variant="contained" color={index === 0 ? "primary" : "secondary"} href={tier.url} target="_blank" rel="noopener noreferrer" >
                       Go<OpenInNewIcon />
                     </Button>
                     {/* </a> */}

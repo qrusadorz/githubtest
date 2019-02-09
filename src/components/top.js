@@ -160,7 +160,7 @@ class Album extends React.Component {
                         {item.name}
                       </Typography>
                       <Typography gutterBottom color="textSecondary">
-                        ¥{item.bestprice}円({item.percentage}%)
+                        {item.bestprice}円({item.percentage}%)
                     </Typography>
                       <Typography>
                         商品名概要。TODO:
