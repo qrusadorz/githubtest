@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 // import classNames from 'classnames';
 import PropTypes from 'prop-types';
 // import AppBar from '@material-ui/core/AppBar';
@@ -17,7 +17,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 import ImageButton from '../components/imageButton';
 
-import WithItemsContext from '../components/contexts/WithItemsContext';
+import { ItemsContext } from '../contexts/items'
 
 
 
@@ -128,18 +128,23 @@ const styles = theme => ({
 //   },
 // ];
 
-// function ItemDetail(props) {
-class ItemDetail extends React.Component {
-  async componentDidMount() {
-    await this.props.items.getItems();
-  }
+function ItemDetail(props) {
+  // const [count, setCount] = useState(0);
 
-  render() {
-    const { classes, items } = this.props;
-    const { id } = this.props.match.params;
-    console.log("itemDetail match params id:", this.props.match.params.id);
+  const { items } = useContext(ItemsContext);
+  // console.log("render itemDetail items:", items);
 
-    const item = items.items.find(item => item.id === id) || {
+  // // Similar to componentDidMount and componentDidUpdate:
+  // useEffect(() => {
+  //   // Update the document title using the browser API
+  //   getItems();
+  // }, []);
+
+    const { classes } = props;
+    const { id } = props.match.params;
+    console.log("itemDetail match params id:", id);
+
+    const item = items.find(item => item.id === id) || {
       name: "",
       subheader: "",
       price: "",
@@ -267,11 +272,10 @@ class ItemDetail extends React.Component {
         {/* End footer */}
       </React.Fragment>
     );
-  }
 }
 
 ItemDetail.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(WithItemsContext(ItemDetail));
+export default withStyles(styles)(ItemDetail);

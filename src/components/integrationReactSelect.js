@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types, react/jsx-handler-names */
 
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useContext } from 'react';
 // import classNames from 'classnames';
 import Select from 'react-select';
 import { withStyles } from '@material-ui/core/styles';
+// import { makeStyles, useTheme } from '@material-ui/styles';
 import Typography from '@material-ui/core/Typography';
 import NoSsr from '@material-ui/core/NoSsr';
 import TextField from '@material-ui/core/TextField';
@@ -12,7 +12,7 @@ import Paper from '@material-ui/core/Paper';
 import MenuItem from '@material-ui/core/MenuItem';
 import { emphasize } from '@material-ui/core/styles/colorManipulator';
 
-import WithItemsContext from '../components/contexts/WithItemsContext';
+import { ItemsContext } from '../contexts/items'
 
 import { withRouter } from "react-router-dom";
 
@@ -162,71 +162,51 @@ const components = {
   ValueContainer,
 };
 
-class IntegrationReactSelect extends React.Component {
-  state = {
-    single: null,
-    multi: null,
-  };
+function IntegrationReactSelect(props) {
+  const { classes, theme } = props;
+  // const classes = useStyles();
+  // const theme = useTheme();
+  const [single, setSingle] = React.useState(null);
+  const { items = [] } = useContext(ItemsContext);
 
-  // async componentDidMount() {
-  //   await this.props.items.getItems();
-  // }
-
-  handleChange = name => value => {
-    this.setState({
-      [name]: value,
-    });
-
+  function handleChangeSingle(value) {
+    setSingle(value);
     if (!value) return;
-    // TODO page jump
-    console.log("select name:", name);
     console.log("select value:", value);
-    this.props.history.push('/items/' + value.id);
+    props.history.push('/items/' + value.id);
+  }
+
+  const suggestions = items.map(suggestion => ({
+    value: suggestion.name,
+    label: suggestion.name + ` (${suggestion.percentage}%)`,
+    id: suggestion.id,
+  }));
+
+  const selectStyles = {
+    input: base => ({
+      ...base,
+      color: theme.palette.text.primary,
+      '& input': {
+        font: 'inherit',
+      },
+    }),
   };
 
-  render() {
-    const { classes, theme, items } = this.props;
-    // console.log("select items:", items.items);
-
-    const suggestions = (items.items || []).map(suggestion => ({
-      value: suggestion.name,
-      label: suggestion.name + ` (${suggestion.percentage}%)`,
-      id: suggestion.id,
-    }));
-        
-    const selectStyles = {
-      input: base => ({
-        ...base,
-        color: theme.palette.text.primary,
-        '& input': {
-          font: 'inherit',
-        },
-      }),
-    };
-
-    return (
-      <div className={classes.root}>
-        <NoSsr>
-          <Select
-            classes={classes}
-            styles={selectStyles}
-            options={suggestions}
-            components={components}
-            value={this.state.single}
-            onChange={this.handleChange('single')}
-            placeholder="Search a item (start with a)"
-            isClearable
-            openMenuOnClick={false}
-          />
-        </NoSsr>
-      </div>
-    );
-  }
+  return (
+    <div className={classes.root}>
+      <NoSsr>
+        <Select
+          classes={classes}
+          styles={selectStyles}
+          options={suggestions}
+          components={components}
+          value={single}
+          onChange={handleChangeSingle}
+          placeholder="Search a item (start with a)"
+          openMenuOnClick={false}
+        />
+      </NoSsr>
+    </div>
+  );
 }
-
-IntegrationReactSelect.propTypes = {
-  classes: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles, { withTheme: true })(withRouter(WithItemsContext(IntegrationReactSelect)));
+export default withStyles(styles, { withTheme: true })(withRouter(IntegrationReactSelect));
