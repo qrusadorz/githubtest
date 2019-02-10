@@ -15,6 +15,7 @@ import { emphasize } from '@material-ui/core/styles/colorManipulator';
 import { ItemsContext } from '../contexts/items'
 
 import { withRouter } from "react-router-dom";
+import config from '../configs/site';
 
 // const suggestions = items.map(suggestion => ({
 //   value: suggestion.name,
@@ -202,7 +203,7 @@ function IntegrationReactSelect(props) {
           components={components}
           value={single}
           onChange={handleChangeSingle}
-          placeholder="Search a item (start with a)"
+          placeholder={config.searchPlaceholder || "Search a item (start with a)"}
           openMenuOnClick={false}
         />
       </NoSsr>

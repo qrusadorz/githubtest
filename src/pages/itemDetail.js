@@ -20,6 +20,8 @@ import ImageButton from '../components/imageButton';
 
 import { ItemsContext } from '../contexts/items'
 
+import config from '../configs/site';
+
 const styles = theme => ({
   '@global': {
     body: {
@@ -177,9 +179,10 @@ function ItemDetail(props) {
             {/* TODO TEST */}
             <ImageButton img={item.ogimg} url={item.url} />
             <Typography variant="h6" align="center" color="textSecondary" component="p">
-              アイテムの説明をここに記述する。長い文章をずらずら書いた際にどうなるかのテスト。<br />
+              { config.itemDetailDescription || `アイテムの説明をここに記述する。
               最新情報はリンク先でチェック。
-              It&apos;s built <br />{new Date(item.timestamp).toLocaleDateString()} 更新
+              It's built`}
+              <br />{new Date(item.timestamp).toLocaleDateString()} 更新
             </Typography>
             {/* <div className={classes.heroButtons}>
               <Grid container spacing={16} justify="center">
@@ -205,7 +208,7 @@ function ItemDetail(props) {
                   <CardHeader
                     title={tier.name}
                     // subheader={index === 0 ? "人気No1." : tier.subheader}
-                    subheader={`人気No.${index + 1}`}
+                    subheader={`${config.itemDetailSiteTitle || "人気"}No.${index + 1}`}
                     titleTypographyProps={{ align: 'center' }}
                     subheaderTypographyProps={{ align: 'center' }}
                     action={index === 0 ? <StarIcon /> : null}

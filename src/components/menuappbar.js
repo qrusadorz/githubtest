@@ -11,6 +11,8 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 
+import config from '../configs/site'
+
 import withSystemContext from './contexts/WithSystemContext';
 
 const styles = {
@@ -82,7 +84,7 @@ class MenuAppBar extends React.Component {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" color="inherit" className={classes.grow}>
-              タイトル
+              { config.name || "タイトル" }
             </Typography>
             {auth && (
               <div>

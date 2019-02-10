@@ -19,6 +19,8 @@ import { withRouter } from "react-router-dom";
 
 import withSystemContext from './contexts/WithSystemContext';
 
+import config from '../configs/site'
+
 const styles = {
   list: {
     width: 300,
@@ -51,7 +53,7 @@ class SwipeableTemporaryDrawer extends React.Component {
     const sideList = (
       <div className={classes.list}>
         <Typography variant="h3" gutterBottom component="h2">
-          タイトル
+          { config.name || "タイトル" }
         </Typography>
         <Divider />
         <List>

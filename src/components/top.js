@@ -23,6 +23,8 @@ import IntegrationReactSelect from './integrationReactSelect'
 // import WithItemsContext from '../components/contexts/WithItemsContext';
 import { ItemsContext } from '../contexts/items'
 
+import config from '../configs/site'
+
 const styles = theme => ({
   appBar: {
     position: 'relative',
@@ -120,12 +122,17 @@ function Album(props) {
           {/* Hero unit */}
           <div className={classes.heroUnit}>
             <div className={classes.heroContent}>
+              {config.subname && 
+                <Typography component="h6" variant="h6" align="center" color="textSecondary" gutterBottom>
+                  {config.subname}
+                </Typography>
+              }
               <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-                タイトル
-            </Typography>
+                {config.name || "タイトル"}
+              </Typography>
               <Typography variant="h6" align="center" color="textSecondary" paragraph>
-                商品をチェックしましょう。
-            </Typography>
+                { config.searchDescription || "商品をチェックしましょう。" }
+              </Typography>
               <div align='center'>
                 {/* <CustomizedInputBase /> */}
                 <IntegrationReactSelect />
@@ -162,10 +169,10 @@ function Album(props) {
                         {item.name}
                       </Typography>
                       <Typography gutterBottom color="textSecondary">
-                        {item.bestprice}円({item.percentage}%)
+                        {config.itemSubtitle} {item.bestprice}円({item.percentage}%)
                     </Typography>
                       <Typography>
-                        商品名概要。TODO:
+                        {config.itemDescription || "商品名概要。TODO:"}
                     </Typography>
                     </CardContent>
                     <CardActions>
@@ -173,7 +180,7 @@ function Album(props) {
                         公式サイト<OpenInNewIcon />
                       </Button>
                       <Button size="small" color="primary" onClick={() => toDetail(item)}>
-                        製品詳細
+                        {config.toItemDetailButton || "製品詳細"}
                       </Button>
                       {/* <Button size="small" color="primary">
                       未定
