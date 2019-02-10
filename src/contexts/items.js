@@ -7,35 +7,35 @@ const db = firebase.app().firestore();
 
 export let items = [];
 
-export const defaultItem = {
-    // 部分一致検索としてまとまって必須
-    id: "xxxxxx",   // nameからMD5。id
-    name: "",       // IDになるのでユニーク文字列かつ表示用。n
+// export const defaultItem = {
+//     // 部分一致検索としてまとまって必須
+//     id: "xxxxxx",   // nameからMD5。id
+//     name: "",       // IDになるのでユニーク文字列かつ表示用。n
 
-    thumbnail: "",  // IDでいい気がする。同一商品で別のIDの画像を利用する場合のみ利用。tb
-    // TODO priceは部分一致にあればベストだが更新されやすいので切り離しが妥当。今後要検討。
-    price: 1000,     // 定価。p
-    bestprice: 1000, // 最高価格。p
-    percentage: 80,  // 定価との割合。pt
-    timestamp: 0,    // 更新日
+//     thumbnail: "",  // IDでいい気がする。同一商品で別のIDの画像を利用する場合のみ利用。tb
+//     // TODO priceは部分一致にあればベストだが更新されやすいので切り離しが妥当。今後要検討。
+//     price: 1000,     // 定価。p
+//     bestprice: 1000, // 最高価格。p
+//     percentage: 80,  // 定価との割合。pt
+//     timestamp: 0,    // 更新日
 
-    // 詳細
-    // 説明概要
-    subheader: "",
-    // 以下変更されやすいデータ。データが大きくなったら分離予定。
-    // TODO 最終的にはクエリーに任せることも検討
-    sites: [
-        { 
-            // id: "xxxxxx",   // 使うならnameからMD5でよさそうだ
-            // name: "ショップ", // 表示しないなら不要。
-            price: 30000, 
-            url: "https:www.google.co.jp", 
-            description: ["a", "b", "x",],  // 現状未設定
-        },
-        { id: 2, name: "22", price: 0, url: "", description: ["g", "f", "d",], },
-        { id: 3, name: "33", price: 0, url: "", description: ["d", "g", "a",], },
-    ],
-};
+//     // 詳細
+//     // 説明概要
+//     subheader: "",
+//     // 以下変更されやすいデータ。データが大きくなったら分離予定。
+//     // TODO 最終的にはクエリーに任せることも検討
+//     sites: [
+//         { 
+//             // id: "xxxxxx",   // 使うならnameからMD5でよさそうだ
+//             // name: "ショップ", // 表示しないなら不要。
+//             price: 30000, 
+//             url: "https:www.google.co.jp", 
+//             description: ["a", "b", "x",],  // 現状未設定
+//         },
+//         { id: 2, name: "22", price: 0, url: "", description: ["g", "f", "d",], },
+//         { id: 3, name: "33", price: 0, url: "", description: ["d", "g", "a",], },
+//     ],
+// };
 
 // TODO 部分一致検索として利用する。 オフラインデータとしてパフォーマンス優先のほうがよさそう。
 // TODO もう一つはFunctionsを利用して検索を実行された時のみサーバーで実行してデータをクライアントで持たない。＜＝サーバーレスだとデータ読み取り発生が多くてつらい。
@@ -74,7 +74,6 @@ export const getItems = async (id) => {
         // await deleteTestItems();
         const collectionRef = db.collection("items");
         // one read
-        // const docRef = collectionRef.doc("Dwnt22xauW0F8AZIb6rh");// 1000testdate
         const docRef = collectionRef.doc("NxJsePb8yI6PdRMDPgad"); // real data
         const result = await docRef.get();
         // console.log("getItems() result:", result);
@@ -98,7 +97,7 @@ export const getItems = async (id) => {
         // console.log("★★★ is:", is);
         // console.log("★★★ is.keys:", Object.keys(is).map(key => is[key]));
 
-        // sort test
+        // sort
         items = data.sort((a, b) => b.percentage - a.percentage);
 
         return items;
@@ -114,55 +113,55 @@ export const getItems = async (id) => {
 
 };
 
-const createTestItems = async () => {
-    const testItems = { store : [] };
-    for (let i = 0; i < 1000; i++) {
-        testItems.store.push({
-            id: i + 1,
-            name: "アイテム" + (i + 1),
-            price: 32000,
-            bestprice: 30000,
-            sites: [
-                {
-                    id: 1,
-                    name: "ショップA" + i,
-                    price: 30000,
-                    url: "https:www.google.co.jp",
-                    description: [],
-                },
-                {
-                    id: 2,
-                    name: "ショップB" + i,
-                    price: 30000,
-                    url: "https:www.google.co.jp",
-                    description: [],
-                },
-                {
-                    id: 3,
-                    name: "ショップC" + i,
-                    price: 30000,
-                    url: "https:www.google.co.jp",
-                    description: [],
-                },
-            ],
-        });
-    }
+// const createTestItems = async () => {
+//     const testItems = { store : [] };
+//     for (let i = 0; i < 1000; i++) {
+//         testItems.store.push({
+//             id: i + 1,
+//             name: "アイテム" + (i + 1),
+//             price: 32000,
+//             bestprice: 30000,
+//             sites: [
+//                 {
+//                     id: 1,
+//                     name: "ショップA" + i,
+//                     price: 30000,
+//                     url: "https:www.google.co.jp",
+//                     description: [],
+//                 },
+//                 {
+//                     id: 2,
+//                     name: "ショップB" + i,
+//                     price: 30000,
+//                     url: "https:www.google.co.jp",
+//                     description: [],
+//                 },
+//                 {
+//                     id: 3,
+//                     name: "ショップC" + i,
+//                     price: 30000,
+//                     url: "https:www.google.co.jp",
+//                     description: [],
+//                 },
+//             ],
+//         });
+//     }
 
-    await db.collection("items").add(testItems);
-}
+//     await db.collection("items").add(testItems);
+// }
 
-const deleteTestItems = async (id) => {
-    try {
-        await db.collection("items").doc(id).delete();
-    } catch (e) {
-        // Getting the Error details.
-        // const code = e.code;
-        // const message = e.message;
-        // const details = e.details;
-        // ...
-        console.error("error:", e);
-    };
-}
+// const deleteTestItems = async (id) => {
+//     try {
+//         await db.collection("items").doc(id).delete();
+//     } catch (e) {
+//         // Getting the Error details.
+//         // const code = e.code;
+//         // const message = e.message;
+//         // const details = e.details;
+//         // ...
+//         console.error("error:", e);
+//     };
+// }
 
 // get item done.
 // getItems();
