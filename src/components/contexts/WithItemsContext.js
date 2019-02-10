@@ -3,7 +3,7 @@ import React from 'react';
 import { ItemsContext } from '../../contexts/items'
 
 // This function takes a component...
-// function withSystemContext(WrappedComponent, selectData) {
+// function withItemsContext(WrappedComponent, selectData) {
 function withItemsContext(WrappedComponent) {
     // ...and returns another component...
     return class extends React.Component {
