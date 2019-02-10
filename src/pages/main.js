@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import Fab from '@material-ui/core/Fab';
+// import HomeIcon from '@material-ui/icons/Home';
+import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import { withStyles } from '@material-ui/core/styles';
 import withRoot from '../withRoot';
 
@@ -40,6 +43,11 @@ const styles = theme => ({
         borderTop: `1px solid ${theme.palette.divider}`,
         padding: `${theme.spacing.unit * 6}px 0`,
     },
+    fab: {
+        position: 'fixed',
+        bottom: theme.spacing.unit * 2,
+        right: theme.spacing.unit * 2,
+      },
 });
 
 const footers = [
@@ -110,8 +118,12 @@ class Main extends React.Component {
                     </Grid>
                 </footer>
                 {/* End footer */}
+                <Fab color="primary" className={classes.fab} onClick={() => window.scrollTo({top: 0,behavior: "smooth"})}>
+                    {/* <HomeIcon /> */}
+                    <ArrowUpwardIcon />
+                </Fab>
             </main>
-        );
+            );
     }
 }
 

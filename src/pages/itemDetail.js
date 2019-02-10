@@ -9,12 +9,17 @@ import CardContent from '@material-ui/core/CardContent';
 import CardHeader from '@material-ui/core/CardHeader';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import Fab from '@material-ui/core/Fab';
+// import HomeIcon from '@material-ui/icons/Home';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import Grid from '@material-ui/core/Grid';
 import OpenInNewIcon from '@material-ui/icons/OpenInNew';
 import StarIcon from '@material-ui/icons/StarBorder';
 // import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
+
+import { withRouter } from "react-router-dom";
 
 import ImageButton from '../components/imageButton';
 
@@ -82,6 +87,11 @@ const styles = theme => ({
     top: '50%',
     left: '50%',
   },
+  fab: {
+    position: 'fixed',
+    bottom: theme.spacing.unit * 2,
+    right: theme.spacing.unit * 2,
+  },
 });
 
 // const tiers = [
@@ -137,6 +147,16 @@ function ItemDetail(props) {
   //   // Update the document title using the browser API
   //   getItems();
   // }, []);
+
+  // const onClickFb = () => {
+  //   console.log("history:", props.history);
+  //   if (props.history.length) {
+  //     props.history.goBack();
+  //   } else {
+  //     props.history.push('/');
+  //   }
+  // };
+  const onClickFb = () => props.history.goBack();
 
     const { classes } = props;
     const { id } = props.match.params;
@@ -252,6 +272,10 @@ function ItemDetail(props) {
             ))}
           </Grid>
         </main>
+        <Fab color="primary" className={classes.fab} onClick={onClickFb}>
+            {/* <HomeIcon /> */}
+            <ArrowBackIcon />
+        </Fab>
         {/* Footer */}
         {/* <footer className={classNames(classes.footer, classes.layout)}>
         <Grid container spacing={32} justify="space-evenly">
@@ -278,4 +302,4 @@ ItemDetail.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(ItemDetail);
+export default withStyles(styles)(withRouter(ItemDetail));
