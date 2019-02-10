@@ -12,8 +12,6 @@ import { Link } from "react-router-dom";
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 
-import withSystemContext from '../components/contexts/WithSystemContext';
-
 // import AlignItemsList from '../components/itemsList';
 import Album from '../components/top';
 
@@ -121,4 +119,4 @@ Main.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withRoot(withStyles(styles)(withSystemContext(Main)));
+export default withRoot(withStyles(styles)(Main));
