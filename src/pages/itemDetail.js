@@ -50,6 +50,10 @@ const styles = theme => ({
     padding: `${theme.spacing.unit * 8}px 0 ${theme.spacing.unit * 6}px`,
   },
   // TODO TEST
+  heroDescription: {
+    marginTop: theme.spacing.unit * 6,
+  },
+  // TODO TEST
   heroButtons: {
     marginTop: theme.spacing.unit * 4,
   },
@@ -178,12 +182,14 @@ function ItemDetail(props) {
             </Typography>
             {/* TODO TEST */}
             <ImageButton img={item.ogimg} url={item.url} />
-            <Typography variant="h6" align="center" color="textSecondary" component="p">
-              { config.itemDetailDescription || `アイテムの説明をここに記述する。
-              最新情報はリンク先でチェック。
-              It's built`}
-              <br />{new Date(item.timestamp).toLocaleDateString()} 更新
-            </Typography>
+            <div className={classes.heroDescription}></div>
+              <Typography variant="h6" align="center" color="textSecondary" component="p">
+                { config.itemDetailDescription || `アイテムの説明をここに記述する。
+                最新情報はリンク先でチェック。
+                It's built`}
+                <br />{new Date(item.timestamp).toLocaleDateString()} 更新
+              </Typography>
+            </div>
             {/* <div className={classes.heroButtons}>
               <Grid container spacing={16} justify="center">
                 <Grid item>
@@ -198,7 +204,6 @@ function ItemDetail(props) {
                 </Grid>
               </Grid>
             </div> */}
-          </div>
           {/* End hero unit */}
           <Grid container spacing={40} alignItems="flex-end">
             {sites.map((tier, index) => (
@@ -238,7 +243,7 @@ function ItemDetail(props) {
                     {/* <Button fullWidth variant={tier.buttonVariant} color="primary" onClick={() => {}}> */}
                     {/* <a href={tier.url} target="_blank" rel="noopener noreferrer" > */}
                     <Button fullWidth variant="contained" color={index === 0 ? "primary" : "secondary"} href={tier.url} target="_blank" rel="noopener noreferrer" >
-                      Go<OpenInNewIcon />
+                    {config.itemDetailButton || "Go"}<OpenInNewIcon />
                     </Button>
                     {/* </a> */}
                   </CardActions>
