@@ -7,6 +7,7 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardHeader from '@material-ui/core/CardHeader';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import OpenInNewIcon from '@material-ui/icons/OpenInNew';
@@ -18,8 +19,6 @@ import { withStyles } from '@material-ui/core/styles';
 import ImageButton from '../components/imageButton';
 
 import { ItemsContext } from '../contexts/items'
-
-
 
 const styles = theme => ({
   '@global': {
@@ -71,6 +70,12 @@ const styles = theme => ({
     borderTop: `1px solid ${theme.palette.divider}`,
     padding: `${theme.spacing.unit * 6}px 0`,
   },
+  progress: {
+    margin: theme.spacing.unit * 2,
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+  },
 });
 
 // const tiers = [
@@ -97,17 +102,6 @@ const styles = theme => ({
 //     ],
 //     buttonVariant: 'outlined',
 //   },
-//   {
-//     name: 'EタイトルC',
-//     price: '27000',
-//     description: [
-//       '50 users included',
-//       '30 GB of storage',
-//       'Help center access',
-//       'Phone & email support',
-//     ],
-//     buttonVariant: 'outlined',
-//   },
 // ];
 // const footers = [
 //   {
@@ -129,8 +123,6 @@ const styles = theme => ({
 // ];
 
 function ItemDetail(props) {
-  // const [count, setCount] = useState(0);
-
   const { items } = useContext(ItemsContext);
   // console.log("render itemDetail items:", items);
 
@@ -144,18 +136,19 @@ function ItemDetail(props) {
     const { id } = props.match.params;
     console.log("itemDetail match params id:", id);
 
-    const item = items.find(item => item.id === id) || {
-      name: "",
-      subheader: "",
-      price: "",
-      bestprice: "",
-      sites: [
-        { name: "11", price: "0", subheader: "", description: ["a", "b", "x",], },
-        { name: "22", price: "0", subheader: "", description: ["g", "f", "d",], },
-        { name: "33", price: "0", subheader: "", description: ["d", "g", "a",], },
-      ],
+    const item = items.find(item => item.id === id);
+    if (!item)
+      return (
+        <React.Fragment>
+          <CssBaseline />
+          <main className={classes.layout}>
+            <div className={classes.heroContent}>
+              <CircularProgress className={classes.progress} align="center" />
+            </div>
+          </main>
+        </React.Fragment>
+      );
 
-    };
     const { sites } = item;
     // console.log("itemDetail item:", item);
 
@@ -179,7 +172,6 @@ function ItemDetail(props) {
           {/* Hero unit */}
           <div className={classes.heroContent}>
             <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-              {/* アイテム名:{item.name} */}
               {item.name}
             </Typography>
             {/* TODO TEST */}
