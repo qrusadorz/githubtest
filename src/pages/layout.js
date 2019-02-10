@@ -81,6 +81,10 @@ class Layout extends React.Component {
         });
     }
 
+    async componentDidMount() {
+        await this.state.items.getItems();
+    }
+
     handleLogin = (user) => { this.setState({ user }); }
     handleLogout = () => { this.setState({ user: null }); }
     handleLoginButton = () => {

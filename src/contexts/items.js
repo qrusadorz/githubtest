@@ -165,7 +165,7 @@ const deleteTestItems = async (id) => {
 }
 
 // get item done.
-getItems();
+// getItems();
 
 export const ItemsContext = React.createContext({
     items,

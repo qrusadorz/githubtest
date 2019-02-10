@@ -85,9 +85,9 @@ const styles = theme => ({
 
 // function Album(props) {
 class Album extends React.Component {
-  async componentDidMount() {
-    await this.props.items.getItems();
-  }
+  // async componentDidMount() {
+  //   await this.props.items.getItems();
+  // }
 
   render() {
     const { classes } = this.props;
