@@ -17,7 +17,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 import { withRouter } from "react-router-dom";
 
-import CustomizedInputBase from './searchField'
+// import CustomizedInputBase from './searchField'
 import IntegrationReactSelect from './integrationReactSelect'
 
 // import WithItemsContext from '../components/contexts/WithItemsContext';
