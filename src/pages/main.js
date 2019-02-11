@@ -69,62 +69,60 @@ const footers = [
     },
 ];
 
-class Main extends React.Component {
-    render() {
-        const { classes } = this.props;
-        return (
-            <main className={classes.content}>
-                {
-                    // !!user || <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
-                    // user &&
-                    // <Typography variant="h4" gutterBottom component="h2">
-                    //     {user.uid}
-                    // </Typography>
-                }
-                {/* <Typography variant="h4" gutterBottom component="h2">
-                    Orders
-                </Typography> */}
-                {/* <AlignItemsList /> */}
-                {/* <Qrcode /> */}
-                <Album />
-                {/* mainから出したいがスクロール問題でNG */}
-                {/* Footer */}
-                {/* <footer className={classes.footer}>
-                    <Typography variant="h6" align="center" gutterBottom>
-                        Footer
-                    </Typography>
-                    <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-                        Something here to give the footer a purpose!
-                    </Typography>
-                </footer> */}
-                {/* End footer */}
-                {/* Footer */}
-                <footer className={classNames(classes.footer, classes.layout)}>
-                    <Grid container spacing={32} justify="space-evenly">
-                        {footers.map(footer => (
-                            <Grid item xs key={footer.title}>
-                                <Typography variant="h6" color="textPrimary" gutterBottom>
-                                    {footer.title}
-                                </Typography>
-                                {footer.description.map(item => (
-                                    <Link to="/privacy" key={item}>
-                                        <Typography key={item} variant="subtitle1" color="textSecondary">
-                                            {item}
-                                        </Typography>
-                                    </Link>
-                                ))}
-                            </Grid>
-                        ))}
-                    </Grid>
-                </footer>
-                {/* End footer */}
-                <Fab color="primary" className={classes.fab} onClick={() => window.scrollTo({top: 0,behavior: "smooth"})}>
-                    {/* <HomeIcon /> */}
-                    <ArrowUpwardIcon />
-                </Fab>
-            </main>
-            );
-    }
+function Main(props) {
+    const { classes } = props;
+    return (
+        <main className={classes.content}>
+            {
+                // !!user || <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
+                // user &&
+                // <Typography variant="h4" gutterBottom component="h2">
+                //     {user.uid}
+                // </Typography>
+            }
+            {/* <Typography variant="h4" gutterBottom component="h2">
+                Orders
+            </Typography> */}
+            {/* <AlignItemsList /> */}
+            {/* <Qrcode /> */}
+            <Album />
+            {/* mainから出したいがスクロール問題でNG */}
+            {/* Footer */}
+            {/* <footer className={classes.footer}>
+                <Typography variant="h6" align="center" gutterBottom>
+                    Footer
+                </Typography>
+                <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
+                    Something here to give the footer a purpose!
+                </Typography>
+            </footer> */}
+            {/* End footer */}
+            {/* Footer */}
+            <footer className={classNames(classes.footer, classes.layout)}>
+                <Grid container spacing={32} justify="space-evenly">
+                    {footers.map(footer => (
+                        <Grid item xs key={footer.title}>
+                            <Typography variant="h6" color="textPrimary" gutterBottom>
+                                {footer.title}
+                            </Typography>
+                            {footer.description.map(item => (
+                                <Link to="/privacy" key={item}>
+                                    <Typography key={item} variant="subtitle1" color="textSecondary">
+                                        {item}
+                                    </Typography>
+                                </Link>
+                            ))}
+                        </Grid>
+                    ))}
+                </Grid>
+            </footer>
+            {/* End footer */}
+            <Fab color="primary" className={classes.fab} onClick={() => window.scrollTo({top: 0,behavior: "smooth"})}>
+                {/* <HomeIcon /> */}
+                <ArrowUpwardIcon />
+            </Fab>
+        </main>
+        );
 }
 
 Main.propTypes = {
