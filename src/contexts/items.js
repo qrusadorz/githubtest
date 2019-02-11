@@ -109,8 +109,7 @@ export const getItems = async (id) => {
         // ...
         console.error("error:", e);
         return [];
-    };
-
+    }
 };
 
 // const createTestItems = async () => {
