@@ -228,7 +228,7 @@ function ItemDetail(props) {
           <Grid container spacing={40} alignItems="flex-end">
             {sites.map((tier, index) => (
               // Enterprise card is full width at sm breakpoint
-              <Grid item key={tier.index} xs={12} sm={tier.name === 'Enterprise' ? 12 : 6} md={4}>
+              <Grid item key={index} xs={12} sm={tier.name === 'Enterprise' ? 12 : 6} md={4}>
                 <Card>
                   <CardHeader
                     title={tier.name}
