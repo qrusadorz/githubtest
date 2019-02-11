@@ -77,7 +77,6 @@ class Layout extends React.Component {
                 this.handleLogout(user);
                 this.updateSnackbarMessage("ログアウトしました");
             }
-            console.log("public:" + process.env.PUBLIC_URL);
         });
     }
 
