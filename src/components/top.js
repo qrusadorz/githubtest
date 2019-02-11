@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 // import AppBar from '@material-ui/core/AppBar';
@@ -97,6 +97,12 @@ function Album(props) {
     // const { items = [] } = props.items;
     const { items = [] } = useContext(ItemsContext);
 
+    useEffect(() => {
+      if (config.name) {
+         document.title = `${config.name}`;
+      }
+   });
+   
     // const renderItems = items.slice(0, 20);  // TODO limit 20 item
     const renderItems = items;  // for develop
 

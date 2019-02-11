@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 // import classNames from 'classnames';
 import PropTypes from 'prop-types';
 // import AppBar from '@material-ui/core/AppBar';
@@ -163,6 +163,13 @@ function ItemDetail(props) {
     console.log("itemDetail match params id:", id);
 
     const item = items.find(item => item.id === id);
+
+    useEffect(() => {
+       if (item) {
+          document.title = `${item.name}`;
+       }
+    });
+    
     if (!item)
       return (
         <React.Fragment>
