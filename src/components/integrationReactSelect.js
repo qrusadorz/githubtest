@@ -205,6 +205,7 @@ function IntegrationReactSelect(props) {
           onChange={handleChangeSingle}
           placeholder={config.searchPlaceholder || "Search a item (start with a)"}
           openMenuOnClick={false}
+          aria-label={config.searchAriaLabel}
         />
       </NoSsr>
     </div>
