@@ -117,7 +117,7 @@ function Main(props) {
                 </Grid>
             </footer>
             {/* End footer */}
-            <Fab color="primary" className={classes.fab} onClick={() => window.scrollTo({top: 0,behavior: "smooth"})}>
+            <Fab color="primary" className={classes.fab} aria-label="Scroll up" onClick={() => window.scrollTo({top: 0,behavior: "smooth"})}>
                 {/* <HomeIcon /> */}
                 <ArrowUpwardIcon />
             </Fab>
