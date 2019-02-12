@@ -167,7 +167,14 @@ function ItemDetail(props) {
     useEffect(() => {
        if (item) {
           document.title = `${item.name}`;
-       }
+          // TODO 今度まとめる
+          for (const node of document.head.childNodes) {
+            if (node.name === "Description" && node.nodeName === "META") {
+              node.content = `${item.name}${config.itemDetailMetaDescription}`;
+              return;
+            }
+          }
+        }
     });
     
     if (!item)

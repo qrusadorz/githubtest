@@ -98,8 +98,17 @@ function Album(props) {
     const { items = [] } = useContext(ItemsContext);
 
     useEffect(() => {
+      // TODO 今度まとめる
       if (config.name) {
          document.title = `${config.name}`;
+      }
+      if (config.description) {
+        for (const node of document.head.childNodes) {
+          if (node.name === "Description" && node.nodeName === "META") {
+            node.content = config.description;
+            return;
+          }
+        }
       }
    });
    
