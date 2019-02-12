@@ -7,23 +7,25 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 
 // A theme with custom primary and secondary color.
 // It's optional.
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      light: blue[300],
-      main: blue[500],
-      dark: blue[700],
-    },
-    secondary: {
-      light: green[300],
-      main: green[500],
-      dark: green[700],
-    },
-  },
-  typography: {
-    useNextVariants: true,
-  },
-});
+// const theme = createMuiTheme({
+//   palette: {
+//     primary: {
+//       light: blue[300],
+//       main: blue[500],
+//       dark: blue[700],
+//     },
+//     secondary: {
+//       light: green[300],
+//       main: green[500],
+//       dark: green[700],
+//     },
+//   },
+//   typography: {
+//     useNextVariants: true,
+//   },
+// });
+//  default custom color is abolished for accessibility improvement.
+const theme = createMuiTheme();
 
 function withRoot(Component) {
   function WithRoot(props) {
