@@ -25,7 +25,11 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 //   },
 // });
 //  default custom color is abolished for accessibility improvement.
-const theme = createMuiTheme();
+ const theme = createMuiTheme({
+  typography: {
+    useNextVariants: true,
+  },
+ });
 
 function withRoot(Component) {
   function WithRoot(props) {
