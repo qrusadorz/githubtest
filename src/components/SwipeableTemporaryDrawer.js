@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
@@ -17,7 +17,7 @@ import Typography from '@material-ui/core/Typography';
 
 import { withRouter } from "react-router-dom";
 
-import withSystemContext from './contexts/WithSystemContext';
+import { SystemContext } from '../contexts/system';
 
 import config from '../configs/site'
 
@@ -30,147 +30,63 @@ const styles = {
   },
 };
 
-class SwipeableTemporaryDrawer extends React.Component {
-  state = {
-    top: false,
-    left: false,
-    bottom: false,
-    right: false,
-  };
+function SwipeableTemporaryDrawer(props) {
+  const { classes } = props;
+  const { drawerOpen, closeDrawer } = useContext(SystemContext);
 
-  toggleDrawer = (side, open) => () => {
-    this.setState({
-      [side]: open,
-    });
+  const toggleDrawer = (side, open) => () => {
     if (open) return;
-    this.props.system.closeDrawer();
+    closeDrawer();
   };
 
-  render() {
-    const { classes, system } = this.props;
-    const { drawerOpen } = system;
+  const sideList = (
+    <div className={classes.list}>
+      <Typography variant="h3" align="center" gutterBottom component="h2">
+        {config.name || "タイトル"}
+      </Typography>
+      <Divider />
+      <List>
+        {['ホーム', '調べる', '急上昇ワード'].map((text, index) => (
+          <ListItem button key={text} onClick={() => props.history.push('/')}>
+            <ListItemIcon>{index % 2 === 0 ? <HomeIcon /> : <SearchIcon />}</ListItemIcon>
+            <ListItemText primary={text} />
+          </ListItem>
+        ))}
+      </List>
+      <Divider />
+      <List>
+        {['ヘルプ', 'フィードバックを送信'].map((text, index) => (
+          <ListItem button key={text} onClick={() => props.history.push('/items/5533')}>
+            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+            <ListItemText primary={text} />
+          </ListItem>
+        ))}
+      </List>
+    </div>
+  );
 
-    const sideList = (
-      <div className={classes.list}>
-        <Typography variant="h3" gutterBottom component="h2">
-          { config.name || "タイトル" }
-        </Typography>
-        <Divider />
-        <List>
-          {['ホーム', '調べる', '急上昇ワード'].map((text, index) => (
-            <ListItem button key={text} onClick={() => this.props.history.push('/')}>
-              <ListItemIcon>{index % 2 === 0 ? <HomeIcon /> : <SearchIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {['ヘルプ', 'フィードバックを送信'].map((text, index) => (
-            <ListItem button key={text} onClick={() => this.props.history.push('/items/5533')}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-      </div>
-    );
-
-    // const fullList = (
-    //   <div className={classes.fullList}>
-    //     <List>
-    //       {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-    //         <ListItem button key={text}>
-    //           <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-    //           <ListItemText primary={text} />
-    //         </ListItem>
-    //       ))}
-    //     </List>
-    //     <Divider />
-    //     <List>
-    //       {['All mail', 'Trash', 'Spam'].map((text, index) => (
-    //         <ListItem button key={text}>
-    //           <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-    //           <ListItemText primary={text} />
-    //         </ListItem>
-    //       ))}
-    //     </List>
-    //   </div>
-    // );
-
-    return (
-      <div>
-        {/* <Button onClick={this.toggleDrawer('left', true)}>Open Left</Button>
-        <Button onClick={this.toggleDrawer('right', true)}>Open Right</Button>
-        <Button onClick={this.toggleDrawer('top', true)}>Open Top</Button>
-        <Button onClick={this.toggleDrawer('bottom', true)}>Open Bottom</Button> */}
-        <SwipeableDrawer
-          // open={this.state.left}
-          open={drawerOpen}
-          onClose={this.toggleDrawer('left', false)}
-          onOpen={this.toggleDrawer('left', true)}
+  return (
+    <div>
+      <SwipeableDrawer
+        open={drawerOpen}
+        onClose={toggleDrawer('left', false)}
+        onOpen={toggleDrawer('left', true)}
+      >
+        <div
+          tabIndex={0}
+          role="button"
+          onClick={toggleDrawer('left', false)}
+          onKeyDown={toggleDrawer('left', false)}
         >
-          <div
-            tabIndex={0}
-            role="button"
-            onClick={this.toggleDrawer('left', false)}
-            onKeyDown={this.toggleDrawer('left', false)}
-          >
-            {sideList}
-          </div>
-        </SwipeableDrawer>
-        {/* <SwipeableDrawer
-          anchor="top"
-          open={this.state.top}
-          onClose={this.toggleDrawer('top', false)}
-          onOpen={this.toggleDrawer('top', true)}
-        >
-          <div
-            tabIndex={0}
-            role="button"
-            onClick={this.toggleDrawer('top', false)}
-            onKeyDown={this.toggleDrawer('top', false)}
-          >
-            {fullList}
-          </div>
-        </SwipeableDrawer>
-        <SwipeableDrawer
-          anchor="bottom"
-          open={this.state.bottom}
-          onClose={this.toggleDrawer('bottom', false)}
-          onOpen={this.toggleDrawer('bottom', true)}
-        >
-          <div
-            tabIndex={0}
-            role="button"
-            onClick={this.toggleDrawer('bottom', false)}
-            onKeyDown={this.toggleDrawer('bottom', false)}
-          >
-            {fullList}
-          </div>
-        </SwipeableDrawer>
-        <SwipeableDrawer
-          anchor="right"
-          open={this.state.right}
-          onClose={this.toggleDrawer('right', false)}
-          onOpen={this.toggleDrawer('right', true)}
-        >
-          <div
-            tabIndex={0}
-            role="button"
-            onClick={this.toggleDrawer('right', false)}
-            onKeyDown={this.toggleDrawer('right', false)}
-          >
-            {sideList}
-          </div>
-        </SwipeableDrawer> */}
-      </div>
-    );
-  }
+          {sideList}
+        </div>
+      </SwipeableDrawer>
+    </div>
+  );
 }
 
 SwipeableTemporaryDrawer.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(withRouter(withSystemContext(SwipeableTemporaryDrawer)));
+export default withStyles(styles)(withRouter(SwipeableTemporaryDrawer));

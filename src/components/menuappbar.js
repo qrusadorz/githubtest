@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -13,7 +13,8 @@ import Menu from '@material-ui/core/Menu';
 
 import config from '../configs/site'
 
-import withSystemContext from './contexts/WithSystemContext';
+import { SystemContext } from '../contexts/system';
+import { UserContext } from '../contexts/user';
 
 const styles = {
   root: {
@@ -28,110 +29,103 @@ const styles = {
   },
 };
 
-class MenuAppBar extends React.Component {
-  state = {
-    anchorEl: null,
-  };
+function MenuAppBar(props) {
+  const { classes } = props;
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const { login, logout, openDrawer } = useContext(SystemContext);
+  const user = useContext(UserContext);
+  const open = Boolean(anchorEl);
+
+  const auth = !!user;
 
   // handleChange = event => {
   //   this.setState({ auth: event.target.checked });
   // };
 
-  handleMenu = event => {
-    this.setState({ anchorEl: event.currentTarget });
+  const handleMenu = event => {
+    setAnchorEl(event.currentTarget);
   };
 
-  handleClose = () => {
-    this.setState({ anchorEl: null });
+  const handleClose = () => {
+    setAnchorEl(null);
   };
 
-  handleLogin = () => {
-    this.props.system.login();
+  const handleLogin = () => {
+    login();
   };
 
-  handleClick = () => {
-    this.handleClose();
-    this.props.system.logout();
+  const handleClick = () => {
+    handleClose();
+    logout();
   };
 
-  handleDrawer = () => {
-    this.props.system.openDrawer();
+  const handleDrawer = () => {
+    openDrawer();
   };
 
-  render() {
-    const { classes, user } = this.props;
-    const { anchorEl } = this.state;
-    const open = Boolean(anchorEl);
-
-    // const user = this.context;
-    const auth = !!user;
-
-    return (
-      <div className={classes.root}>
-        {/* <FormGroup>
-          <FormControlLabel
-            control={
-              <Switch checked={auth} onChange={this.handleChange} aria-label="LoginSwitch" />
-            }
-            label={auth ? 'Logout' : 'Login'}
-          />
-        </FormGroup> */}
-        <AppBar position="fixed">
-          <Toolbar>
-            <IconButton className={classes.menuButton} color="inherit" aria-label="Menu"
-              onClick={this.handleDrawer}
-            >
-              <MenuIcon />
-            </IconButton>
-            <Typography variant="h6" color="inherit" className={classes.grow}>
-              { config.name || "タイトル" }
-            </Typography>
-            {auth && (
-              <div>
-                <IconButton
-                  aria-owns={open ? 'menu-appbar' : undefined}
-                  aria-haspopup="true"
-                  onClick={this.handleMenu}
-                  color="inherit"
-                >
-                  <AccountCircle />
-                </IconButton>
-                <Menu
-                  id="menu-appbar"
-                  anchorEl={anchorEl}
-                  anchorOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right',
-                  }}
-                  transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right',
-                  }}
-                  open={open}
-                  onClose={this.handleClose}
-                >
-                  <MenuItem onClick={this.handleClose}>Profile</MenuItem>
-                  <MenuItem onClick={this.handleClose}>My account</MenuItem>
-                  <MenuItem onClick={this.handleClick}>Logout</MenuItem>
-                </Menu>
-              </div>
-            )}
-            {(!auth) && (
-              <div>
-                <Button color="inherit" onClick={this.handleLogin}>ログイン</Button>
-              </div>
-            )}
-          </Toolbar>
-        </AppBar>
-      </div>
-    );
-  }
+  return (
+    <div className={classes.root}>
+      {/* <FormGroup>
+        <FormControlLabel
+          control={
+            <Switch checked={auth} onChange={this.handleChange} aria-label="LoginSwitch" />
+          }
+          label={auth ? 'Logout' : 'Login'}
+        />
+      </FormGroup> */}
+      <AppBar position="fixed">
+        <Toolbar>
+          <IconButton className={classes.menuButton} color="inherit" aria-label="Menu"
+            onClick={handleDrawer}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6" color="inherit" className={classes.grow}>
+            {config.name || "タイトル"}
+          </Typography>
+          {auth && (
+            <div>
+              <IconButton
+                aria-owns={open ? 'menu-appbar' : undefined}
+                aria-haspopup="true"
+                onClick={handleMenu}
+                color="inherit"
+              >
+                <AccountCircle />
+              </IconButton>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={open}
+                onClose={handleClose}
+              >
+                <MenuItem onClick={handleClose}>Profile</MenuItem>
+                <MenuItem onClick={handleClose}>My account</MenuItem>
+                <MenuItem onClick={handleClick}>Logout</MenuItem>
+              </Menu>
+            </div>
+          )}
+          {(!auth) && (
+            <div>
+              <Button color="inherit" onClick={handleLogin}>ログイン</Button>
+            </div>
+          )}
+        </Toolbar>
+      </AppBar>
+    </div>
+  );
 }
-
-// MenuAppBar.contextType = UserContext;
 
 MenuAppBar.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(withSystemContext(MenuAppBar));
+export default withStyles(styles)(MenuAppBar);
