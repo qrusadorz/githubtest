@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import withRoot from '../withRoot';
@@ -11,14 +11,14 @@ import { SystemContext } from '../contexts/system'
 import firebase from '../firebase/firebase'
 
 import Main from './main'
-import Privacy from './privacy'
-import Terms from './terms'
 import itemDetail from './itemDetail'
 import ScrollToTop from '../components/scrollToTop'
 import SwipeableTemporaryDrawer from '../components/SwipeableTemporaryDrawer'
 import MenuAppBar from '../components/menuappbar';
 import SimpleSnackBar from '../components/snackbar';
 import { ItemsContext, getItems } from '../contexts/items';
+const Privacy = lazy(() => import('./privacy'));
+const Terms = lazy(() => import('./terms'));
 
 const styles = theme => ({
     //   root: {
@@ -164,24 +164,26 @@ class Layout extends React.Component {
         return (
             <Router>
                 <ScrollToTop>
-                    <SystemContext.Provider value={this.state.system}>
-                        <UserContext.Provider value={this.state.user}>
-                            <ItemsContext.Provider value={this.state.items}>
-                                <SwipeableTemporaryDrawer />
-                                <MenuAppBar />
-                                <div className={classes.appBarSpacer} />
-                                <Switch>
-                                    {/* <Route exact path="/" component={Main} /> */}
-                                    <Route path="/items/:id" component={itemDetail} />
-                                    <Route path="/privacy" component={Privacy} />
-                                    <Route path="/terms" component={Terms} />
-                                    <Route component={Main} />
-                                    {/* <Main className={classes.content} /> */}
-                                </Switch>
-                                <SimpleSnackBar />
-                            </ItemsContext.Provider>
-                        </UserContext.Provider>
-                    </SystemContext.Provider>
+                    <Suspense fallback={<div>Loading...</div>}>
+                        <SystemContext.Provider value={this.state.system}>
+                            <UserContext.Provider value={this.state.user}>
+                                <ItemsContext.Provider value={this.state.items}>
+                                    <SwipeableTemporaryDrawer />
+                                    <MenuAppBar />
+                                    <div className={classes.appBarSpacer} />
+                                    <Switch>
+                                        {/* <Route exact path="/" component={Main} /> */}
+                                        <Route path="/items/:id" component={itemDetail} />
+                                        <Route path="/privacy" component={Privacy} />
+                                        <Route path="/terms" component={Terms} />
+                                        <Route component={Main} />
+                                        {/* <Main className={classes.content} /> */}
+                                    </Switch>
+                                    <SimpleSnackBar />
+                                </ItemsContext.Provider>
+                            </UserContext.Provider>
+                        </SystemContext.Provider>
+                    </Suspense>
                 </ScrollToTop>
             </Router>
         );

@@ -57,7 +57,7 @@ function Terms(props) {
               <Typography component="h1" variant="h3" color="inherit" gutterBottom>
                 利用規約
               </Typography>
-              <Typography variant="h5" color="inherit" paragraph>
+              {/* <Typography variant="h5" color="inherit" paragraph> */}
                 <div class="wrapKOPIPE">
 
                   <div class="wrapHINAGATA">
@@ -71,7 +71,7 @@ function Terms(props) {
                     <ul>
                       <li>登録希望者が当社の定める方法によって利用登録を申請し，当社がこれを承認することによって，利用登録が完了するものとします。</li>
                       <li>当社は，利用登録の申請者に以下の事由があると判断した場合，利用登録の申請を承認しないことがあり，その理由については一切の開示義務を負わないものとします。
-<ul>
+                        <ul>
                           <li>（1）利用登録の申請に際して虚偽の事項を届け出た場合</li>
                           <li>（2）本規約に違反したことがある者からの申請である場合</li>
                           <li>（3）その他，当社が利用登録を相当でないと判断した場合</li>
@@ -106,7 +106,7 @@ function Terms(props) {
                     <h2>第6条（本サービスの提供の停止等）</h2>
                     <ul>
                       <li>当社は，以下のいずれかの事由があると判断した場合，ユーザーに事前に通知することなく本サービスの全部または一部の提供を停止または中断することができるものとします。
-<ul>
+                        <ul>
                           <li>（1）本サービスにかかるコンピュータシステムの保守点検または更新を行う場合</li>
                           <li>（2）地震，落雷，火災，停電または天災などの不可抗力により，本サービスの提供が困難となった場合</li>
                           <li>（3）コンピュータまたは通信回線等が事故により停止した場合</li>
@@ -119,7 +119,7 @@ function Terms(props) {
                     <h2>第7条（利用制限および登録抹消）</h2>
                     <ul>
                       <li>当社は，以下の場合には，事前の通知なく，ユーザーに対して，本サービスの全部もしくは一部の利用を制限し，またはユーザーとしての登録を抹消することができるものとします。
-<ul>
+                        <ul>
                           <li>（1）本規約のいずれかの条項に違反した場合</li>
                           <li>（2）登録事項に虚偽の事実があることが判明した場合</li>
                           <li>（3）その他，当社が本サービスの利用を適当でないと判断した場合</li>
@@ -157,7 +157,7 @@ function Terms(props) {
 
                   </div>
                 </div>
-              </Typography>
+              {/* </Typography> */}
             </div>
           </Paper>
         </main>
