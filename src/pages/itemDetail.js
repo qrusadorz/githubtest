@@ -139,7 +139,7 @@ const styles = theme => ({
 // ];
 
 function ItemDetail(props) {
-  const { items } = useContext(ItemsContext);
+  const { items = [] } = useContext(ItemsContext);
   // console.log("render itemDetail items:", items);
 
   // // Similar to componentDidMount and componentDidUpdate:
@@ -158,45 +158,45 @@ function ItemDetail(props) {
   // };
   const onClickFb = () => props.history.goBack();
 
-    const { classes } = props;
-    const { id } = props.match.params;
-    console.log("itemDetail match params id:", id);
+  const { classes } = props;
+  const { id } = props.match.params;
+  console.log("itemDetail match params id:", id);
 
-    const item = items.find(item => item.id === id);
+  const item = items.find(item => item.id === id);
 
-    useEffect(() => {
-       if (item) {
-          document.title = `${item.name}`;
-          // TODO 今度まとめる
-          const tag = { name: "Description", nodeName: "META" };
-          for (const node of document.head.childNodes) {
-            if (node.name === tag.name && node.nodeName === tag.nodeName) {
-              node.content = `${item.name}${config.itemDetailMetaDescription}`;
-              return;
-            }
-          }
+  useEffect(() => {
+    if (item) {
+      document.title = `${item.name}`;
+      // TODO 今度まとめる
+      const tag = { name: "Description", nodeName: "META" };
+      for (const node of document.head.childNodes) {
+        if (node.name === tag.name && node.nodeName === tag.nodeName) {
+          node.content = `${item.name}${config.itemDetailMetaDescription}`;
+          return;
         }
-    });
-    
-    if (!item)
-      return (
-        <React.Fragment>
-          <CssBaseline />
-          <main className={classes.layout}>
-            <div className={classes.heroContent}>
-              <CircularProgress className={classes.progress} align="center" />
-            </div>
-          </main>
-        </React.Fragment>
-      );
+      }
+    }
+  });
 
-    const { sites } = item;
-    // console.log("itemDetail item:", item);
-
+  if (!item)
     return (
       <React.Fragment>
         <CssBaseline />
-        {/* <AppBar position="static" color="default" className={classes.appBar}>
+        <main className={classes.layout}>
+          <div className={classes.heroContent}>
+            <CircularProgress className={classes.progress} align="center" />
+          </div>
+        </main>
+      </React.Fragment>
+    );
+
+  const { sites } = item;
+  // console.log("itemDetail item:", item);
+
+  return (
+    <React.Fragment>
+      <CssBaseline />
+      {/* <AppBar position="static" color="default" className={classes.appBar}>
         <Toolbar>
           <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
             Company name
@@ -209,23 +209,23 @@ function ItemDetail(props) {
           </Button>
         </Toolbar>
       </AppBar> */}
-        <main className={classes.layout}>
-          {/* Hero unit */}
-          <div className={classes.heroContent}>
-            <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-              {item.name}
-            </Typography>
-            {/* TODO TEST */}
-            <ImageButton img={item.ogimg} url={item.url} />
-            <div className={classes.heroDescription}></div>
-              <Typography variant="h6" align="center" color="textSecondary" component="p">
-                { config.itemDetailDescription || `アイテムの説明をここに記述する。
+      <main className={classes.layout}>
+        {/* Hero unit */}
+        <div className={classes.heroContent}>
+          <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
+            {item.name}
+          </Typography>
+          {/* TODO TEST */}
+          <ImageButton img={item.ogimg} url={item.url} />
+          <div className={classes.heroDescription}></div>
+          <Typography variant="h6" align="center" color="textSecondary" component="p">
+            {config.itemDetailDescription || `アイテムの説明をここに記述する。
                 最新情報はリンク先でチェック。
                 It's built`}
-                <br />{new Date(item.timestamp).toLocaleDateString()} 更新
+            <br />{new Date(item.timestamp).toLocaleDateString()} 更新
               </Typography>
-            </div>
-            {/* <div className={classes.heroButtons}>
+        </div>
+        {/* <div className={classes.heroButtons}>
               <Grid container spacing={16} justify="center">
                 <Grid item>
                   <Button variant="contained" color="primary">
@@ -239,61 +239,61 @@ function ItemDetail(props) {
                 </Grid>
               </Grid>
             </div> */}
-          {/* End hero unit */}
-          <Grid container spacing={40} alignItems="flex-end">
-            {sites.map((tier, index) => (
-              // Enterprise card is full width at sm breakpoint
-              <Grid item key={index} xs={12} sm={tier.name === 'Enterprise' ? 12 : 6} md={4}>
-                <Card>
-                  <CardHeader
-                    title={tier.name}
-                    // subheader={index === 0 ? "人気No1." : tier.subheader}
-                    subheader={`${config.itemDetailSiteTitle || "人気"}No.${index + 1}`}
-                    titleTypographyProps={{ align: 'center' }}
-                    subheaderTypographyProps={{ align: 'center' }}
-                    action={index === 0 ? <StarIcon /> : null}
-                    className={classes.cardHeader}
-                  />
-                  <CardContent>
-                    <div className={classes.cardPricing}>
-                      <Typography component="h2" variant="h3" color="textPrimary">
-                        {tier.price}
-                      </Typography>
-                      <Typography variant="h6" color="textSecondary">
-                        円
-                      </Typography>
-                    </div>
-                    {/* // TODO TEST */}
-                    {/* <Typography variant="h6" color="textSecondary"> */}
-                    <Typography variant="subtitle1" align="center" key={tier.incex}>
-                      {/* // IEではNumber.parseIntなし */}
-                      {parseInt(tier.price / item.price * 100)}%
+        {/* End hero unit */}
+        <Grid container spacing={40} alignItems="flex-end">
+          {sites.map((tier, index) => (
+            // Enterprise card is full width at sm breakpoint
+            <Grid item key={index} xs={12} sm={tier.name === 'Enterprise' ? 12 : 6} md={4}>
+              <Card>
+                <CardHeader
+                  title={tier.name}
+                  // subheader={index === 0 ? "人気No1." : tier.subheader}
+                  subheader={`${config.itemDetailSiteTitle || "人気"}No.${index + 1}`}
+                  titleTypographyProps={{ align: 'center' }}
+                  subheaderTypographyProps={{ align: 'center' }}
+                  action={index === 0 ? <StarIcon /> : null}
+                  className={classes.cardHeader}
+                />
+                <CardContent>
+                  <div className={classes.cardPricing}>
+                    <Typography component="h2" variant="h3" color="textPrimary">
+                      {tier.price}
                     </Typography>
-                    {tier.description && tier.description.map(line => (
-                      <Typography variant="subtitle1" align="center" key={line}>
-                        {line}
+                    <Typography variant="h6" color="textSecondary">
+                      円
                       </Typography>
-                    ))}
-                  </CardContent>
-                  <CardActions className={classes.cardActions}>
-                    {/* <Button fullWidth variant={tier.buttonVariant} color="primary" onClick={() => {}}> */}
-                    {/* <a href={tier.url} target="_blank" rel="noopener noreferrer" > */}
-                    <Button fullWidth variant="contained" color={index === 0 ? "primary" : "secondary"} href={tier.url} target="_blank" rel="noopener noreferrer" >
+                  </div>
+                  {/* // TODO TEST */}
+                  {/* <Typography variant="h6" color="textSecondary"> */}
+                  <Typography variant="subtitle1" align="center" key={tier.incex}>
+                    {/* // IEではNumber.parseIntなし */}
+                    {parseInt(tier.price / item.price * 100)}%
+                    </Typography>
+                  {tier.description && tier.description.map(line => (
+                    <Typography variant="subtitle1" align="center" key={line}>
+                      {line}
+                    </Typography>
+                  ))}
+                </CardContent>
+                <CardActions className={classes.cardActions}>
+                  {/* <Button fullWidth variant={tier.buttonVariant} color="primary" onClick={() => {}}> */}
+                  {/* <a href={tier.url} target="_blank" rel="noopener noreferrer" > */}
+                  <Button fullWidth variant="contained" color={index === 0 ? "primary" : "secondary"} href={tier.url} target="_blank" rel="noopener noreferrer" >
                     {config.itemDetailButton || "Go"}<OpenInNewIcon />
-                    </Button>
-                    {/* </a> */}
-                  </CardActions>
-                </Card>
-              </Grid>
-            ))}
-          </Grid>
-        </main>
-        <Fab color="primary" className={classes.fab} onClick={onClickFb}>
-            {/* <HomeIcon /> */}
-            <ArrowBackIcon />
-        </Fab>
-        {/* Footer */}
-        {/* <footer className={classNames(classes.footer, classes.layout)}>
+                  </Button>
+                  {/* </a> */}
+                </CardActions>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
+      </main>
+      <Fab color="primary" className={classes.fab} onClick={onClickFb}>
+        {/* <HomeIcon /> */}
+        <ArrowBackIcon />
+      </Fab>
+      {/* Footer */}
+      {/* <footer className={classNames(classes.footer, classes.layout)}>
         <Grid container spacing={32} justify="space-evenly">
           {footers.map(footer => (
             <Grid item xs key={footer.title}>
@@ -309,9 +309,9 @@ function ItemDetail(props) {
           ))}
         </Grid>
       </footer> */}
-        {/* End footer */}
-      </React.Fragment>
-    );
+      {/* End footer */}
+    </React.Fragment>
+  );
 }
 
 ItemDetail.propTypes = {
