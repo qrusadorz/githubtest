@@ -74,10 +74,11 @@ export const getItems = async (id) => {
         // await deleteTestItems();
         const collectionRef = db.collection("items");
         // one read
-        const docRef = collectionRef.doc("NxJsePb8yI6PdRMDPgad"); // real data
+        // const docRef = collectionRef.doc("NxJsePb8yI6PdRMDPgad"); // dev real data
+        const docRef = collectionRef.doc("latest"); // real data
         const result = await docRef.get();
         // console.log("getItems() result:", result);
-        const data = result.data().store || [];
+        const data = result.data().items || [];
         // console.log("getItems() items:", items);
         // query one read
         // const result = await docRef.get();
