@@ -102,8 +102,9 @@ function Album(props) {
       document.title = `${config.name}`;
     }
     if (config.description) {
+      const tag = { name: "Description", nodeName: "META" };
       for (const node of document.head.childNodes) {
-        if (node.name === "Description" && node.nodeName === "META") {
+        if (node.name === tag.name && node.nodeName === tag.nodeName) {
           node.content = config.description;
           return;
         }

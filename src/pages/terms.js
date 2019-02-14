@@ -34,6 +34,19 @@ const styles = theme => ({
 function Terms(props) {
   const { classes } = props;
 
+//   useEffect(() => {
+//     if (item) {
+//        document.title = `利用規約`;
+//        // TODO 今度まとめる
+//        for (const node of document.head.childNodes) {
+//          if (node.name === "robots" && node.nodeName === "META") {
+//            node.content = "noindex";
+//            return;
+//          }
+//        }
+//      }
+//  });
+ 
   return (
     <React.Fragment>
       <CssBaseline />

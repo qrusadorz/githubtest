@@ -168,8 +168,9 @@ function ItemDetail(props) {
        if (item) {
           document.title = `${item.name}`;
           // TODO 今度まとめる
+          const tag = { name: "Description", nodeName: "META" };
           for (const node of document.head.childNodes) {
-            if (node.name === "Description" && node.nodeName === "META") {
+            if (node.name === tag.name && node.nodeName === tag.nodeName) {
               node.content = `${item.name}${config.itemDetailMetaDescription}`;
               return;
             }
