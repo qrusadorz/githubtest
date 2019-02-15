@@ -46,15 +46,14 @@ const isDevelop = true;
 export const getItems = async (id) => {
     if (items.length > 0) {
         // console.log("getItems() cached:", items);
-        console.log("getItems() cached");
+        console.log("getItems() cached memory:", items.length);
         return items;
     }
-    console.log("getItems() length:", items.length);
-
     if (isDevelop) {
         const data = localStorage.getItem('items');
         if (data) {
             items = JSON.parse(data);
+            console.log("getItems() cached localstorage:", items.length);
             return items;
         }
     }    
