@@ -72,10 +72,12 @@ class Layout extends React.Component {
                 //     providerData,
                 // } = user;
                 this.handleLogin(user);
-                this.updateSnackbarMessage("ログインしました");
+                // TODO しばらくログインは封印
+                // this.updateSnackbarMessage("ログインしました");
             } else {
                 this.handleLogout(user);
-                this.updateSnackbarMessage("ログアウトしました");
+                // TODO しばらくログインは封印
+                // this.updateSnackbarMessage("ログアウトしました");
             }
         });
     }

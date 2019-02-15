@@ -115,7 +115,8 @@ function MenuAppBar(props) {
           )}
           {(!auth) && (
             <div>
-              <Button color="inherit" onClick={handleLogin}>ログイン</Button>
+              {/* // TODO しばらくログインは封印 */}
+              <Button color="inherit" onClick={handleLogin} disabled >ログイン</Button>
             </div>
           )}
         </Toolbar>
