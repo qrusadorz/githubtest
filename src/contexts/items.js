@@ -7,6 +7,8 @@ const db = firebase.app().firestore();
 
 export let items = [];
 
+const isDevelop = true;
+
 // export const defaultItem = {
 //     // 部分一致検索としてまとまって必須
 //     id: "xxxxxx",   // nameからMD5。id
@@ -48,6 +50,14 @@ export const getItems = async (id) => {
         return items;
     }
     console.log("getItems() length:", items.length);
+
+    if (isDevelop) {
+        const data = localStorage.getItem('items');
+        if (data) {
+            items = JSON.parse(data);
+            return items;
+        }
+    }    
 
     // case functions
     // const functions = firebase.app().functions('asia-northeast1');
@@ -100,6 +110,10 @@ export const getItems = async (id) => {
 
         // sort
         items = data.sort((a, b) => b.percentage - a.percentage);
+
+        if (isDevelop) {
+            localStorage.setItem('items', JSON.stringify(items));
+        }    
 
         return items;
     } catch (e) {
