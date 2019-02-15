@@ -8,8 +8,8 @@ import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+import FeedbackIcon from '@material-ui/icons/Feedback';
+import HelpIcon from '@material-ui/icons/Help';
 import HomeIcon from '@material-ui/icons/Home';
 import SearchIcon from '@material-ui/icons/Search';
 
@@ -46,7 +46,7 @@ function SwipeableTemporaryDrawer(props) {
       </Typography>
       <Divider />
       <List>
-        {['ホーム', '調べる', '急上昇ワード'].map((text, index) => (
+        {['ホーム', '調べる',].map((text, index) => (
           <ListItem button key={text} onClick={() => props.history.push('/')}>
             <ListItemIcon>{index % 2 === 0 ? <HomeIcon /> : <SearchIcon />}</ListItemIcon>
             <ListItemText primary={text} />
@@ -56,8 +56,17 @@ function SwipeableTemporaryDrawer(props) {
       <Divider />
       <List>
         {['ヘルプ', 'フィードバックを送信'].map((text, index) => (
-          <ListItem button key={text} onClick={() => props.history.push('/items/5533')}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+          <ListItem button key={text} onClick={() => {}} disabled>
+            <ListItemIcon>{index % 2 === 0 ? <HelpIcon /> : <FeedbackIcon />}</ListItemIcon>
+            <ListItemText primary={text} />
+          </ListItem>
+        ))}
+      </List>
+      <Divider />
+      <List>
+        {['プライバシーポリシー', '利用規約'].map((text, index) => (
+          <ListItem button key={text} onClick={() => {}} disabled>
+            {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon> */}
             <ListItemText primary={text} />
           </ListItem>
         ))}
