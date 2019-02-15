@@ -1,19 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+// import classNames from 'classnames';
 import Fab from '@material-ui/core/Fab';
 // import HomeIcon from '@material-ui/icons/Home';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import { withStyles } from '@material-ui/core/styles';
 import withRoot from '../withRoot';
 
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 // import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 // import firebase, { uiConfig } from '../firebase/firebase'
 
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
+// import Typography from '@material-ui/core/Typography';
+// import Grid from '@material-ui/core/Grid';
 
 // import AlignItemsList from '../components/itemsList';
 import Album from '../components/top';
@@ -50,24 +50,24 @@ const styles = theme => ({
       },
 });
 
-const footers = [
-    {
-        title: 'Company',
-        description: ['Team', 'History', 'Contact us', 'Locations'],
-    },
-    {
-        title: 'Features',
-        description: ['Cool stuff', 'Random feature', 'Team feature', 'Developer stuff', 'Another one'],
-    },
-    {
-        title: 'Resources',
-        description: ['Resource', 'Resource name', 'Another resource', 'Final resource'],
-    },
-    {
-        title: 'Legal',
-        description: ['プライバシー', '利用規約'],
-    },
-];
+// const footers = [
+//     {
+//         title: 'Company',
+//         description: ['Team', 'History', 'Contact us', 'Locations'],
+//     },
+//     {
+//         title: 'Features',
+//         description: ['Cool stuff', 'Random feature', 'Team feature', 'Developer stuff', 'Another one'],
+//     },
+//     {
+//         title: 'Resources',
+//         description: ['Resource', 'Resource name', 'Another resource', 'Final resource'],
+//     },
+//     {
+//         title: 'Legal',
+//         description: ['プライバシー', '利用規約'],
+//     },
+// ];
 
 function Main(props) {
     const { classes } = props;
@@ -98,7 +98,7 @@ function Main(props) {
             </footer> */}
             {/* End footer */}
             {/* Footer */}
-            <footer className={classNames(classes.footer, classes.layout)}>
+            {/* <footer className={classNames(classes.footer, classes.layout)}>
                 <Grid container spacing={32} justify="space-evenly">
                     {footers.map(footer => (
                         <Grid item xs key={footer.title}>
@@ -115,7 +115,7 @@ function Main(props) {
                         </Grid>
                     ))}
                 </Grid>
-            </footer>
+            </footer> */}
             {/* End footer */}
             <Fab color="primary" className={classes.fab} aria-label="Scroll up" onClick={() => window.scrollTo({top: 0,behavior: "smooth"})}>
                 {/* <HomeIcon /> */}
