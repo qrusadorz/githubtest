@@ -209,11 +209,11 @@ function Album(props) {
       </main>
       {/* Footer */}
       <footer className={classes.footer}>
-        <Typography variant="h6" align="center" gutterBottom>
+        {/* <Typography variant="h6" align="center" gutterBottom>
           Footer
-        </Typography>
+        </Typography> */}
         <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-          Something here to give the footer a purpose!
+          &#169; {config.name} 2019
         </Typography>
       </footer>
       {/* End footer */}
