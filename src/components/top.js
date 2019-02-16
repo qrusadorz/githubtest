@@ -184,7 +184,7 @@ function Album(props) {
                       {item.name}
                     </Typography>
                     <Typography gutterBottom color="textSecondary">
-                      {config.itemSubtitle} {item.bestprice}円({item.percentage}%)
+                      {config.itemSubtitle} {item.bestprice.toLocaleString('ja-JP', { style: 'currency', currency: 'JPY' })}({item.percentage}%)
                     </Typography>
                     <Typography>
                       {config.itemDescription || "商品名概要。TODO:"}

@@ -257,11 +257,11 @@ function ItemDetail(props) {
                 <CardContent>
                   <div className={classes.cardPricing}>
                     <Typography component="h2" variant="h3" color="textPrimary">
-                      {tier.price}
+                      {tier.price.toLocaleString('ja-JP', { style: 'currency', currency: 'JPY' })}
                     </Typography>
-                    <Typography variant="h6" color="textSecondary">
+                    {/* <Typography variant="h6" color="textSecondary">
                       円
-                      </Typography>
+                    </Typography> */}
                   </div>
                   {/* // TODO TEST */}
                   {/* <Typography variant="h6" color="textSecondary"> */}
