@@ -78,7 +78,14 @@ export const getItems = async (id) => {
 async function getItemsFromStorage() {
     const pathReference = storage.ref('latest.json');
     const url = await pathReference.getDownloadURL();
-    const response = await fetch(url);
+    const response = await fetch(url, {
+        method: 'GET',
+        // headers: { "If-Match": "*" },
+        // headers: { "If-Modified-Since": "Fri, 19 Feb 2010 22:04:23 GMT"},
+        // "expose-headers": { "If-Match": "*" },
+        mode: 'cors',
+        cache: 'default'
+    });
     const json = await response.json();
     const data = json.items || [];
     return data;
