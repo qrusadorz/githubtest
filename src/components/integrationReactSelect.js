@@ -171,9 +171,9 @@ function IntegrationReactSelect(props) {
   const { items = [] } = useContext(ItemsContext);
 
   function handleChangeSingle(value) {
-    setSingle(value);
     if (!value) return;
-    console.log("select value:", value);
+    console.log("select value:", value.value);
+    setSingle(value);
     props.history.push('/items/' + value.id);
   }
 
@@ -206,6 +206,7 @@ function IntegrationReactSelect(props) {
           placeholder={config.searchPlaceholder || "Search a item (start with a)"}
           openMenuOnClick={false}
           aria-label={config.searchAriaLabel}
+          isClearable
         />
       </NoSsr>
     </div>
