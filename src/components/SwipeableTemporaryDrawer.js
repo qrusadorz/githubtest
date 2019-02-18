@@ -42,6 +42,11 @@ function SwipeableTemporaryDrawer(props) {
     }
   };
 
+  const goTo = path => {
+    props.history.push(path);
+    closeDrawer();
+  }
+
   const sideList = (
     <div className={classes.list}>
       <Typography variant="h3" align="center" gutterBottom component="h2">
@@ -50,7 +55,7 @@ function SwipeableTemporaryDrawer(props) {
       <Divider />
       <List>
         {['ホーム', '調べる',].map((text, index) => (
-          <ListItem button key={text} onClick={() => props.history.push('/')}>
+          <ListItem button key={text} onClick={() => goTo('/')}>
             <ListItemIcon>{index % 2 === 0 ? <HomeIcon /> : <SearchIcon />}</ListItemIcon>
             <ListItemText primary={text} />
           </ListItem>
