@@ -10,7 +10,7 @@ const storage = firebase.app().storage();
 
 export let items = [];
 
-const isDevelop = true;
+const isDevelop = process.env.NODE_ENV === "development";
 
 // export const defaultItem = {
 //     // 部分一致検索としてまとまって必須
@@ -71,6 +71,7 @@ export const getItems = async (id) => {
         // const details = e.details;
         // ...
         console.error("error:", e);
+        // TODO notify error 
         return [];
     }
 };
