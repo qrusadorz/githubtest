@@ -32,11 +32,14 @@ const styles = {
 
 function SwipeableTemporaryDrawer(props) {
   const { classes } = props;
-  const { drawerOpen, closeDrawer } = useContext(SystemContext);
+  const { drawerOpen, closeDrawer, openDrawer } = useContext(SystemContext);
 
   const toggleDrawer = (side, open) => () => {
-    if (open) return;
-    closeDrawer();
+    if (open) {
+      openDrawer();
+    } else {
+      closeDrawer();
+    }
   };
 
   const sideList = (
@@ -56,7 +59,7 @@ function SwipeableTemporaryDrawer(props) {
       <Divider />
       <List>
         {['ヘルプ', 'フィードバックを送信'].map((text, index) => (
-          <ListItem button key={text} onClick={() => {}} disabled>
+          <ListItem button key={text} disabled>
             <ListItemIcon>{index % 2 === 0 ? <HelpIcon /> : <FeedbackIcon />}</ListItemIcon>
             <ListItemText primary={text} />
           </ListItem>
@@ -65,7 +68,7 @@ function SwipeableTemporaryDrawer(props) {
       <Divider />
       <List>
         {['プライバシーポリシー', '利用規約'].map((text, index) => (
-          <ListItem button key={text} onClick={() => {}} disabled>
+          <ListItem button key={text} disabled>
             {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon> */}
             <ListItemText primary={text} />
           </ListItem>
