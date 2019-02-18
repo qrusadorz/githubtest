@@ -24,11 +24,12 @@
 # packagejson
 package-lock.json
 
-# testfolder
-/public/__
-
-# config
+# no template data
 /src/configs
+/src/userdata
+/old
+/public/images/icons
+backup.zip
 
 # Logs
 logs
@@ -91,6 +92,3 @@ typings/
 
 # next.js build output
 .next
-
-# develop test
-src/userdata
