@@ -24,12 +24,20 @@
 # packagejson
 package-lock.json
 
+# my custom
 # no template data
 /src/configs
-/src/userdata
-/old
 /public/images/icons
+# other project data(old)
+/src/userdata
+# old data
+/old
+# backup file
 backup.zip
+# project private data
+.firebaserc
+# firebase local cache
+/.firebase
 
 # Logs
 logs
