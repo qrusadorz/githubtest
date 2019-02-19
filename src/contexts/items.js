@@ -4,7 +4,6 @@ import firebase from '../firebase/firebase';
 
 // case firestore
 // const db = firebase.app().firestore();
-const db = {}; // dummy
 // case storage
 const storage = firebase.app().storage();
 
@@ -59,9 +58,10 @@ export const getItems = async (id) => {
         const data = await getItemsFromStorage();
         items = data.sort((a, b) => b.percentage - a.percentage);
 
+        // TODO off line対応として開放を検討。
         if (isDevelop) {
             localStorage.setItem('items', JSON.stringify(items));
-        }    
+        }
 
         return items;
     } catch (e) {
@@ -71,7 +71,12 @@ export const getItems = async (id) => {
         // const details = e.details;
         // ...
         console.error("error:", e);
-        // TODO notify error 
+        if (window.gtag) {
+            window.gtag('event', 'exception', {
+            'description': e,
+            'fatal': false
+          });
+        }
         return [];
     }
 };
@@ -87,55 +92,59 @@ async function getItemsFromStorage() {
         mode: 'cors',
         cache: 'default'
     });
+    if (!response.ok) {
+        const description = `status code:${response.status} , text:${response.statusText}`;
+        throw new Error(description);
+    }
     const json = await response.json();
     const data = json.items || [];
     return data;
 }
 
-const getItemsFromLocalStorage = () => {
-    const data = localStorage.getItem('items');
-    if (!data) return [];
-    const items = JSON.parse(data);
-    console.log("getItems() cached localstorage:", items.length);
-    return items;
-}
+// const getItemsFromLocalStorage = () => {
+//     const data = localStorage.getItem('items');
+//     if (!data) return [];
+//     const items = JSON.parse(data);
+//     console.log("getItems() cached localstorage:", items.length);
+//     return items;
+// }
 
-async function getItemsFromStore() {
-    const collectionRef = db.collection("items");
-    // one read
-    const docRef = collectionRef.doc("latest");
-    const result = await docRef.get();
-    const data = result.data().items || [];
-    // console.log("getItems() items:", items);
-    // query one read
-    // const result = await docRef.get();
-    // const result = await collectionRef.where("store.price", "==", 22000).get();
-    // result.forEach(item => {
-    //     items = item.data() || [];
-    // });
-    // console.log("getItems() items:", items);
-    return data;
-}
+// async function getItemsFromStore() {
+//     const collectionRef = db.collection("items");
+//     // one read
+//     const docRef = collectionRef.doc("latest");
+//     const result = await docRef.get();
+//     const data = result.data().items || [];
+//     // console.log("getItems() items:", items);
+//     // query one read
+//     // const result = await docRef.get();
+//     // const result = await collectionRef.where("store.price", "==", 22000).get();
+//     // result.forEach(item => {
+//     //     items = item.data() || [];
+//     // });
+//     // console.log("getItems() items:", items);
+//     return data;
+// }
 
-async function getItemsFromFunction() {
-    // case functions
-    // const functions = firebase.app().functions('asia-northeast1');
-    // const getItemsFunction = functions.httpsCallable('getItems');
-    // try {
-    //     const result = await getItemsFunction({});
-    //     console.log("getItems() result.data:", result.data);
-    //     items = result.data || [];
-    //     return items;
-    // } catch (e) {
-    //     // Getting the Error details.
-    //     // const code = e.code;
-    //     // const message = e.message;
-    //     // const details = e.details;
-    //     // ...
-    //     console.error("error:", e);
-    //     return [];
-    // };
-}
+// async function getItemsFromFunction() {
+//     // case functions
+//     // const functions = firebase.app().functions('asia-northeast1');
+//     // const getItemsFunction = functions.httpsCallable('getItems');
+//     // try {
+//     //     const result = await getItemsFunction({});
+//     //     console.log("getItems() result.data:", result.data);
+//     //     items = result.data || [];
+//     //     return items;
+//     // } catch (e) {
+//     //     // Getting the Error details.
+//     //     // const code = e.code;
+//     //     // const message = e.message;
+//     //     // const details = e.details;
+//     //     // ...
+//     //     console.error("error:", e);
+//     //     return [];
+//     // };
+// }
 
 
 // const createTestItems = async () => {
