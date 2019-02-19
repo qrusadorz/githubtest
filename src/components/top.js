@@ -97,6 +97,11 @@ function Album(props) {
   const { items = [] } = useContext(ItemsContext);
 
   useEffect(() => {
+    window.gtagPageview(props.location.pathname);
+    // console.log("update:", props.location.pathname);
+  }, [props.location.pathname]);
+
+  useEffect(() => {
     // TODO 今度まとめる
     if (config.name) {
       document.title = `${config.name}`;

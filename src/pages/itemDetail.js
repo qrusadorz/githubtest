@@ -165,6 +165,11 @@ function ItemDetail(props) {
   const item = items.find(item => item.id === id);
 
   useEffect(() => {
+    window.gtagPageview(props.location.pathname);
+    // console.log("update:", props.location.pathname);
+  }, [props.location.pathname]);
+
+  useEffect(() => {
     if (item) {
       document.title = `${item.name}`;
       // TODO 今度まとめる
