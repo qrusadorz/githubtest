@@ -4,7 +4,7 @@ import 'firebase/auth';
 // import 'firebase/firebase-firestore';
 // import 'firebase/firebase-functions';
 // import 'firebase/messaging';
-import 'firebase/firebase-storage';
+// import 'firebase/firebase-storage';
 import config from '../configs/firebase';
 
 // Initialize Firebase

@@ -1,11 +1,12 @@
 import React from 'react';
 
-import firebase from '../firebase/firebase';
+// import firebase from '../firebase/firebase';
 
+import config from '../configs/site';
 // case firestore
 // const db = firebase.app().firestore();
 // case storage
-const storage = firebase.app().storage();
+// const storage = firebase.app().storage();
 
 export let items = [];
 
@@ -82,8 +83,9 @@ export const getItems = async (id) => {
 };
 
 async function getItemsFromStorage() {
-    const pathReference = storage.ref('latest.json');
-    const url = await pathReference.getDownloadURL();
+    // const pathReference = storage.ref('latest.json');
+    // const url = await pathReference.getDownloadURL();
+    const url = config.itemsUrl;
     const response = await fetch(url, {
         method: 'GET',
         // headers: { "If-Match": "*" },
