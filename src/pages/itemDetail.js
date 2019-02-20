@@ -165,6 +165,10 @@ function ItemDetail(props) {
   const item = items.find(item => item.id === id);
 
   useEffect(() => {
+    // TOOD TEST アドレスとタイトルの不一致解消検証
+    if (item) {
+      document.title = `${item.name}`;
+    }
     window.gtagPageview(props.location.pathname);
     // console.log("update:", props.location.pathname);
   }, [props.location.pathname]);

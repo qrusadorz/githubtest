@@ -97,6 +97,10 @@ function Album(props) {
   const { items = [] } = useContext(ItemsContext);
 
   useEffect(() => {
+    // TOOD TEST アドレスとタイトルの不一致解消検証
+    if (config.name) {
+      document.title = `${config.name}`;
+    }
     window.gtagPageview(props.location.pathname);
     // console.log("update:", props.location.pathname);
   }, [props.location.pathname]);
