@@ -1,5 +1,4 @@
 import React, { useContext, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
 // import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
@@ -226,9 +225,5 @@ function Album(props) {
   );
   // }
 }
-
-Album.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
 
 export default withStyles(styles)(withRouter(Album));

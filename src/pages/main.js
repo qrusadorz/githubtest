@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 // import classNames from 'classnames';
 import Fab from '@material-ui/core/Fab';
 // import HomeIcon from '@material-ui/icons/Home';
@@ -124,9 +123,5 @@ function Main(props) {
         </main>
         );
 }
-
-Main.propTypes = {
-    classes: PropTypes.object.isRequired,
-};
 
 export default withRoot(withStyles(styles)(Main));

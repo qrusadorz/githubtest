@@ -5,9 +5,7 @@
   "dependencies": {
     "@material-ui/core": "^3.9.2",
     "@material-ui/icons": "^3.0.2",
-    "dotenv": "^6.2.0",
     "firebase": "^5.8.3",
-    "prop-types": "^15.7.2",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
     "react-router-dom": "^4.3.1",
@@ -16,7 +14,7 @@
   },
   "scripts": {
     "analyze": "webpack-bundle-analyzer build/bundle-stats.json",
-    "anarepo": "npm run build -- --stats",
+    "anabuild": "npm run build -- --stats",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",

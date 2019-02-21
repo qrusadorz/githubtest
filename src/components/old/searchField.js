@@ -1,5 +1,4 @@
 // import React from 'react';
-// import PropTypes from 'prop-types';
 // import { withStyles } from '@material-ui/core/styles';
 // import Paper from '@material-ui/core/Paper';
 // import InputBase from '@material-ui/core/InputBase';
@@ -54,9 +53,5 @@
 //     </Paper>
 //   );
 // }
-
-// CustomizedInputBase.propTypes = {
-//   classes: PropTypes.object.isRequired,
-// };
 
 // export default withStyles(styles)(CustomizedInputBase);

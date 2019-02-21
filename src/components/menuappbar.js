@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
@@ -124,9 +123,5 @@ function MenuAppBar(props) {
     </div>
   );
 }
-
-MenuAppBar.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
 
 export default withStyles(styles)(MenuAppBar);

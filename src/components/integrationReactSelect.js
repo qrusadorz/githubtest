@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types, react/jsx-handler-names */
+/* eslint-disable react/jsx-handler-names */
 
 import React, { useContext } from 'react';
 // import classNames from 'classnames';

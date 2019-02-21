@@ -1,6 +1,5 @@
 import React, { useContext, useEffect } from 'react';
 // import classNames from 'classnames';
-import PropTypes from 'prop-types';
 // import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
@@ -323,9 +322,5 @@ function ItemDetail(props) {
     </React.Fragment>
   );
 }
-
-ItemDetail.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
 
 export default withStyles(styles)(withRouter(ItemDetail));

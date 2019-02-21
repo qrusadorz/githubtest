@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Paper from '@material-ui/core/Paper';
@@ -172,9 +171,5 @@ function Privacy(props) {
     </React.Fragment>
           );
         }
-        
-Privacy.propTypes = {
-            classes: PropTypes.object.isRequired,
-        };
         
 export default withStyles(styles)(Privacy);

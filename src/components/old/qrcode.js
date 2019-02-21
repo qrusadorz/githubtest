@@ -85,8 +85,4 @@
 
 // Qrcode.contextType = UserContext;
 
-// // Qrcode.propTypes = {
-// //   classes: PropTypes.object.isRequired,
-// // };
-
 // export default withRoot(withStyles(styles)(Qrcode));
