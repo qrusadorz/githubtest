@@ -98,18 +98,14 @@ function Album(props) {
 
   useEffect(() => {
     // TOOD TEST アドレスとタイトルの不一致解消検証
-    if (config.name) {
-      document.title = `${config.name}`;
-    }
+    document.title = `${config.name}`;
     window.gtagPageview(props.location.pathname);
     // console.log("update:", props.location.pathname);
   }, [props.location.pathname]);
 
   useEffect(() => {
     // TODO 今度まとめる
-    if (config.name) {
-      document.title = `${config.name}`;
-    }
+    document.title = `${config.name}`;
     if (config.description) {
       const tag = { name: "Description", nodeName: "META" };
       for (const node of document.head.childNodes) {

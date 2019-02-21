@@ -167,7 +167,7 @@ function ItemDetail(props) {
   useEffect(() => {
     // TOOD TEST アドレスとタイトルの不一致解消検証
     if (item) {
-      document.title = `${item.name}`;
+      document.title = `${config.name} - ${item.name}`;
     }
     window.gtagPageview(props.location.pathname);
     // console.log("update:", props.location.pathname);
@@ -180,14 +180,14 @@ function ItemDetail(props) {
       const tag = { name: "Description", nodeName: "META" };
       for (const node of document.head.childNodes) {
         if (node.name === tag.name && node.nodeName === tag.nodeName) {
-          node.content = `${item.name}${config.itemDetailMetaDescription}`;
+          node.content = config.getItemDetailMetaDescription(item);
           return;
         }
       }
     }
   });
 
-  if (!item)
+  if (!item) {
     return (
       <React.Fragment>
         <CssBaseline />
@@ -198,6 +198,7 @@ function ItemDetail(props) {
         </main>
       </React.Fragment>
     );
+  }
 
   const { sites } = item;
   // console.log("itemDetail item:", item);
