@@ -175,7 +175,7 @@ function ItemDetail(props) {
 
   useEffect(() => {
     if (item) {
-      document.title = `${item.name}`;
+      document.title = config.getItemTitle(item);
       // TODO 今度まとめる
       const tag = { name: "Description", nodeName: "META" };
       for (const node of document.head.childNodes) {
