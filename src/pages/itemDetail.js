@@ -55,7 +55,7 @@ const styles = theme => ({
   },
   // TODO TEST
   heroDescription: {
-    marginTop: theme.spacing.unit * 6,
+    marginTop: theme.spacing.unit * 3,
   },
   // TODO TEST
   heroButtons: {
@@ -227,13 +227,12 @@ function ItemDetail(props) {
           {/* TODO TEST */}
           <ImageButton img={item.ogimg} url={item.url} />
           <div className={classes.heroDescription}></div>
-          <Typography variant="h6" align="center" color="textSecondary" component="p">
-            {config.itemDetailDescription || `アイテムの説明をここに記述する。
-                最新情報はリンク先でチェック。
-                It's built`}
-            <br />{new Date(item.timestamp).toLocaleDateString()} 更新
+            {config.getItemDetailDescription(item).map(line => (
+              <Typography variant={line.variant} align="center" color="textSecondary" component="p">
+                {line.text}
               </Typography>
-        </div>
+            ))}
+          </div>
         {/* <div className={classes.heroButtons}>
               <Grid container spacing={16} justify="center">
                 <Grid item>
