@@ -188,14 +188,14 @@ function ItemDetail(props) {
 
   if (!item) {
     return (
-      <React.Fragment>
+      <>
         <CssBaseline />
         <main className={classes.layout}>
           <div className={classes.heroContent}>
             <CircularProgress className={classes.progress} align="center" />
           </div>
         </main>
-      </React.Fragment>
+      </>
     );
   }
 
@@ -203,7 +203,7 @@ function ItemDetail(props) {
   // console.log("itemDetail item:", item);
 
   return (
-    <React.Fragment>
+    <>
       <CssBaseline />
       {/* <AppBar position="static" color="default" className={classes.appBar}>
         <Toolbar>
@@ -318,7 +318,7 @@ function ItemDetail(props) {
         </Grid>
       </footer> */}
       {/* End footer */}
-    </React.Fragment>
+    </>
   );
 }
 

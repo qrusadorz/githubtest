@@ -47,7 +47,7 @@ function Privacy(props) {
   //  });
 
   return (
-    <React.Fragment>
+    <>
       <CssBaseline />
       <div className={classes.layout}>
         <main>
@@ -168,7 +168,7 @@ function Privacy(props) {
         </Typography>
             </footer>
             {/* End footer */}
-    </React.Fragment>
+    </>
           );
         }
         

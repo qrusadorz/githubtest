@@ -38,7 +38,7 @@ function AlignItemsList(props) {
             <ListItemText
             primary={data.primary}
             secondary={
-                <React.Fragment>
+                <>
                 {/* <Typography component="span" className={classes.inline} color="textPrimary">
                     Ali Connors
                 </Typography> */}
@@ -47,7 +47,7 @@ function AlignItemsList(props) {
                             data.secondary : 
                             <Typography component="span" className={classes.inline} color="error">{data.secondary}</Typography>
                     }
-                </React.Fragment>
+                </>
             }
             />
             <ListItemSecondaryAction>
@@ -65,12 +65,12 @@ function AlignItemsList(props) {
         <ListItemText
           primary="Brunch this weekend?"
           secondary={
-            <React.Fragment>
+            <>
               <Typography component="span" className={classes.inline} color="textPrimary">
                 Ali Connors
               </Typography>
               {" — I'll be in your neighborhood doing errands this…"}
-            </React.Fragment>
+            </>
           }
         />
       </ListItem> */}

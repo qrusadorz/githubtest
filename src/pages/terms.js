@@ -47,7 +47,7 @@ function Terms(props) {
   //  });
 
   return (
-    <React.Fragment>
+    <>
       <CssBaseline />
       <div className={classes.layout}>
         <main>
@@ -192,7 +192,7 @@ function Terms(props) {
         </Typography>
       </footer>
       {/* End footer */}
-    </React.Fragment>
+    </>
   );
 }
 

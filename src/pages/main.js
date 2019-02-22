@@ -79,9 +79,6 @@ function Main(props) {
                 //     {user.uid}
                 // </Typography>
             }
-            {/* <Typography variant="h4" gutterBottom component="h2">
-                Orders
-            </Typography> */}
             {/* <AlignItemsList /> */}
             {/* <Qrcode /> */}
             <Album />
