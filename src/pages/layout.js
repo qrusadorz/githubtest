@@ -186,7 +186,7 @@ class Layout extends React.Component {
                                     </Switch>
                                     <SimpleSnackBar />
                                 </ItemsContext.Provider>
-                                </UserContext.Provider>
+                            </UserContext.Provider>
                         </SystemContext.Provider>
                     </Suspense>
                 </ScrollToTop>

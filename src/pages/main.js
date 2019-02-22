@@ -68,18 +68,13 @@ const styles = theme => ({
 //     },
 // ];
 
+const toTop = () => window.scrollTo({top: 0,behavior: "smooth"})
+
 function Main(props) {
     const { classes } = props;
     console.log("render() main");
     return (
         <main className={classes.content}>
-            {
-                // !!user || <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
-                // user &&
-                // <Typography variant="h4" gutterBottom component="h2">
-                //     {user.uid}
-                // </Typography>
-            }
             {/* <AlignItemsList /> */}
             {/* <Qrcode /> */}
             <Album />
@@ -114,7 +109,7 @@ function Main(props) {
                 </Grid>
             </footer> */}
             {/* End footer */}
-            <Fab color="primary" className={classes.fab} aria-label="Scroll up" onClick={() => window.scrollTo({top: 0,behavior: "smooth"})}>
+            <Fab color="primary" className={classes.fab} aria-label="Scroll up" onClick={toTop}>
                 {/* <HomeIcon /> */}
                 <ArrowUpwardIcon />
             </Fab>

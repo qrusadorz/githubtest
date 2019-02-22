@@ -37,6 +37,7 @@ const styles = theme => ({
 // function Transition(props) {
 //   return <Slide direction="up" {...props} />;
 // }
+const MyLink = props => <Link to={`/items/${props.id}`} {...props} />;
 
 function FullScreenDialog(props) {
     console.log("render FullScreenDialog");
@@ -53,12 +54,10 @@ function FullScreenDialog(props) {
         setValues({ ...values, [name]: event.target.value });
     };
 
-    const handleSelect = name => () => {
-        console.log("select name:", name);
-        props.history.push('/items/' + name);
-    }
-
-    const MyLink = props => <Link to={`/items/${props.id}`} {...props} />;
+    // const handleSelect = name => () => {
+    //     console.log("select name:", name);
+    //     props.history.push('/items/' + name);
+    // }
 
     console.log("textsearch:", values);
 

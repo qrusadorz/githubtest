@@ -14,10 +14,10 @@ import OpenInNewIcon from '@material-ui/icons/OpenInNew';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 
 // import CustomizedInputBase from './searchField'
-import IntegrationReactSelect from './integrationReactSelect';
+// import IntegrationReactSelect from './integrationReactSelect';
 import CustomizedInputBase from './searchField';
 
 import { ItemsContext } from '../contexts/items';
@@ -85,11 +85,20 @@ const styles = theme => ({
 //   { id:10, name:"H", price1:"", price2:"", price3:"", },
 // ];
 
+const noImage = "data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22288%22%20height%3D%22225%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20288%20225%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_164edaf95ee%20text%20%7B%20fill%3A%23eceeef%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A14pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_164edaf95ee%22%3E%3Crect%20width%3D%22288%22%20height%3D%22225%22%20fill%3D%22%2355595c%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2296.32500076293945%22%20y%3D%22118.8%22%3EThumbnail%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E"; // eslint-disable-line max-len
+// const toDetail = item => props.history.push(`/items/${item.id}`);
+// const toDetail = item => {
+//   props.history.push(`/items/${item.id}`);
+// }
+const MyLink = props => <Link to={`/items/${props.id}`} {...props} />;
+
 function Album(props) {
   // class Album extends React.Component {
   // async componentDidMount() {
   //   await this.props.items.getItems();
   // }
+
+  console.log("render() Album");
 
   // render() {
   const { classes } = props;
@@ -120,13 +129,6 @@ function Album(props) {
   // const renderItems = items.slice(0, 20);  // TODO limit 20 item
   const renderItems = items;  // for develop
 
-  // const toDetail = item => props.history.push({
-  //   pathname: `/items/${item.id}`, item
-  // });
-  const toDetail = item => props.history.push(`/items/${item.id}`);
-
-  const noImage = "data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22288%22%20height%3D%22225%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20288%20225%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_164edaf95ee%20text%20%7B%20fill%3A%23eceeef%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A14pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_164edaf95ee%22%3E%3Crect%20width%3D%22288%22%20height%3D%22225%22%20fill%3D%22%2355595c%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2296.32500076293945%22%20y%3D%22118.8%22%3EThumbnail%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E"; // eslint-disable-line max-len
-
   return (
     <>
       <CssBaseline />
@@ -154,8 +156,8 @@ function Album(props) {
               {config.searchDescription || "商品をチェックしましょう。"}
             </Typography>
             <div align='center'>
-              {/* <CustomizedInputBase/> */}
-              <IntegrationReactSelect />
+              <CustomizedInputBase/>
+              {/* <IntegrationReactSelect /> */}
             </div>
             {/* <div className={classes.heroButtons}>
               <Grid container spacing={16} justify="center">
@@ -192,14 +194,15 @@ function Album(props) {
                       {config.itemSubtitle} {item.bestprice.toLocaleString('ja-JP', { style: 'currency', currency: 'JPY' })}({item.percentage}%)
                     </Typography>
                     <Typography>
-                      {config.itemDescription || "商品名概要。TODO:"}
+                      {config.itemDescription}
                     </Typography>
                   </CardContent>
                   <CardActions>
                     <Button size="small" color="primary" href={item.url} target="_blank" rel="noopener noreferrer">
                       公式サイト<OpenInNewIcon />
                     </Button>
-                    <Button size="small" color="primary" onClick={() => toDetail(item)}>
+                    {/* <Button size="small" color="primary" onClick={() => toDetail(item)}> */}
+                    <Button size="small" color="primary" component={MyLink} id={item.id}>
                       {config.toItemDetailButton || "製品詳細"}
                     </Button>
                     {/* <Button size="small" color="primary">

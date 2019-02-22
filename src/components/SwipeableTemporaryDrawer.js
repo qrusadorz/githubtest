@@ -29,6 +29,8 @@ const styles = {
   },
 };
 
+const MyLink = props => <Link to={`/`} {...props} />
+
 function SwipeableTemporaryDrawer(props) {
   const { classes } = props;
   const { drawerOpen, closeDrawer, openDrawer } = useContext(SystemContext);
@@ -43,12 +45,10 @@ function SwipeableTemporaryDrawer(props) {
     }
   };
 
-  const goTo = path => {
-    props.history.push(path);
-    closeDrawer();
-  }
-
-  const MyLink = props => <Link to={`/`} {...props} />
+  // const goTo = path => {
+  //   props.history.push(path);
+  //   closeDrawer();
+  // }
 
   const sideList = (
     <div className={classes.list}>
