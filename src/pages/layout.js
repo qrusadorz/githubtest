@@ -86,7 +86,11 @@ class Layout extends React.Component {
     }
 
     handleLogin = (user) => { this.setState({ user }); }
-    handleLogout = () => { this.setState({ user: null }); }
+    // handleLogout = () => { this.setState({ user: null }); }
+    handleLogout = () => { 
+        if (!this.state.user) return;
+        this.setState({ user: null });
+     }
     handleLoginButton = () => {
         const provider = new firebase.auth.GoogleAuthProvider();
         firebase.auth().signInWithPopup(provider).then(result => {
@@ -182,7 +186,7 @@ class Layout extends React.Component {
                                     </Switch>
                                     <SimpleSnackBar />
                                 </ItemsContext.Provider>
-                            </UserContext.Provider>
+                                </UserContext.Provider>
                         </SystemContext.Provider>
                     </Suspense>
                 </ScrollToTop>
