@@ -1,6 +1,6 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
+// import CssBaseline from '@material-ui/core/CssBaseline';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 
@@ -48,7 +48,7 @@ function Privacy(props) {
 
   return (
     <>
-      <CssBaseline />
+      {/* <CssBaseline /> */}
       <div className={classes.layout}>
         <main>
           <Paper className={classes.mainFeaturedPost}>

@@ -7,7 +7,7 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardHeader from '@material-ui/core/CardHeader';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import CssBaseline from '@material-ui/core/CssBaseline';
+// import CssBaseline from '@material-ui/core/CssBaseline';
 import Fab from '@material-ui/core/Fab';
 // import HomeIcon from '@material-ui/icons/Home';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
@@ -189,7 +189,7 @@ function ItemDetail(props) {
   if (!item) {
     return (
       <>
-        <CssBaseline />
+        {/* <CssBaseline /> */}
         <main className={classes.layout}>
           <div className={classes.heroContent}>
             <CircularProgress className={classes.progress} align="center" />
@@ -204,7 +204,7 @@ function ItemDetail(props) {
 
   return (
     <>
-      <CssBaseline />
+      {/* <CssBaseline /> */}
       {/* <AppBar position="static" color="default" className={classes.appBar}>
         <Toolbar>
           <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
