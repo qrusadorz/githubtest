@@ -14,7 +14,7 @@ import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Close';
 // import Slide from '@material-ui/core/Slide';
 import TextField from '@material-ui/core/TextField';
-import { withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import { ItemsContext } from '../contexts/items'
 
@@ -39,6 +39,8 @@ const styles = theme => ({
 // }
 
 function FullScreenDialog(props) {
+    console.log("render FullScreenDialog");
+
     //   const classes = useStyles();
     const { classes, handleClose } = props;
     //   const [open, setOpen] = React.useState(false);
@@ -55,6 +57,8 @@ function FullScreenDialog(props) {
         console.log("select name:", name);
         props.history.push('/items/' + name);
     }
+
+    const MyLink = props => <Link to={`/items/${props.id}`} {...props} />;
 
     console.log("textsearch:", values);
 
@@ -113,8 +117,8 @@ function FullScreenDialog(props) {
                 {
                     suggestions.map(item => (
                         <>
-                            <ListItem button>
-                                <ListItemText primary={item.label} secondary={item.secondary} onClick={handleSelect(item.id)} />
+                            <ListItem button component={MyLink} id={item.id}>
+                                <ListItemText primary={item.label} secondary={item.secondary} />
                             </ListItem>
                             <Divider />
                         </>
@@ -132,6 +136,6 @@ function FullScreenDialog(props) {
     );
 }
 
-export default withStyles(styles)(withRouter(FullScreenDialog));
+export default withStyles(styles)(FullScreenDialog);
 // export default FullScreenDialog;
 
