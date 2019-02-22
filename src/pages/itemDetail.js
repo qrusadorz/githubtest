@@ -227,12 +227,12 @@ function ItemDetail(props) {
           {/* TODO TEST */}
           <ImageButton img={item.ogimg} url={item.url} />
           <div className={classes.heroDescription}></div>
-            {config.getItemDetailDescription(item).map(line => (
-              <Typography variant={line.variant} align="center" color="textSecondary" component="p">
-                {line.text}
-              </Typography>
-            ))}
-          </div>
+          {config.getItemDetailDescription(item).map((line, index) => (
+            <Typography variant={line.variant} align="center" color="textSecondary" component="p"  key={index}>>
+              {line.text}
+            </Typography>
+          ))}
+        </div>
         {/* <div className={classes.heroButtons}>
               <Grid container spacing={16} justify="center">
                 <Grid item>
@@ -251,7 +251,7 @@ function ItemDetail(props) {
         <Grid container spacing={40} alignItems="flex-end">
           {sites.map((tier, index) => (
             // Enterprise card is full width at sm breakpoint
-            <Grid item key={index} xs={12} sm={tier.name === 'Enterprise' ? 12 : 6} md={4}>
+            <Grid item key={tier.url} xs={12} sm={tier.name === 'Enterprise' ? 12 : 6} md={4}>
               <Card>
                 <CardHeader
                   title={tier.name}
@@ -273,10 +273,10 @@ function ItemDetail(props) {
                   </div>
                   {/* // TODO TEST */}
                   {/* <Typography variant="h6" color="textSecondary"> */}
-                  <Typography variant="subtitle1" align="center" key={tier.incex}>
+                  <Typography variant="subtitle1" align="center">
                     {/* // IEではNumber.parseIntなし */}
                     {parseInt(tier.price / item.price * 100)}%
-                    </Typography>
+                  </Typography>
                   {tier.description && tier.description.map(line => (
                     <Typography variant="subtitle1" align="center" key={line}>
                       {line}
