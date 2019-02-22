@@ -81,12 +81,15 @@ function SwipeableTemporaryDrawer(props) {
     </div>
   );
 
+  const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
+
   return (
     <div>
       <SwipeableDrawer
         open={drawerOpen}
         onClose={toggleDrawer('left', false)}
         onOpen={toggleDrawer('left', true)}
+        disableBackdropTransition={!iOS} disableDiscovery={iOS}
       >
         <div
           tabIndex={0}
