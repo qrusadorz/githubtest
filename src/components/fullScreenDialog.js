@@ -6,7 +6,7 @@ import { withStyles } from '@material-ui/core/styles';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItem from '@material-ui/core/ListItem';
 import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
+// import Divider from '@material-ui/core/Divider';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -28,10 +28,10 @@ const styles = theme => ({
     flex: {
         flex: 1,
     },
-    // TODO TESST
-    searchText: {
-        position: 'relative',
-    },
+    // // TODO TESST
+    // searchText: {
+    //     position: 'relative',
+    // },
 });
 
 // function Transition(props) {
@@ -85,9 +85,6 @@ function FullScreenDialog(props) {
 
     return (
         <>
-            {/* <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        open
-      </Button> */}
             {/* <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}> */}
             <AppBar className={classes.appBar}>
                 <Toolbar>
@@ -96,16 +93,16 @@ function FullScreenDialog(props) {
                     </IconButton>
                     <Typography variant="h6" color="inherit" className={classes.flex}>
                         検索
-            </Typography>
+                    </Typography>
                     {/* <Button color="inherit" onClick={handleClose}>
               キャンセル
             </Button> */}
                 </Toolbar>
             </AppBar>
             <List>
-                <ListItem>
+                <ListItem key="text">
                     <TextField
-                        className={classes.searchText}
+                        // className={classes.searchText}
                         value={values.textsearch}
                         aria-label={config.searchAriaLabel}
                         autoFocus
@@ -115,20 +112,12 @@ function FullScreenDialog(props) {
                 </ListItem>
                 {
                     suggestions.map(item => (
-                        <>
-                            <ListItem button component={MyLink} id={item.id}>
-                                <ListItemText primary={item.label} secondary={item.secondary} />
-                            </ListItem>
-                            <Divider />
-                        </>
+                        <ListItem button component={MyLink} id={item.id} key={item.id} divider>
+                            <ListItemText primary={item.label} secondary={item.secondary} />
+                            {/* <Divider/> */}
+                        </ListItem>
                     ))
                 }
-                {/* <ListItem button>
-            <ListItemText primary="Phone ringtone" secondary="Titania" />
-          </ListItem>
-          <ListItem button>
-            <ListItemText primary="Default notification ringtone" secondary="Tethys" />
-          </ListItem> */}
             </List>
             {/* </Dialog> */}
         </>
