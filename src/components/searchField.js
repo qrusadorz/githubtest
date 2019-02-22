@@ -42,6 +42,8 @@ function CustomizedInputBase(props) {
   const { classes } = props;
   const [open, setOpen] = React.useState(false);
 
+  console.log("render() CustomizedInputBase");
+
   const handleClickOpen = () => setOpen(true);
   // const handleClose = () => setOpen(false);
   function handleClose() {

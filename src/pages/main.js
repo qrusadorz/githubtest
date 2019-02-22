@@ -4,7 +4,7 @@ import Fab from '@material-ui/core/Fab';
 // import HomeIcon from '@material-ui/icons/Home';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import { withStyles } from '@material-ui/core/styles';
-import withRoot from '../withRoot';
+// import withRoot from '../withRoot';
 
 // import { Link } from "react-router-dom";
 
@@ -70,6 +70,7 @@ const styles = theme => ({
 
 function Main(props) {
     const { classes } = props;
+    console.log("render() main");
     return (
         <main className={classes.content}>
             {
@@ -121,4 +122,5 @@ function Main(props) {
         );
 }
 
-export default withRoot(withStyles(styles)(Main));
+// export default withRoot(withStyles(styles)(Main));
+export default withStyles(styles)(Main);

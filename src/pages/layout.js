@@ -1,6 +1,6 @@
 import React, { Suspense, lazy } from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import withRoot from '../withRoot';
+// import withRoot from '../withRoot';
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
@@ -159,7 +159,7 @@ class Layout extends React.Component {
 
     render() {
         const { classes } = this.props;
-        // console.log("layout render props:", this.props);
+        console.log("layout render props:", this.props);
         // console.log("layout render state:", this.state);
 
         return (
@@ -191,4 +191,5 @@ class Layout extends React.Component {
     }
 }
 
-export default withRoot(withStyles(styles)(Layout));
+// export default withRoot(withStyles(styles)(Layout));
+export default withStyles(styles)(Layout);

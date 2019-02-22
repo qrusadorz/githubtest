@@ -12,21 +12,21 @@ const styles = theme => ({
 });
 
 class Index extends React.Component {
-  state = {
-    open: false,
-  };
+  // state = {
+  //   open: false,
+  // };
 
-  handleClose = () => {
-    this.setState({
-      open: false,
-    });
-  };
+  // handleClose = () => {
+  //   this.setState({
+  //     open: false,
+  //   });
+  // };
 
-  handleClick = () => {
-    this.setState({
-      open: true,
-    });
-  };
+  // handleClick = () => {
+  //   this.setState({
+  //     open: true,
+  //   });
+  // };
 
   render() {
     return (

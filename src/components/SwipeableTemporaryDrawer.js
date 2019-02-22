@@ -33,6 +33,8 @@ function SwipeableTemporaryDrawer(props) {
   const { classes } = props;
   const { drawerOpen, closeDrawer, openDrawer } = useContext(SystemContext);
 
+  console.log("render() SwipeableTemporaryDrawer");
+
   const toggleDrawer = (side, open) => () => {
     if (open) {
       openDrawer();
