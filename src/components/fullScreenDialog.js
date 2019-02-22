@@ -61,8 +61,9 @@ function FullScreenDialog(props) {
     const { items = [] } = useContext(ItemsContext);
 
     const textsearch = values.textsearch.toLowerCase();
-    const suggestions = items.filter(value => value.name.toLowerCase().includes(textsearch)).map(suggestion => ({
-        // value: suggestion.name,
+    // const suggestions = items.filter(value => value.name.toLowerCase().includes(textsearch)).map(suggestion => ({ // includesがIE不可
+    const suggestions = items.filter(value => value.name.toLowerCase().indexOf(textsearch) >= 0).map(suggestion => ({
+            // value: suggestion.name,
         // label: suggestion.name + ` (${suggestion.percentage}%)`,
         label: suggestion.name,
         secondary: `${suggestion.bestprice.toLocaleString('ja-JP', { style: 'currency', currency: 'JPY' })} (${suggestion.percentage}%)`,

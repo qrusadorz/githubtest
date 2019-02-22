@@ -228,7 +228,7 @@ function ItemDetail(props) {
           <ImageButton img={item.ogimg} url={item.url} />
           <div className={classes.heroDescription}></div>
           {config.getItemDetailDescription(item).map((line, index) => (
-            <Typography variant={line.variant} align="center" color="textSecondary" component="p"  key={index}>>
+            <Typography variant={line.variant} align="center" color="textSecondary" component="p"  key={index}>
               {line.text}
             </Typography>
           ))}
