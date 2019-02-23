@@ -140,7 +140,7 @@ function Album(props) {
           </Typography>
         </Toolbar>
       </AppBar> */}
-      <main>
+      {/* <main> */}
         {/* Hero unit */}
         <div className={classes.heroUnit}>
           <div className={classes.heroContent}>
@@ -214,7 +214,7 @@ function Album(props) {
             ))}
           </Grid>
         </div>
-      </main>
+      {/* </main> */}
       {/* Footer */}
       <footer className={classes.footer}>
         {/* <Typography variant="h6" align="center" gutterBottom>
