@@ -107,8 +107,10 @@ function Album(props) {
   useEffect(() => {
     // TOOD TEST アドレスとタイトルの不一致解消検証
     document.title = `${config.name}`;
+    // page遷移後のスクロール復元
+    window.scrollTo(0, 0);
+
     window.gtagPageview(props.location.pathname);
-    // console.log("update:", props.location.pathname);
   }, [props.location.pathname]);
 
   useEffect(() => {

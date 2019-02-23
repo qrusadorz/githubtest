@@ -168,6 +168,9 @@ function ItemDetail(props) {
     if (item) {
       document.title = `${config.name} - ${item.name}`;
     }
+    // page遷移後のスクロール復元
+    window.scrollTo(0, 0);
+
     window.gtagPageview(props.location.pathname);
     // console.log("update:", props.location.pathname);
   }, [props.location.pathname]);

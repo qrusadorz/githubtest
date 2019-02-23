@@ -13,7 +13,7 @@ import firebase from '../firebase/firebase'
 
 import Main from './main'
 import itemDetail from './itemDetail'
-import ScrollToTop from '../components/scrollToTop'
+// import ScrollToTop from '../components/scrollToTop'
 import SwipeableTemporaryDrawer from '../components/SwipeableTemporaryDrawer'
 import MenuAppBar from '../components/menuappbar';
 import SimpleSnackBar from '../components/snackbar';
@@ -291,7 +291,7 @@ function Layout(props) {
 
     return (
         <Router>
-            <ScrollToTop>
+            {/* <ScrollToTop> */}
                 <Suspense fallback={<div>Loading...</div>}>
                     <SystemContext.Provider value={system}>
                         <SnackbarContext.Provider value={snackbar}>
@@ -315,7 +315,7 @@ function Layout(props) {
                         </SnackbarContext.Provider>
                     </SystemContext.Provider>
                 </Suspense>
-            </ScrollToTop>
+            {/* </ScrollToTop> */}
         </Router>
     );
 }
