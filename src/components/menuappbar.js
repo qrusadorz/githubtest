@@ -13,6 +13,7 @@ import Menu from '@material-ui/core/Menu';
 import config from '../configs/site'
 
 import { SystemContext } from '../contexts/system';
+import { DrawerContext } from '../contexts/drawer';
 import { UserContext } from '../contexts/user';
 
 const styles = {
@@ -31,7 +32,8 @@ const styles = {
 function MenuAppBar(props) {
   const { classes } = props;
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const { login, logout, openDrawer } = useContext(SystemContext);
+  const { login, logout } = useContext(SystemContext);
+  const { openDrawer } = useContext(DrawerContext);
   const user = useContext(UserContext);
   const open = Boolean(anchorEl);
 

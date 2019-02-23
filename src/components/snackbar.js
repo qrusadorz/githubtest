@@ -5,7 +5,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 
-import { SystemContext } from '../contexts/system';
+import { SnackbarContext } from '../contexts/snackbar';
 
 const styles = theme => ({
   close: {
@@ -15,7 +15,7 @@ const styles = theme => ({
 
 function SimpleSnackbar(props) {
   const { classes } = props;
-  const { snackbarMessage, updateSnackbarMessage } = useContext(SystemContext);
+  const { snackbarMessage, updateSnackbarMessage } = useContext(SnackbarContext);
   const open = !!snackbarMessage;
   if (!open) return null;
 

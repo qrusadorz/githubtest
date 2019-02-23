@@ -16,7 +16,7 @@ import Typography from '@material-ui/core/Typography';
 
 import { Link } from "react-router-dom";
 
-import { SystemContext } from '../contexts/system';
+import { DrawerContext } from '../contexts/drawer';
 
 import config from '../configs/site'
 
@@ -66,7 +66,7 @@ const sideList = (
 
 function SwipeableTemporaryDrawer(props) {
   const { classes } = props;
-  const { drawerOpen, closeDrawer, openDrawer } = useContext(SystemContext);
+  const { drawerOpen, closeDrawer, openDrawer } = useContext(DrawerContext);
 
   console.log("render() SwipeableTemporaryDrawer");
 

@@ -58,7 +58,7 @@ function FullScreenDialog(props) {
         setsearchText(event.target.value);
     };
 
-    console.log("render FullScreenDialog:", filteredSuggestions, searchText);
+    console.log("render FullScreenDialog:", /*filteredSuggestions,*/ searchText);
 
     return (
         <>
