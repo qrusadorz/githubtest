@@ -28,10 +28,6 @@ const styles = theme => ({
     flex: {
         flex: 1,
     },
-    // // TODO TESST
-    // searchText: {
-    //     position: 'relative',
-    // },
 });
 
 // function Transition(props) {
@@ -39,48 +35,30 @@ const styles = theme => ({
 // }
 
 function FullScreenDialog(props) {
-    console.log("render FullScreenDialog");
-
     //   const classes = useStyles();
     const { classes, handleClose } = props;
-    //   const [open, setOpen] = React.useState(false);
-    const [values, setValues] = React.useState({
-        textsearch: "",
-    });
+    const [searchText, setsearchText] = React.useState("");
+    // create suggestions
+    const { items = [] } = useContext(ItemsContext);
+    const [suggestions/*, setSuggestions*/] = React.useState(() => 
+        items.map(item => ({
+            id: item.id,
+            label: item.name,
+            value: item.name.toLowerCase(),
+            secondary: `${item.bestprice.toLocaleString('ja-JP', { style: 'currency', currency: 'JPY' })} (${item.percentage}%)`,
+        }))
+    );
 
-    const handleChange = name => event => {
-        // setValues({ ...values, [name]: event.target.value });
-        setValues({ ...values, [name]: event.target.value });
+    // filtering
+    const searchTextLow = searchText.toLowerCase();
+    // const suggestions = items.filter(value => value.name.toLowerCase().includes(textsearch)).map(suggestion => ({ // includesがIE不可
+    const filteredSuggestions = suggestions.filter(suggestion => suggestion.value.indexOf(searchTextLow) >= 0);
+
+    const handleChange = event => {
+        setsearchText(event.target.value);
     };
 
-    // const handleSelect = name => () => {
-    //     console.log("select name:", name);
-    //     props.history.push('/items/' + name);
-    // }
-
-    console.log("textsearch:", values);
-
-    const { items = [] } = useContext(ItemsContext);
-
-    const textsearch = values.textsearch.toLowerCase();
-    // const suggestions = items.filter(value => value.name.toLowerCase().includes(textsearch)).map(suggestion => ({ // includesがIE不可
-    const suggestions = items.filter(value => value.name.toLowerCase().indexOf(textsearch) >= 0).map(suggestion => ({
-            // value: suggestion.name,
-        // label: suggestion.name + ` (${suggestion.percentage}%)`,
-        label: suggestion.name,
-        secondary: `${suggestion.bestprice.toLocaleString('ja-JP', { style: 'currency', currency: 'JPY' })} (${suggestion.percentage}%)`,
-        id: suggestion.id,
-    }));
-
-    //   const suggestions = items.map(suggestion => ({
-    //     value: suggestion.name,
-    //     label: suggestion.name + ` (${suggestion.percentage}%)`,
-    //     id: suggestion.id,
-    //   }));
-
-    //   function handleClickOpen() {
-    //     setOpen(true);
-    //   }
+    console.log("render FullScreenDialog:", filteredSuggestions, searchText);
 
     return (
         <>
@@ -102,15 +80,15 @@ function FullScreenDialog(props) {
                 <ListItem key="text">
                     <TextField
                         // className={classes.searchText}
-                        value={values.textsearch}
+                        value={searchText}
                         aria-label={config.searchAriaLabel}
                         autoFocus
                         fullWidth
-                        onChange={handleChange('textsearch')}
+                        onChange={handleChange}
                     />
                 </ListItem>
                 {
-                    suggestions.map(item => (
+                    filteredSuggestions.map(item => (
                         <ListItem button component={Link} to={`/items/${item.id}`} key={item.id} divider>
                             <ListItemText primary={item.label} secondary={item.secondary} />
                             {/* <Divider/> */}
