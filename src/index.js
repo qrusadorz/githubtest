@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Index from './pages/index';
 import * as serviceWorker from './serviceWorker';
+// import 'typeface-roboto';   // use if-no-match, when use cache.
 
 // disable the production enviroment log
 process.env.NODE_ENV !== "development" && (console.log = () => {});
