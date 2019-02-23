@@ -29,27 +29,8 @@ const styles = {
   },
 };
 
-function SwipeableTemporaryDrawer(props) {
-  const { classes } = props;
-  const { drawerOpen, closeDrawer, openDrawer } = useContext(SystemContext);
-
-  console.log("render() SwipeableTemporaryDrawer");
-
-  const toggleDrawer = (side, open) => () => {
-    if (open) {
-      openDrawer();
-    } else {
-      closeDrawer();
-    }
-  };
-
-  // const goTo = path => {
-  //   props.history.push(path);
-  //   closeDrawer();
-  // }
-
-  const sideList = (
-    <div className={classes.list}>
+const sideList = (
+    <>
       <Typography variant="h3" align="center" gutterBottom component="h2">
         {config.name || "タイトル"}
       </Typography>
@@ -80,8 +61,22 @@ function SwipeableTemporaryDrawer(props) {
           </ListItem>
         ))}
       </List>
-    </div>
-  );
+    </>
+);
+
+function SwipeableTemporaryDrawer(props) {
+  const { classes } = props;
+  const { drawerOpen, closeDrawer, openDrawer } = useContext(SystemContext);
+
+  console.log("render() SwipeableTemporaryDrawer");
+
+  const toggleDrawer = (side, open) => () => {
+    if (open) {
+      openDrawer();
+    } else {
+      closeDrawer();
+    }
+  };
 
   const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
@@ -99,7 +94,9 @@ function SwipeableTemporaryDrawer(props) {
           onClick={toggleDrawer('left', false)}
           onKeyDown={toggleDrawer('left', false)}
         >
-          {sideList}
+            <div className={classes.list}>
+              {sideList}
+            </div>
         </div>
       </SwipeableDrawer>
     </div>

@@ -172,20 +172,19 @@ class Layout extends React.Component {
                     <Suspense fallback={<div>Loading...</div>}>
                         <SystemContext.Provider value={this.state.system}>
                             <UserContext.Provider value={this.state.user}>
+                                <SwipeableTemporaryDrawer />
+                                <MenuAppBar />
+                                <div className={classes.appBarSpacer} />
                                 <ItemsContext.Provider value={this.state.items}>
-                                    <SwipeableTemporaryDrawer />
-                                    <MenuAppBar />
-                                    <div className={classes.appBarSpacer} />
                                     <Switch>
                                         {/* <Route exact path="/" component={Main} /> */}
-                                        <Route path="/items/:id" component={itemDetail} />
                                         <Route path="/privacy" component={Privacy} />
                                         <Route path="/terms" component={Terms} />
+                                        <Route path="/items/:id" component={itemDetail} />
                                         <Route component={Main} />
-                                        {/* <Main className={classes.content} /> */}
                                     </Switch>
-                                    <SimpleSnackBar />
                                 </ItemsContext.Provider>
+                                <SimpleSnackBar />
                             </UserContext.Provider>
                         </SystemContext.Provider>
                     </Suspense>
