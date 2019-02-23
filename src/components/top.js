@@ -90,7 +90,6 @@ const noImage = "data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22288%22%20h
 // const toDetail = item => {
 //   props.history.push(`/items/${item.id}`);
 // }
-const MyLink = props => <Link to={`/items/${props.id}`} {...props} />;
 
 function Album(props) {
   // class Album extends React.Component {
@@ -202,7 +201,7 @@ function Album(props) {
                       公式サイト<OpenInNewIcon />
                     </Button>
                     {/* <Button size="small" color="primary" onClick={() => toDetail(item)}> */}
-                    <Button size="small" color="primary" component={MyLink} id={item.id}>
+                    <Button size="small" color="primary" component={Link} to={`/items/${item.id}`}>
                       {config.toItemDetailButton || "製品詳細"}
                     </Button>
                     {/* <Button size="small" color="primary">

@@ -29,8 +29,6 @@ const styles = {
   },
 };
 
-const MyLink = props => <Link to={`/`} {...props} />
-
 function SwipeableTemporaryDrawer(props) {
   const { classes } = props;
   const { drawerOpen, closeDrawer, openDrawer } = useContext(SystemContext);
@@ -58,7 +56,7 @@ function SwipeableTemporaryDrawer(props) {
       <Divider />
       <List>
         {['ホーム', '調べる',].map((text, index) => (
-          <ListItem button key={text} component={MyLink}>
+          <ListItem button key={text} component={Link} to={`/`}>
             <ListItemIcon>{index % 2 === 0 ? <HomeIcon /> : <SearchIcon />}</ListItemIcon>
             <ListItemText primary={text} />
           </ListItem>

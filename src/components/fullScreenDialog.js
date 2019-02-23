@@ -37,7 +37,6 @@ const styles = theme => ({
 // function Transition(props) {
 //   return <Slide direction="up" {...props} />;
 // }
-const MyLink = props => <Link to={`/items/${props.id}`} {...props} />;
 
 function FullScreenDialog(props) {
     console.log("render FullScreenDialog");
@@ -112,7 +111,7 @@ function FullScreenDialog(props) {
                 </ListItem>
                 {
                     suggestions.map(item => (
-                        <ListItem button component={MyLink} id={item.id} key={item.id} divider>
+                        <ListItem button component={Link} to={`/items/${item.id}`} key={item.id} divider>
                             <ListItemText primary={item.label} secondary={item.secondary} />
                             {/* <Divider/> */}
                         </ListItem>
