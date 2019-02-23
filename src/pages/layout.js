@@ -295,23 +295,23 @@ function Layout(props) {
                 <Suspense fallback={<div>Loading...</div>}>
                     <SystemContext.Provider value={system}>
                         <SnackbarContext.Provider value={snackbar}>
-                            <DrawerContext.Provider value={drawer}>
-                                <UserContext.Provider value={user}>
+                            <UserContext.Provider value={user}>
+                                <DrawerContext.Provider value={drawer}>
                                     <SwipeableTemporaryDrawer />
                                     <MenuAppBar />
-                                    <div className={classes.appBarSpacer} />
-                                    <ItemsContext.Provider value={items}>
-                                        <Switch>
-                                            {/* <Route exact path="/" component={Main} /> */}
-                                            <Route path="/privacy" component={Privacy} />
-                                            <Route path="/terms" component={Terms} />
-                                            <Route path="/items/:id" component={itemDetail} />
-                                            <Route component={Main} />
-                                        </Switch>
-                                    </ItemsContext.Provider>
-                                    <SimpleSnackBar />
-                                </UserContext.Provider>
-                            </DrawerContext.Provider>
+                                </DrawerContext.Provider>
+                                <div className={classes.appBarSpacer} />
+                                <ItemsContext.Provider value={items}>
+                                    <Switch>
+                                        {/* <Route exact path="/" component={Main} /> */}
+                                        <Route path="/privacy" component={Privacy} />
+                                        <Route path="/terms" component={Terms} />
+                                        <Route path="/items/:id" component={itemDetail} />
+                                        <Route component={Main} />
+                                    </Switch>
+                                </ItemsContext.Provider>
+                                <SimpleSnackBar />
+                            </UserContext.Provider>
                         </SnackbarContext.Provider>
                     </SystemContext.Provider>
                 </Suspense>
