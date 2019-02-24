@@ -81,7 +81,6 @@ function SwipeableTemporaryDrawer(props) {
   const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
   return (
-    <div>
       <SwipeableDrawer
         open={drawerOpen}
         onClose={toggleDrawer('left', false)}
@@ -99,7 +98,6 @@ function SwipeableTemporaryDrawer(props) {
             </div>
         </div>
       </SwipeableDrawer>
-    </div>
   );
 }
 
