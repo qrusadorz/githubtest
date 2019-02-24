@@ -11,28 +11,8 @@ const styles = theme => ({
   },
 });
 
-class Index extends React.Component {
-  // state = {
-  //   open: false,
-  // };
-
-  // handleClose = () => {
-  //   this.setState({
-  //     open: false,
-  //   });
-  // };
-
-  // handleClick = () => {
-  //   this.setState({
-  //     open: true,
-  //   });
-  // };
-
-  render() {
-    return (
-      <Layout />
-    );
-  }
+function Index() {
+  return <Layout />;
 }
 
 export default withRoot(withStyles(styles)(Index));
