@@ -55,7 +55,7 @@ const styles = theme => ({
   },
   // TODO TEST
   heroDescription: {
-    marginTop: theme.spacing.unit * 3,
+    marginTop: theme.spacing.unit * 1,
   },
   // TODO TEST
   heroButtons: {
@@ -224,14 +224,16 @@ function ItemDetail(props) {
       <main className={classes.layout}>
         {/* Hero unit */}
         <div className={classes.heroContent}>
-          <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
+          {/* <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom> */}
+          <Typography variant="h3" align="center" color="textPrimary" gutterBottom>
             {item.name}
           </Typography>
           {/* TODO TEST */}
           <ImageButton img={item.ogimg} url={item.url} />
           <div className={classes.heroDescription}></div>
           {config.getItemDetailDescription(item).map((line, index) => (
-            <Typography variant={line.variant} align="center" color="textSecondary" component="p"  key={index}>
+            // <Typography variant={line.variant} align="center" color="textSecondary" component="p" key={index} gutterBottom>
+            <Typography variant={line.variant} align="center" color="textSecondary" key={index} gutterBottom>
               {line.text}
             </Typography>
           ))}
