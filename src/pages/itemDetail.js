@@ -290,8 +290,8 @@ function ItemDetail(props) {
                 </CardContent>
                 <CardActions className={classes.cardActions}>
                   {/* <Button fullWidth variant={tier.buttonVariant} color="primary" onClick={() => {}}> */}
-                  {/* <a href={tier.url} target="_blank" rel="noopener noreferrer" > */}
-                  <Button fullWidth variant="contained" color={index === 0 ? "primary" : "secondary"} href={tier.url} target="_blank" rel="noopener noreferrer" >
+                  {/* <a href={tier.url} target="_blank" rel="noopener noreferrer nofollow" > */}
+                  <Button fullWidth variant="contained" color={index === 0 ? "primary" : "secondary"} href={tier.url} target="_blank" rel="noopener noreferrer nofollow" >
                     {config.itemDetailButton || "Go"}<OpenInNewIcon />
                   </Button>
                   {/* </a> */}

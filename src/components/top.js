@@ -199,7 +199,7 @@ function Album(props) {
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Button size="small" color="primary" href={item.url} target="_blank" rel="noopener noreferrer">
+                    <Button size="small" color="primary" href={item.url} target="_blank" rel="noopener noreferrer nofollow">
                       公式サイト<OpenInNewIcon />
                     </Button>
                     {/* <Button size="small" color="primary" onClick={() => toDetail(item)}> */}

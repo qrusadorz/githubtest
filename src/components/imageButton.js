@@ -99,7 +99,7 @@ function ButtonBases(props) {
           style={{
             width: image.width,
           }}
-          href={url} target="_blank" rel="noopener noreferrer"
+          href={url} target="_blank" rel="noopener noreferrer nofollow"
         >
           <span
             className={classes.imageSrc}
