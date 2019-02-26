@@ -121,6 +121,11 @@ function Album(props) {
       for (const node of document.head.childNodes) {
         if (node.name === tag.name && node.nodeName === tag.nodeName) {
           node.content = config.description;
+          // return;
+        }
+        if (node.type === "application/ld+json") {
+          const json = {};
+          node.text = JSON.stringify(json);
           return;
         }
       }
