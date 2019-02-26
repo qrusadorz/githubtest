@@ -124,7 +124,7 @@ function Album(props) {
           // return;
         }
         if (node.type === "application/ld+json") {
-          const json = {};
+          const json = config.getSchemaJson();
           node.text = JSON.stringify(json);
           return;
         }

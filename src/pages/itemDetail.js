@@ -186,32 +186,13 @@ function ItemDetail(props) {
           // return;
         }
         if (node.type === "application/ld+json") {
-          const json = {
-            "@context": "http://schema.org",
-            "@type": "Product",
-            "name": `${item.name}`,
-            "offers": {
-              "@type": "AggregateOffer",
-              "highPrice": `${item.bestprice}`,
-              "lowPrice": `${item.bestprice}`,
-              "priceCurrency": "JPY",
-              "businessFunction": "gr:seeks",
-              "offers": [
-                {
-                  "@type": "Offer",
-                  "businessFunction": "gr:seeks",
-                  "price" : `${item.bestprice.toLocaleString('ja-JP', { style: 'currency', currency: 'JPY' })}`,
-                  "priceCurrency": "JPY"
-                }
-              ]
-            }
-          };
+          const json = config.getItemDetailSchemaJson(item);
           node.text = JSON.stringify(json);
           return;
         }
       }
     }
-  });
+  }, [item]);
 
   if (!item) {
     return (
