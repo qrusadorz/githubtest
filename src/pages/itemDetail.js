@@ -284,8 +284,7 @@ function ItemDetail(props) {
                   {/* // TODO TEST */}
                   {/* <Typography variant="h6" color="textSecondary"> */}
                   <Typography variant="subtitle1" align="center">
-                    {/* // IEではNumber.parseIntなし */}
-                    {parseInt(tier.price / item.price * 100)}%
+                    {config.itemDetailSiteDescription(item, tier)}
                   </Typography>
                   {tier.description && tier.description.map(line => (
                     <Typography variant="subtitle1" align="center" key={line}>
