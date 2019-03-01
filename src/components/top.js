@@ -196,11 +196,11 @@ function Album(props) {
                     <Typography variant="h5" component="h2">
                       {item.name}
                     </Typography>
-                    <Typography gutterBottom color="textSecondary">
-                      {config.itemSubtitle} {item.bestprice.toLocaleString('ja-JP', { style: 'currency', currency: 'JPY' })}({item.percentage}%)
+                    <Typography color="textSecondary">
+                      {config.getItemSubtitle(item)}
                     </Typography>
-                    <Typography>
-                      {config.itemDescription}
+                    <Typography gutterBottom color="textSecondary">
+                      {config.getItemDescription(item)}
                     </Typography>
                   </CardContent>
                   <CardActions>
