@@ -166,7 +166,7 @@ function ItemDetail(props) {
   useEffect(() => {
     // TOOD TEST アドレスとタイトルの不一致解消検証
     if (item) {
-      document.title = `${config.name} - ${item.name}`;
+      document.title = config.getItemTitle(item);
     }
     // page遷移後のスクロール復元
     window.scrollTo(0, 0);
