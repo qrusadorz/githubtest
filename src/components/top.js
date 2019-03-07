@@ -12,6 +12,8 @@ import Grid from '@material-ui/core/Grid';
 import OpenInNewIcon from '@material-ui/icons/OpenInNew';
 // import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
 import { withStyles } from '@material-ui/core/styles';
 
 import { withRouter, Link } from "react-router-dom";
@@ -24,7 +26,10 @@ import { ItemsContext } from '../contexts/items';
 
 import config from '../configs/site'
 
-const styles = theme => ({
+// const styles = theme => ({
+const styles = theme => {
+  console.log('theme:', theme.palette);
+  return {
   appBar: {
     position: 'relative',
   },
@@ -70,7 +75,14 @@ const styles = theme => ({
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing.unit * 6,
   },
-});
+  // TODO original
+  tabs: {
+    flexGrow: 1,
+    backgroundColor: theme.palette.background.paper,
+    // backgroundColor: theme.palette.primary.main,
+  },
+}};
+// });
 
 // const items = [
 //   { id:1, name:"アイテムN", price1:"30000", price2:"29000", price3:"28000", },
@@ -91,17 +103,28 @@ const noImage = "data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22288%22%20h
 //   props.history.push(`/items/${item.id}`);
 // }
 
-function Album(props) {
-  // class Album extends React.Component {
-  // async componentDidMount() {
-  //   await this.props.items.getItems();
-  // }
+function getRenderItems(index, items) {
+  const groups = [
+    "",
+    "AirPods", // airpods
+    "Nintendo Switch", // switch
+    "iPhone", // iphone
+    "iPad", // ipad
+    "Mac", // mac
+    "PlayStation4", // ps4 
+    "Surface", // surface
+    "HUAWEI", // huawei
+  ];
+  const keyword = groups[index];
+  if (!keyword) return items;
+  const result = items.filter(item => !item.brand || item.brand.indexOf(keyword) >= 0);
+  return result;
+}
 
+function Album(props) {
   console.log("render() Album");
 
-  // render() {
   const { classes } = props;
-  // const { items = [] } = props.items;
   const { items = [] } = useContext(ItemsContext);
 
   useEffect(() => {
@@ -125,8 +148,15 @@ function Album(props) {
     window.gtagPageview(props.location.pathname);
   }, [props.location.pathname]);
 
+  const [itemFilter, setItemFilter] = React.useState(0);
+
   // const renderItems = items.slice(0, 20);  // TODO limit 20 item
-  const renderItems = items;  // for develop
+  const renderItems = getRenderItems(itemFilter, items);  // for develop
+
+  function handleChange(event, newValue) {
+    console.log('tab:', newValue);
+    setItemFilter(newValue);
+  }
 
   return (
     <>
@@ -173,6 +203,26 @@ function Album(props) {
               </Grid>
             </div> */}
           </div>
+        </div>
+        <div className={classes.tabs}>
+          <Tabs
+            value={itemFilter}
+            onChange={handleChange}
+            variant="scrollable"
+            scrollButtons="on"
+            indicatorColor="primary"
+            textColor="primary"
+          >
+            <Tab label="All" />
+            <Tab label="AirPods" />
+            <Tab label="Switch" />
+            <Tab label="iPhone" />
+            <Tab label="iPad" />
+            <Tab label="Mac" />
+            <Tab label="PS4" />
+            <Tab label="Surface" />
+            <Tab label="Huawei" />
+          </Tabs>
         </div>
         <div className={classNames(classes.layout, classes.cardGrid)}>
           {/* End hero unit */}
