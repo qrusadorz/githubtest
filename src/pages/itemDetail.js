@@ -164,20 +164,10 @@ function ItemDetail(props) {
   const item = items.find(item => item.id === id);
 
   useEffect(() => {
-    // TOOD TEST アドレスとタイトルの不一致解消検証
     if (item) {
       document.title = config.getItemTitle(item);
-    }
-    // page遷移後のスクロール復元
-    window.scrollTo(0, 0);
-
     window.gtagPageview(props.location.pathname);
-    // console.log("update:", props.location.pathname);
-  }, [props.location.pathname]);
 
-  useEffect(() => {
-    if (item) {
-      document.title = config.getItemTitle(item);
       // TODO 今度まとめる
       const tag = { name: "Description", nodeName: "META" };
       for (const node of document.head.childNodes) {
@@ -192,7 +182,10 @@ function ItemDetail(props) {
         }
       }
     }
-  }, [item]);
+    // page遷移後のスクロール復元
+    window.scrollTo(0, 0);
+
+  }, [props.location.pathname, item]);
 
   if (!item) {
     return (

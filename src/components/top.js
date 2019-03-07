@@ -105,32 +105,25 @@ function Album(props) {
   const { items = [] } = useContext(ItemsContext);
 
   useEffect(() => {
-    // TOOD TEST アドレスとタイトルの不一致解消検証
     document.title = `${config.name}`;
+    // TODO 今度まとめる
+    const tag = { name: "Description", nodeName: "META" };
+    for (const node of document.head.childNodes) {
+      if (node.name === tag.name && node.nodeName === tag.nodeName) {
+        node.content = config.description;
+        // return;
+      }
+      if (node.type === "application/ld+json") {
+        const json = config.getSchemaJson();
+        node.text = JSON.stringify(json);
+        return;
+      }
+    }
     // page遷移後のスクロール復元
     window.scrollTo(0, 0);
 
     window.gtagPageview(props.location.pathname);
   }, [props.location.pathname]);
-
-  useEffect(() => {
-    // TODO 今度まとめる
-    document.title = `${config.name}`;
-    if (config.description) {
-      const tag = { name: "Description", nodeName: "META" };
-      for (const node of document.head.childNodes) {
-        if (node.name === tag.name && node.nodeName === tag.nodeName) {
-          node.content = config.description;
-          // return;
-        }
-        if (node.type === "application/ld+json") {
-          const json = config.getSchemaJson();
-          node.text = JSON.stringify(json);
-          return;
-        }
-      }
-    }
-  });
 
   // const renderItems = items.slice(0, 20);  // TODO limit 20 item
   const renderItems = items;  // for develop
