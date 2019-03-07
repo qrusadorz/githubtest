@@ -103,24 +103,6 @@ const noImage = "data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22288%22%20h
 //   props.history.push(`/items/${item.id}`);
 // }
 
-function getRenderItems(index, items) {
-  const groups = [
-    "",
-    "AirPods", // airpods
-    "Nintendo Switch", // switch
-    "iPhone", // iphone
-    "iPad", // ipad
-    "Mac", // mac
-    "PlayStation4", // ps4 
-    "Surface", // surface
-    "HUAWEI", // huawei
-  ];
-  const keyword = groups[index];
-  if (!keyword) return items;
-  const result = items.filter(item => !item.brand || item.brand.indexOf(keyword) >= 0);
-  return result;
-}
-
 function Album(props) {
   console.log("render() Album");
 
@@ -142,16 +124,18 @@ function Album(props) {
         return;
       }
     }
-    // page遷移後のスクロール復元
-    window.scrollTo(0, 0);
-
     window.gtagPageview(props.location.pathname);
   }, [props.location.pathname]);
+
+  useEffect(() => {
+    // page遷移後のスクロール復元
+    window.scrollTo(0, 0);
+  });
 
   const [itemFilter, setItemFilter] = React.useState(0);
 
   // const renderItems = items.slice(0, 20);  // TODO limit 20 item
-  const renderItems = getRenderItems(itemFilter, items);  // for develop
+  const renderItems = config.getRenderItems(itemFilter, items);  // for develop
 
   function handleChange(event, newValue) {
     console.log('tab:', newValue);

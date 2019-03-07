@@ -182,10 +182,15 @@ function ItemDetail(props) {
         }
       }
     }
-    // page遷移後のスクロール復元
-    window.scrollTo(0, 0);
+    // // page遷移後のスクロール復元
+    // window.scrollTo(0, 0);
 
   }, [props.location.pathname, item]);
+
+  useEffect(() => {
+    // page遷移後のスクロール復元
+    window.scrollTo(0, 0);
+  }, [item]);
 
   if (!item) {
     return (
