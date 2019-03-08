@@ -88,7 +88,8 @@ const styles = theme => ({
   },
   fab: {
     position: 'fixed',
-    bottom: theme.spacing.unit * 2,
+    // bottom: theme.spacing.unit * 2,
+    bottom: theme.spacing.unit * 8, // for bottom navigation
     right: theme.spacing.unit * 2,
   },
 });

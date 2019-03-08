@@ -17,6 +17,7 @@ import itemDetail from './itemDetail'
 import SwipeableTemporaryDrawer from '../components/SwipeableTemporaryDrawer'
 import MenuAppBar from '../components/menuappbar';
 import SimpleSnackBar from '../components/snackbar';
+import ButtomNavigation from '../components/bottomNavigation';
 import { ItemsContext, getItems } from '../contexts/items';
 const Privacy = lazy(() => import('./privacy'));
 const Terms = lazy(() => import('./terms'));
@@ -311,6 +312,7 @@ function Layout(props) {
                                         <Route component={Main} />
                                     </Switch>
                                 </ItemsContext.Provider>
+                                <ButtomNavigation />
                                 <SimpleSnackBar />
                             </UserContext.Provider>
                         </SnackbarContext.Provider>
