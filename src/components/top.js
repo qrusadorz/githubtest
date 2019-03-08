@@ -100,6 +100,7 @@ function Album(props) {
 
   useEffect(() => {
     document.title = `${config.name}`;
+    window.gtagPageview(props.location.pathname);
     // TODO 今度まとめる
     const tag = { name: "Description", nodeName: "META" };
     for (const node of document.head.childNodes) {
@@ -113,7 +114,6 @@ function Album(props) {
         return;
       }
     }
-    window.gtagPageview(props.location.pathname);
   }, [props.location.pathname]);
 
   // const renderItems = items.slice(0, 20);  // TODO limit 20 item
