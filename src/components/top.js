@@ -127,15 +127,15 @@ function Album(props) {
     window.gtagPageview(props.location.pathname);
   }, [props.location.pathname]);
 
-  useEffect(() => {
-    // page遷移後のスクロール復元
-    window.scrollTo(0, 0);
-  });
-
   const [itemFilter, setItemFilter] = React.useState(0);
 
   // const renderItems = items.slice(0, 20);  // TODO limit 20 item
   const renderItems = config.getRenderItems(itemFilter, items);  // for develop
+
+  useEffect(() => {
+    // page遷移後のスクロール復元
+    window.scrollTo(0, 0);
+  }, [renderItems]);
 
   function handleChange(event, newValue) {
     console.log('tab:', newValue);
