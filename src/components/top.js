@@ -28,7 +28,7 @@ import config from '../configs/site'
 
 // const styles = theme => ({
 const styles = theme => {
-  console.log('theme:', theme.palette);
+  // console.log('theme:', theme.palette);
   return {
   appBar: {
     position: 'relative',
@@ -80,33 +80,23 @@ const styles = theme => {
     flexGrow: 1,
     backgroundColor: theme.palette.background.paper,
     // backgroundColor: theme.palette.primary.main,
+    width: '100%',
   },
 }};
 // });
 
-// const items = [
-//   { id:1, name:"アイテムN", price1:"30000", price2:"29000", price3:"28000", },
-//   { id:2, name:"アイテムP", price1:"22000", price2:"21000", price3:"20000", },
-//   { id:3, name:"アイテムA", price1:"17500", price2:"17000", price3:"13000", },
-//   { id:4, name:"B", price1:"", price2:"", price3:"", },
-//   { id:5, name:"C", price1:"", price2:"", price3:"", },
-//   { id:6, name:"D", price1:"", price2:"", price3:"", },
-//   { id:7, name:"E", price1:"", price2:"", price3:"", },
-//   { id:8, name:"F", price1:"", price2:"", price3:"", },
-//   { id:9, name:"G", price1:"", price2:"", price3:"", },
-//   { id:10, name:"H", price1:"", price2:"", price3:"", },
-// ];
-
 const noImage = "data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22288%22%20height%3D%22225%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20288%20225%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_164edaf95ee%20text%20%7B%20fill%3A%23eceeef%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A14pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_164edaf95ee%22%3E%3Crect%20width%3D%22288%22%20height%3D%22225%22%20fill%3D%22%2355595c%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2296.32500076293945%22%20y%3D%22118.8%22%3EThumbnail%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E"; // eslint-disable-line max-len
-// const toDetail = item => props.history.push(`/items/${item.id}`);
-// const toDetail = item => {
-//   props.history.push(`/items/${item.id}`);
-// }
+
+const groups = config.getGrouppaths();
 
 function Album(props) {
   console.log("render() Album");
 
   const { classes } = props;
+  const { group } = props.match.params;
+  const groupIndex = config.getGrouppathToIndex(group);
+  const [itemFilter, setItemFilter] = React.useState(groupIndex);
+  console.log("top match params:", group, groupIndex);
   const { items = [] } = useContext(ItemsContext);
 
   useEffect(() => {
@@ -127,19 +117,19 @@ function Album(props) {
     window.gtagPageview(props.location.pathname);
   }, [props.location.pathname]);
 
-  const [itemFilter, setItemFilter] = React.useState(0);
-
   // const renderItems = items.slice(0, 20);  // TODO limit 20 item
-  const renderItems = config.getRenderItems(itemFilter, items);  // for develop
+  const renderItems = config.getRenderItems(itemFilter, items);
 
   useEffect(() => {
     // page遷移後のスクロール復元
     window.scrollTo(0, 0);
-  }, [renderItems]);
+  });
 
   function handleChange(event, newValue) {
-    console.log('tab:', newValue);
     setItemFilter(newValue);
+    const path = config.getIndexToGrouppath(newValue);
+    console.log('path:', path);
+    props.history.push(path ? `/itemgroups/${path}`: "");
   }
 
   return (
@@ -197,15 +187,7 @@ function Album(props) {
             indicatorColor="primary"
             textColor="primary"
           >
-            <Tab label="All" />
-            <Tab label="AirPods" />
-            <Tab label="Switch" />
-            <Tab label="iPhone" />
-            <Tab label="iPad" />
-            <Tab label="Mac" />
-            <Tab label="PS4" />
-            <Tab label="Surface" />
-            <Tab label="Huawei" />
+            {groups.map((path, index) => (<Tab label={path} key={path}/>))}
           </Tabs>
         </div>
         <div className={classNames(classes.layout, classes.cardGrid)}>

@@ -307,6 +307,7 @@ function Layout(props) {
                                         <Route path="/privacy" component={Privacy} />
                                         <Route path="/terms" component={Terms} />
                                         <Route path="/items/:id" component={itemDetail} />
+                                        <Route path="/itemgroups/:group" component={Main} />
                                         <Route component={Main} />
                                     </Switch>
                                 </ItemsContext.Provider>
