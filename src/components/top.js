@@ -95,7 +95,6 @@ function Album(props) {
   const { classes } = props;
   const { group } = props.match.params;
   const groupIndex = config.getGrouppathToIndex(group);
-  const [itemFilter, setItemFilter] = React.useState(groupIndex);
   console.log("top match params:", group, groupIndex);
   const { items = [] } = useContext(ItemsContext);
 
@@ -118,7 +117,8 @@ function Album(props) {
   }, [props.location.pathname]);
 
   // const renderItems = items.slice(0, 20);  // TODO limit 20 item
-  const renderItems = config.getRenderItems(itemFilter, items);
+  const renderItems = config.getRenderItems(groupIndex, items);
+  console.log("renderItems.length:", renderItems.length);
 
   useEffect(() => {
     // page遷移後のスクロール復元
@@ -126,7 +126,6 @@ function Album(props) {
   });
 
   function handleChange(event, newValue) {
-    setItemFilter(newValue);
     const path = config.getIndexToGrouppath(newValue);
     console.log('path:', path);
     props.history.push(path ? `/itemgroups/${path}`: "");
@@ -180,7 +179,7 @@ function Album(props) {
         </div>
         <div className={classes.tabs}>
           <Tabs
-            value={itemFilter}
+            value={groupIndex}
             onChange={handleChange}
             variant="scrollable"
             scrollButtons="on"

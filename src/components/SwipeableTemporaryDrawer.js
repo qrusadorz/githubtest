@@ -11,6 +11,7 @@ import FeedbackIcon from '@material-ui/icons/Feedback';
 import HelpIcon from '@material-ui/icons/Help';
 import HomeIcon from '@material-ui/icons/Home';
 import SearchIcon from '@material-ui/icons/Search';
+import ShoppingIcon from '@material-ui/icons/ShoppingCart';
 
 import Typography from '@material-ui/core/Typography';
 
@@ -29,6 +30,8 @@ const styles = {
   },
 };
 
+const groups = config.getGrouppaths();
+
 const sideList = (
     <>
       <Typography variant="h3" align="center" gutterBottom component="h2">
@@ -40,6 +43,15 @@ const sideList = (
           <ListItem button key={text} component={Link} to={`/`}>
             <ListItemIcon>{index % 2 === 0 ? <HomeIcon /> : <SearchIcon />}</ListItemIcon>
             <ListItemText primary={text} />
+          </ListItem>
+        ))}
+      </List>
+      <Divider />
+      <List>
+        {groups.map((text, index) => (
+          <ListItem button key={text} component={Link} to={`/itemgroups/${text}`}>
+            <ListItemIcon><ShoppingIcon /></ListItemIcon>
+            <ListItemText primary={text.toUpperCase()} />
           </ListItem>
         ))}
       </List>
