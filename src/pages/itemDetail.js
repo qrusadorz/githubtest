@@ -21,6 +21,8 @@ import { withStyles } from '@material-ui/core/styles';
 import { withRouter } from "react-router-dom";
 
 import ImageButton from '../components/imageButton';
+// import SimpleLineChart from './SimpleLineChart';
+// const SimpleLineChart = lazy(() => import('../components/SimpleLineChart'));
 
 import { ItemsContext } from '../contexts/items'
 
