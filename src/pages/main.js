@@ -1,12 +1,8 @@
 import React from 'react';
 // import classNames from 'classnames';
 import Fab from '@material-ui/core/Fab';
-// import HomeIcon from '@material-ui/icons/Home';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import { withStyles } from '@material-ui/core/styles';
-// import withRoot from '../withRoot';
-
-// import { Link } from "react-router-dom";
 
 // import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 // import firebase, { uiConfig } from '../firebase/firebase'
@@ -14,7 +10,6 @@ import { withStyles } from '@material-ui/core/styles';
 // import Typography from '@material-ui/core/Typography';
 // import Grid from '@material-ui/core/Grid';
 
-// import AlignItemsList from '../components/itemsList';
 import Album from '../components/top';
 
 const styles = theme => ({
@@ -76,8 +71,6 @@ function Main(props) {
     console.log("render() main");
     return (
         <main className={classes.content}>
-            {/* <AlignItemsList /> */}
-            {/* <Qrcode /> */}
             <Album />
             {/* mainから出したいがスクロール問題でNG */}
             {/* Footer */}
@@ -111,12 +104,10 @@ function Main(props) {
             </footer> */}
             {/* End footer */}
             <Fab color="primary" className={classes.fab} aria-label="Scroll up" onClick={toTop}>
-                {/* <HomeIcon /> */}
                 <ArrowUpwardIcon />
             </Fab>
         </main>
         );
 }
 
-// export default withRoot(withStyles(styles)(Main));
 export default withStyles(styles)(Main);

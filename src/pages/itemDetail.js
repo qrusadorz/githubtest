@@ -276,9 +276,6 @@ function ItemDetail(props) {
                     <Typography component="h2" variant="h3" color="textPrimary">
                       {tier.price.toLocaleString('ja-JP', { style: 'currency', currency: 'JPY' })}
                     </Typography>
-                    {/* <Typography variant="h6" color="textSecondary">
-                      円
-                    </Typography> */}
                   </div>
                   {/* // TODO TEST */}
                   {/* <Typography variant="h6" color="textSecondary"> */}
@@ -292,12 +289,9 @@ function ItemDetail(props) {
                   ))}
                 </CardContent>
                 <CardActions className={classes.cardActions}>
-                  {/* <Button fullWidth variant={tier.buttonVariant} color="primary" onClick={() => {}}> */}
-                  {/* <a href={tier.url} target="_blank" rel="noopener noreferrer nofollow" > */}
                   <Button fullWidth variant="contained" color={index === 0 ? "primary" : "secondary"} href={tier.url} target="_blank" rel="noopener noreferrer nofollow" >
                     {config.itemDetailButton || "Go"}<OpenInNewIcon />
                   </Button>
-                  {/* </a> */}
                 </CardActions>
               </Card>
             </Grid>
