@@ -49,6 +49,8 @@ const styles = theme => ({
       marginLeft: 'auto',
       marginRight: 'auto',
     },
+    // for buttom navigation.
+    marginBottom: theme.spacing.unit * 6,
   },
   heroContent: {
     maxWidth: 600,
