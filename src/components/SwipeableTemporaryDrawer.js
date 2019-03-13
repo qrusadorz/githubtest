@@ -51,7 +51,7 @@ const sideList = itemgroups => (
       <Divider />
       <List>
         {itemgroups.map((text, index) => (
-          <ListItem button key={text} component={Link} to={`/itemgroups/${text}`}>
+          <ListItem button key={text} component={Link} to={`/itemgroups/${text.toLowerCase()}`}>
             <ListItemIcon><ShoppingIcon /></ListItemIcon>
             <ListItemText primary={text.toUpperCase()} />
           </ListItem>

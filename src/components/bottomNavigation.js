@@ -44,7 +44,7 @@ function SimpleBottomNavigation(props) {
         >
             <BottomNavigationAction label="Home" key='Home' component={Link} to={`/`} icon={<HomeIcon />} />
             {actions.map((text, index) => (
-                <BottomNavigationAction key={text} label={text} component={Link} to={`/itemgroups/${text}`} icon={<ShoppingIcon />} />
+                <BottomNavigationAction key={text} label={text} component={Link} to={`/itemgroups/${text.toLowerCase()}`} icon={<ShoppingIcon />} />
             ))}
             {/* <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} /> */}
             {/* <BottomNavigationAction label="Nearby" icon={<LocationOnIcon />} /> */}
