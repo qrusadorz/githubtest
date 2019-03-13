@@ -11,6 +11,8 @@ import { Link } from "react-router-dom";
 
 import config from '../configs/site'
 
+import { groups } from '../contexts/items';
+
 const styles = {
     root: {
         position: 'fixed',
@@ -20,11 +22,14 @@ const styles = {
     },
 };
 
-const groups = config.getGrouppaths().slice(1, 5);
+// const groups = config.getGrouppaths().slice(1, 5);
 
 function SimpleBottomNavigation(props) {
     const { classes } = props;
     const [value, setValue] = React.useState(0);
+
+    // TODO 暫定で毎回取得
+    const actions = config.getGrouppaths(groups).slice(1, 4);
 
     return (
         <BottomNavigation
@@ -38,7 +43,7 @@ function SimpleBottomNavigation(props) {
             position="fixed"
         >
             <BottomNavigationAction label="Home" key='Home' component={Link} to={`/`} icon={<HomeIcon />} />
-            {groups.map((text, index) => (
+            {actions.map((text, index) => (
                 <BottomNavigationAction key={text} label={text} component={Link} to={`/itemgroups/${text}`} icon={<ShoppingIcon />} />
             ))}
             {/* <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} /> */}

@@ -21,6 +21,8 @@ import { DrawerContext } from '../contexts/drawer';
 
 import config from '../configs/site'
 
+import { groups } from '../contexts/items';
+
 const styles = {
   list: {
     width: 300,
@@ -30,9 +32,9 @@ const styles = {
   },
 };
 
-const groups = config.getGrouppaths();
+// const groups = config.getGrouppaths();
 
-const sideList = (
+const sideList = itemgroups => (
     <>
       <Typography variant="h3" align="center" gutterBottom component="h2">
         {config.name || "タイトル"}
@@ -48,7 +50,7 @@ const sideList = (
       </List>
       <Divider />
       <List>
-        {groups.map((text, index) => (
+        {itemgroups.map((text, index) => (
           <ListItem button key={text} component={Link} to={`/itemgroups/${text}`}>
             <ListItemIcon><ShoppingIcon /></ListItemIcon>
             <ListItemText primary={text.toUpperCase()} />
@@ -92,6 +94,9 @@ function SwipeableTemporaryDrawer(props) {
 
   const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
+  // TODO 暫定で毎回取得
+  const itemgroups = config.getGrouppaths(groups).slice(1);
+
   return (
       <SwipeableDrawer
         open={drawerOpen}
@@ -106,7 +111,7 @@ function SwipeableTemporaryDrawer(props) {
           onKeyDown={toggleDrawer('left', false)}
         >
             <div className={classes.list}>
-              {sideList}
+              {sideList(itemgroups)}
             </div>
         </div>
       </SwipeableDrawer>

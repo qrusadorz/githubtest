@@ -9,6 +9,7 @@ import config from '../configs/site';
 // const storage = firebase.app().storage();
 
 export let items = [];
+export let groups = [];
 
 const isDevelop = process.env.NODE_ENV === "development";
 
@@ -57,7 +58,10 @@ export const getItems = async (id) => {
         // const data = getItemsFromLocalStorage();
         // const data = await getItemsFromStore();
         const data = await getItemsFromStorage();
-        items = data.sort((a, b) => b.percentage - a.percentage);
+        items = data.items.sort((a, b) => b.percentage - a.percentage);
+
+        // store groups
+        groups = data.brands || [];
 
         // TODO off line対応として開放を検討。
         if (isDevelop) {
@@ -99,8 +103,12 @@ async function getItemsFromStorage() {
         throw new Error(description);
     }
     const json = await response.json();
-    const data = json.items || [];
-    return data;
+    // const data = json.items || [];
+    // return data;
+    if (!json.items) {
+        json.items = [];
+    }
+    return json;
 }
 
 // const getItemsFromLocalStorage = () => {
@@ -202,9 +210,11 @@ async function getItemsFromStorage() {
 // get item done.
 // getItems();
 
+
 export const ItemsContext = React.createContext({
     items,
     getItems,
+    groups,
 });
 
 export default ItemsContext;
