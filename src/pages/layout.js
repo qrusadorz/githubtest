@@ -82,10 +82,11 @@ function Layout(props) {
 
     const [items, setItems] = React.useState({
         items: [],
+        timestamp: 0,
         getItemsAsync: async () => {
             console.log("getItems:");
-            const items = await getItems();
-            setItems(prev => ({ getItemsAsync: prev.getItemsAsync, items }));
+            const { items, timestamp } = await getItems();
+            setItems(prev => ({ getItemsAsync: prev.getItemsAsync, items, timestamp }));
         }
     });
     useEffect(() => {

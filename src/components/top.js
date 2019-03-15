@@ -98,7 +98,7 @@ function Album(props) {
   const { group } = props.match.params;
   const groupIndex = config.getGrouppathToIndex(groups, group);
   console.log("top match params:", group, groupIndex);
-  const { items = [] } = useContext(ItemsContext);
+  const { items = [], timestamp } = useContext(ItemsContext);
   // const groups = config.getGrouppaths();
   // console.log('groups:', groups)
 
@@ -110,15 +110,22 @@ function Album(props) {
     for (const node of document.head.childNodes) {
       if (node.name === tag.name && node.nodeName === tag.nodeName) {
         node.content = config.description;
-        // return;
-      }
-      if (node.type === "application/ld+json") {
-        const json = config.getSchemaJson();
-        node.text = JSON.stringify(json);
         return;
       }
     }
   }, [props.location.pathname]);
+
+  useEffect(() => {
+    console.log('timestamp:', timestamp);
+    // TODO 今度まとめる
+    for (const node of document.head.childNodes) {
+      if (node.type === "application/ld+json") {
+        const json = config.getSchemaJson(timestamp);
+        node.text = JSON.stringify(json);
+        return;
+      }
+    }
+  }, [timestamp]);
 
   // const renderItems = items.slice(0, 20);  // TODO limit 20 item
   const renderItems = config.getRenderItems(groups, groupIndex, items);

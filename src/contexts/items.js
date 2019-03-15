@@ -10,6 +10,7 @@ import config from '../configs/site';
 
 export let items = [];
 export let groups = [];
+export let timestamp = 0;
 
 const isDevelop = process.env.NODE_ENV === "development";
 
@@ -51,7 +52,7 @@ export const getItems = async (id) => {
     if (items.length > 0) {
         // console.log("getItems() cached:", items);
         console.log("getItems() cached memory:", items.length);
-        return items;
+        return { items, timestamp } ;
     }
 
     try {
@@ -59,16 +60,17 @@ export const getItems = async (id) => {
         // const data = await getItemsFromStore();
         const data = await getItemsFromStorage();
         items = data.items.sort((a, b) => b.percentage - a.percentage);
-
         // store groups
         groups = data.brands || [];
+        // store timestamp
+        timestamp = data.timestamp;
 
         // TODO off line対応として開放を検討。
         if (isDevelop) {
             localStorage.setItem('items', JSON.stringify(items));
         }
 
-        return items;
+        return { items, timestamp };
     } catch (e) {
         // Getting the Error details.
         // const code = e.code;
@@ -215,6 +217,7 @@ export const ItemsContext = React.createContext({
     items,
     getItems,
     groups,
+    timestamp,
 });
 
 export default ItemsContext;
