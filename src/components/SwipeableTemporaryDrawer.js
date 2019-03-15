@@ -53,7 +53,7 @@ const sideList = itemgroups => (
         {itemgroups.map((text, index) => (
           <ListItem button key={text} component={Link} to={`/itemgroups/${text.toLowerCase()}`}>
             <ListItemIcon><ShoppingIcon /></ListItemIcon>
-            <ListItemText primary={text.toUpperCase()} />
+            <ListItemText primary={text} />
           </ListItem>
         ))}
       </List>
