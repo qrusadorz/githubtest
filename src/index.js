@@ -7,7 +7,10 @@ import * as serviceWorker from './serviceWorker';
 // disable the production enviroment log
 process.env.NODE_ENV !== "development" && (console.log = () => {});
 // disable the production enviroment analytics
-process.env.NODE_ENV === "development" && (window.gtagPageview = (path) => { /*console.log("pageview:", path);*/ });
+if (process.env.NODE_ENV === "development") {
+    window.gtagPageview = (path) => { /*console.log("pageview:", path);*/ };
+    window.gtagFavoriteEvent = () => {};
+}
 
 ReactDOM.render(<Index />, document.getElementById('root'));
 

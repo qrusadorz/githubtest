@@ -2,7 +2,7 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
-// import FavoriteIcon from '@material-ui/icons/Favorite';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 import HomeIcon from '@material-ui/icons/Home';
 // import SearchIcon from '@material-ui/icons/Search';
 import ShoppingIcon from '@material-ui/icons/ShoppingCart';
@@ -29,7 +29,7 @@ function SimpleBottomNavigation(props) {
     const [value, setValue] = React.useState(0);
 
     // TODO 暫定で毎回取得
-    const actions = config.getGrouppaths(groups).slice(1, 4);
+    const actions = config.getGrouppaths(groups).slice(2, 4);
 
     return (
         <BottomNavigation
@@ -43,10 +43,10 @@ function SimpleBottomNavigation(props) {
             position="fixed"
         >
             <BottomNavigationAction label="Home" key='Home' component={Link} to={`/`} icon={<HomeIcon />} />
+            <BottomNavigationAction label="Favorite" key='Favorite' component={Link} to={`/itemgroups/favorite`}  icon={<FavoriteIcon />} />
             {actions.map((text, index) => (
                 <BottomNavigationAction key={text} label={text} component={Link} to={`/itemgroups/${text.toLowerCase()}`} icon={<ShoppingIcon />} />
             ))}
-            {/* <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} /> */}
             {/* <BottomNavigationAction label="Nearby" icon={<LocationOnIcon />} /> */}
         </BottomNavigation>
     );

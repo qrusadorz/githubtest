@@ -7,6 +7,7 @@ import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 import FeedbackIcon from '@material-ui/icons/Feedback';
 import HelpIcon from '@material-ui/icons/Help';
 import HomeIcon from '@material-ui/icons/Home';
@@ -47,6 +48,13 @@ const sideList = itemgroups => (
             <ListItemText primary={text} />
           </ListItem>
         ))}
+      </List>
+      <Divider />
+      <List>
+        <ListItem button key='Favorite' component={Link} to={`/itemgroups/favorite`}>
+          <ListItemIcon><FavoriteIcon /></ListItemIcon>
+          <ListItemText primary='Favorite' />
+        </ListItem>
       </List>
       <Divider />
       <List>
@@ -95,7 +103,7 @@ function SwipeableTemporaryDrawer(props) {
   const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
   // TODO 暫定で毎回取得
-  const itemgroups = config.getGrouppaths(groups).slice(1);
+  const itemgroups = config.getGrouppaths(groups).slice(2);
 
   return (
       <SwipeableDrawer
