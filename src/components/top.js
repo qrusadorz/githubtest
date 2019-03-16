@@ -134,7 +134,7 @@ function Album(props) {
   useEffect(() => {
     // page遷移後のスクロール復元
     window.scrollTo(0, 0);
-  });
+  }, [group]);
 
   function handleChange(event, newValue) {
     const path = config.getIndexToGrouppath(groups, newValue);
