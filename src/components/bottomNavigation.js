@@ -28,6 +28,8 @@ function SimpleBottomNavigation(props) {
     const { classes } = props;
     const [value, setValue] = React.useState(0);
 
+    console.log("render() SimpleBottomNavigation");
+
     // TODO 暫定で毎回取得
     const actions = config.getGrouppaths(groups).slice(2, 4);
 

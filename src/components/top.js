@@ -159,9 +159,9 @@ function Album(props) {
     window.scrollTo(0, 0);
   }, [group]);
 
-  const handleFavorite = (id) =>{
+  const handleFavorite = id => () => {
     console.log('favorite id:', id);
-    const value = !favorites[id] 
+    const value = !favorites[id];
     const json = {
       ...favorites,
       [id]: value
@@ -268,7 +268,7 @@ function Album(props) {
                     <Button size="small" color="primary" component={Link} to={`/items/${item.id}`}>
                       {config.toItemDetailButton || "製品詳細"}
                     </Button>
-                    <IconButton aria-label="Add to favorites" color={favorites[item.id] ? "primary" : "default"} onClick={() => handleFavorite(item.id)}>
+                    <IconButton aria-label="Add to favorites" color={favorites[item.id] ? "primary" : "default"} onClick={handleFavorite(item.id)}>
                       { favorites[item.id] ? <FavoriteIcon /> : <FavoriteBorderIcon />}
                     </IconButton>
                     {/* <Button size="small" color="primary">

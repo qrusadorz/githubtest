@@ -26,7 +26,7 @@ import { groups } from '../contexts/items';
 
 const styles = {
   list: {
-    width: 280,
+    width: 270,
   },
   fullList: {
     width: 'auto',
@@ -53,7 +53,7 @@ const sideList = itemgroups => (
       <List>
         <ListItem button key='Favorite' component={Link} to={`/itemgroups/favorite`}>
           <ListItemIcon><FavoriteIcon /></ListItemIcon>
-          <ListItemText primary='Favorite' />
+          <ListItemText primary='お気に入り' />
         </ListItem>
       </List>
       <Divider />
@@ -78,7 +78,6 @@ const sideList = itemgroups => (
       <List>
         {['プライバシーポリシー', '利用規約'].map((text, index) => (
           <ListItem button key={text} disabled>
-            {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon> */}
             <ListItemText primary={text} />
           </ListItem>
         ))}
