@@ -84,7 +84,7 @@ export const getItems = async (id) => {
             'fatal': false
           });
         }
-        return [];
+        return { items: [], timestamp: Date.now() };
     }
 };
 
@@ -105,8 +105,6 @@ async function getItemsFromStorage() {
         throw new Error(description);
     }
     const json = await response.json();
-    // const data = json.items || [];
-    // return data;
     if (!json.items) {
         json.items = [];
     }

@@ -25,8 +25,8 @@
 package-lock.json
 
 # my custom
-# no template data
-/src/configs
+# no template data(That means changing to a template.)
+# /src/configs
 /public/images/icons
 # other project data(old)
 /src/userdata

@@ -38,7 +38,7 @@ const styles = {
 const sideList = itemgroups => (
     <>
       <Typography variant="h3" align="center" gutterBottom component="h2">
-        {config.name || "タイトル"}
+        {config.name}
       </Typography>
       <Divider />
       <List>

@@ -269,7 +269,7 @@ function ItemDetail(props) {
                 <CardHeader
                   title={tier.name}
                   // subheader={index === 0 ? "人気No1." : tier.subheader}
-                  subheader={`${config.itemDetailSiteTitle || "人気"}No.${index + 1}`}
+                  subheader={`${config.itemDetailSiteTitle}No.${index + 1}`}
                   titleTypographyProps={{ align: 'center' }}
                   subheaderTypographyProps={{ align: 'center' }}
                   action={index === 0 ? <StarIcon /> : null}
@@ -278,13 +278,13 @@ function ItemDetail(props) {
                 <CardContent>
                   <div className={classes.cardPricing}>
                     <Typography component="h2" variant="h3" color="textPrimary">
-                      {tier.price.toLocaleString('ja-JP', { style: 'currency', currency: 'JPY' })}
+                      {config.getItemDetailSiteMain(item, tier)}
                     </Typography>
                   </div>
                   {/* // TODO TEST */}
                   {/* <Typography variant="h6" color="textSecondary"> */}
                   <Typography variant="subtitle1" align="center">
-                    {config.itemDetailSiteDescription(item, tier)}
+                    {config.getItemDetailSiteDescription(item, tier)}
                   </Typography>
                   {tier.description && tier.description.map(line => (
                     <Typography variant="subtitle1" align="center" key={line}>
@@ -294,7 +294,7 @@ function ItemDetail(props) {
                 </CardContent>
                 <CardActions className={classes.cardActions}>
                   <Button fullWidth variant="contained" color={index === 0 ? "primary" : "secondary"} href={tier.url} target="_blank" rel="noopener noreferrer nofollow" >
-                    {config.itemDetailButton || "Go"}<OpenInNewIcon />
+                    {config.itemDetailSiteActionButton}<OpenInNewIcon />
                   </Button>
                 </CardActions>
               </Card>

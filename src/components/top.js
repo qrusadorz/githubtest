@@ -200,10 +200,10 @@ function Album(props) {
                 </Typography>
               }
               <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-                {config.name || "タイトル"}
+                {config.name}
               </Typography>
               <Typography variant="h6" align="center" color="textSecondary" paragraph>
-                {config.searchDescription || "商品をチェックしましょう。"}
+                {config.searchDescription}
               </Typography>
               <div align='center'>
                 <CustomizedInputBase/>
@@ -266,10 +266,10 @@ function Album(props) {
                     </Button>
                     {/* <Button size="small" color="primary" onClick={() => toDetail(item)}> */}
                     <Button size="small" color="primary" component={Link} to={`/items/${item.id}`}>
-                      {config.toItemDetailButton || "製品詳細"}
+                      {config.toItemDetailButton}
                     </Button>
                     <IconButton aria-label="Add to favorites" color={favorites[item.id] ? "primary" : "default"} onClick={handleFavorite(item.id)}>
-                      { favorites[item.id] ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+                      {favorites[item.id] ? <FavoriteIcon /> : <FavoriteBorderIcon />}
                     </IconButton>
                     {/* <Button size="small" color="primary">
                       未定

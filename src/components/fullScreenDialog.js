@@ -45,7 +45,7 @@ function FullScreenDialog(props) {
             id: item.id,
             label: item.name,
             value: item.name.toLowerCase(),
-            secondary: `${item.bestprice.toLocaleString('ja-JP', { style: 'currency', currency: 'JPY' })} (${item.percentage}%)`,
+            secondary: config.getItemSearchDescription(item),
         }))
     );
 

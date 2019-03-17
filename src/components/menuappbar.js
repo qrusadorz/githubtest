@@ -82,7 +82,7 @@ function MenuAppBar(props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" color="inherit" className={classes.grow}>
-            {config.name || "タイトル"}
+            {config.name}
           </Typography>
           {auth && (
             <div>
