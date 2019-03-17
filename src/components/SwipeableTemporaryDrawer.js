@@ -26,7 +26,7 @@ import { groups } from '../contexts/items';
 
 const styles = {
   list: {
-    width: 300,
+    width: 280,
   },
   fullList: {
     width: 'auto',

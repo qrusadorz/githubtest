@@ -22,7 +22,6 @@ import { withStyles } from '@material-ui/core/styles';
 import { withRouter, Link } from "react-router-dom";
 
 // import CustomizedInputBase from './searchField'
-// import IntegrationReactSelect from './integrationReactSelect';
 import CustomizedInputBase from './searchField';
 // import Markdown from './Markdown';
 
@@ -192,39 +191,40 @@ function Album(props) {
       </AppBar> */}
       {/* <main> */}
         {/* Hero unit */}
-        <div className={classes.heroUnit}>
-          <div className={classes.heroContent}>
-            {config.subname &&
-              <Typography component="h6" variant="h6" align="center" color="textSecondary" gutterBottom>
-                {config.subname}
+        {groupIndex === 0 && 
+          <div className={classes.heroUnit}>
+            <div className={classes.heroContent}>
+              {config.subname &&
+                <Typography component="h6" variant="h6" align="center" color="textSecondary" gutterBottom>
+                  {config.subname}
+                </Typography>
+              }
+              <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
+                {config.name || "タイトル"}
               </Typography>
-            }
-            <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-              {config.name || "タイトル"}
-            </Typography>
-            <Typography variant="h6" align="center" color="textSecondary" paragraph>
-              {config.searchDescription || "商品をチェックしましょう。"}
-            </Typography>
-            <div align='center'>
-              <CustomizedInputBase/>
-              {/* <IntegrationReactSelect /> */}
+              <Typography variant="h6" align="center" color="textSecondary" paragraph>
+                {config.searchDescription || "商品をチェックしましょう。"}
+              </Typography>
+              <div align='center'>
+                <CustomizedInputBase/>
+              </div>
+              {/* <div className={classes.heroButtons}>
+                <Grid container spacing={16} justify="center">
+                  <Grid item>
+                    <Button variant="contained" color="primary">
+                      機能1
+                    </Button>
+                  </Grid>
+                  <Grid item>
+                    <Button variant="outlined" color="primary">
+                      機能2
+                    </Button>
+                  </Grid>
+                </Grid>
+              </div> */}
             </div>
-            {/* <div className={classes.heroButtons}>
-              <Grid container spacing={16} justify="center">
-                <Grid item>
-                  <Button variant="contained" color="primary">
-                    機能1
-                  </Button>
-                </Grid>
-                <Grid item>
-                  <Button variant="outlined" color="primary">
-                    機能2
-                  </Button>
-                </Grid>
-              </Grid>
-            </div> */}
           </div>
-        </div>
+        }
         <div className={classes.tabs}>
           <Tabs
             value={groupIndex}
