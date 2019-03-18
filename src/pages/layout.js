@@ -17,6 +17,7 @@ import MenuAppBar from '../components/menuappbar';
 import SimpleSnackBar from '../components/snackbar';
 import ButtomNavigation from '../components/bottomNavigation';
 import { ItemsContext, getItems } from '../contexts/items';
+import { ItemDetailsContext, getItemDetails } from '../contexts/itemDetails';
 const Privacy = lazy(() => import('./privacy'));
 const Terms = lazy(() => import('./terms'));
 
@@ -84,7 +85,7 @@ function Layout(props) {
         items: [],
         timestamp: 0,
         getItemsAsync: async () => {
-            console.log("getItems:");
+            console.log("getItems start");
             const { items, timestamp } = await getItems();
             setItems(prev => ({ getItemsAsync: prev.getItemsAsync, items, timestamp }));
         }
@@ -92,6 +93,20 @@ function Layout(props) {
     useEffect(() => {
         items.getItemsAsync();
     }, []);
+
+    const [itemDetails, setItemDetails] = React.useState({
+        itemDetails: [],
+        timestamp: 0,
+        getItemDetailsAsync: async () => {
+            console.log("getItemDetails start");
+            const { itemDetails, timestamp } = await getItemDetails();
+            setItemDetails(prev => ({ getItemDetailsAsync: prev.getItemDetailsAsync, itemDetails, timestamp }));
+        }
+    });
+    // 詳細画面でボタン押下時に取得する
+    // useEffect(() => {
+    //     itemDetails.getItemDetailsAsync();
+    // }, []);
 
     const [user, setUser] = React.useState(null);
     useEffect(() => {
@@ -138,14 +153,16 @@ function Layout(props) {
                             </DrawerContext.Provider>
                             <div className={classes.appBarSpacer} />
                             <ItemsContext.Provider value={items}>
+                            <ItemDetailsContext.Provider value={itemDetails}>
                                 <Switch>
                                     {/* <Route exact path="/" component={Main} /> */}
                                     <Route path="/privacy" component={Privacy} />
                                     <Route path="/terms" component={Terms} />
-                                    <Route path="/items/:id" component={itemDetail} />
+                                        <Route path="/items/:id" component={itemDetail} />
                                     <Route path="/itemgroups/:group" component={Main} />
                                     <Route component={Main} />
                                 </Switch>
+                            </ItemDetailsContext.Provider>
                             </ItemsContext.Provider>
                             <ButtomNavigation />
                             <SimpleSnackBar />

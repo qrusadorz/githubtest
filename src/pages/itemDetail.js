@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { lazy, Suspense, useContext, useEffect } from 'react';
 // import classNames from 'classnames';
 // import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
@@ -25,8 +25,12 @@ import ImageButton from '../components/imageButton';
 // const SimpleLineChart = lazy(() => import('../components/SimpleLineChart'));
 
 import { ItemsContext } from '../contexts/items'
+import { ItemDetailsContext } from '../contexts/itemDetails';
 
 import config from '../configs/site';
+
+// import SimpleLineChart from './SimpleLineChart';
+const SimpleLineChart = lazy(() => import('../components/SimpleLineChart'));
 
 const styles = theme => ({
   '@global': {
@@ -63,7 +67,7 @@ const styles = theme => ({
   },
   // TODO TEST
   heroButtons: {
-    marginTop: theme.spacing.unit * 4,
+    marginTop: theme.spacing.unit * 3,
   },
   cardHeader: {
     backgroundColor: theme.palette.grey[200],
@@ -144,22 +148,11 @@ const styles = theme => ({
 
 function ItemDetail(props) {
   const { items = [] } = useContext(ItemsContext);
+  const { itemDetails = [], getItemDetailsAsync } = useContext(ItemDetailsContext);
+
   // console.log("render itemDetail items:", items);
+  const onClickPrimaryAction = (item) => () => { console.log('primary action.'); config.getItemDetailPrimaryAction(item);getItemDetailsAsync(); };
 
-  // // Similar to componentDidMount and componentDidUpdate:
-  // useEffect(() => {
-  //   // Update the document title using the browser API
-  //   getItems();
-  // }, []);
-
-  // const onClickFb = () => {
-  //   console.log("history:", props.history);
-  //   if (props.history.length) {
-  //     props.history.goBack();
-  //   } else {
-  //     props.history.push('/');
-  //   }
-  // };
   const onClickFb = () => props.history.goBack();
 
   const { classes } = props;
@@ -167,6 +160,8 @@ function ItemDetail(props) {
   console.log("itemDetail match params id:", id);
 
   const item = items.find(item => item.id === id);
+  const { priceChart = null } = itemDetails[id] || {};
+  console.log("priceChart:", priceChart);
 
   useEffect(() => {
     if (item) {
@@ -245,21 +240,29 @@ function ItemDetail(props) {
               {line.text}
             </Typography>
           ))}
-        </div>
-        {/* <div className={classes.heroButtons}>
+
+          <div className={classes.heroButtons}>
+            {(!priceChart) &&
               <Grid container spacing={16} justify="center">
                 <Grid item>
-                  <Button variant="contained" color="primary">
-                    公式サイト
+                  <Button variant="contained" color="primary" onClick={onClickPrimaryAction(item)}>
+                    {config.itemDetailPrimaryAction}
                   </Button>
                 </Grid>
-                <Grid item>
+                {/* <Grid item>
                   <Button variant="outlined" color="primary">
                     Secondary action
                   </Button>
-                </Grid>
+                </Grid> */}
               </Grid>
-            </div> */}
+            }
+            {priceChart && 
+              <Suspense fallback={<div>Loading...</div>}>
+                <SimpleLineChart data={priceChart} />
+              </Suspense>
+            }
+          </div>
+        </div>
         {/* End hero unit */}
         <Grid container spacing={40} alignItems="flex-end">
           {sites.map((tier, index) => (

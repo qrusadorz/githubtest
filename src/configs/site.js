@@ -45,6 +45,8 @@ const config = {
         const result2 = `アイテム詳細の概要を記入してください。`;
         return [{text:result1, variant: "h6"}, {text:result2, variant: "h4"}];
     },
+    itemDetailPrimaryAction: `Primary Action`,
+    getItemDetailPrimaryAction: (item) => {},
     getItemDetailSiteMain: (item, site) => `サイトメイン`,
     // WARN: IEではNumber.parseIntなし
     getItemDetailSiteDescription: (item, site) => `サイト詳細`,
@@ -54,9 +56,17 @@ const config = {
     getItemDetailMetaDescription: item => {
         return `アイテム概要を記入すること。SEO対策。`;
     },
+    // chart
+    getItemDetailChartFormatXAxis = (tickItem) => 'X軸',
+    getItemDetailChartFormatYAxis = (tickItem) => 'Y軸',
+    getItemDetailChartTooltipFormatXValue = (value, name, props) => ([`X軸：${value}`] ),
+    getItemDetailChartTooltipFormatYValue = (value, name, props) => ([`Y軸：${value}`] ),
+    getItemDetailChartLegendFormat = () => '凡例',
 
     // url of items json
     itemsUrl: "https://example.com/latest.json",
+    // url of itemDetails json
+    itemDetailsUrl: "https://example.com/itemDetails.json",
     // url of web site.
     url: "https://example.com",
 
