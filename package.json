@@ -16,6 +16,7 @@
   "scripts": {
     "analyze": "webpack-bundle-analyzer build/bundle-stats.json",
     "anabuild": "npm run build -- --stats",
+    "ttest": "node test/test.js",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
