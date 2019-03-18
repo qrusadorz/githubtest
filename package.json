@@ -28,6 +28,8 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "testcafe": "^1.1.0",
+    "testcafe-react-selectors": "^3.1.0",
     "webpack-bundle-analyzer": "^3.1.0"
   }
 }
