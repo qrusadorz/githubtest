@@ -1,8 +1,10 @@
 import { ReactSelector, waitForReact } from "testcafe-react-selectors";
 import Page from "../pages/top";
+import config from "../configs/site";
 
 fixture `トップページ`
-    .page `http://localhost:3000`
+    // .page `http://localhost:3000`
+    .page(config.rootUrl)
     .beforeEach(async () => {
         await waitForReact(30000);
     });
