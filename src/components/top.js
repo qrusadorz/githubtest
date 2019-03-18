@@ -261,12 +261,11 @@ function Album(props) {
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Button size="small" color="primary" href={item.url} target="_blank" rel="noopener noreferrer nofollow">
-                      公式<OpenInNewIcon />
-                    </Button>
-                    {/* <Button size="small" color="primary" onClick={() => toDetail(item)}> */}
                     <Button size="small" color="primary" component={Link} to={`/items/${item.id}`}>
                       {config.toItemDetailButton}
+                    </Button>
+                    <Button size="small" color="primary" href={item.url} target="_blank" rel="noopener noreferrer nofollow">
+                      公式<OpenInNewIcon />
                     </Button>
                     <IconButton aria-label="Add to favorites" color={favorites[item.id] ? "primary" : "default"} onClick={handleFavorite(item.id)}>
                       {favorites[item.id] ? <FavoriteIcon /> : <FavoriteBorderIcon />}
