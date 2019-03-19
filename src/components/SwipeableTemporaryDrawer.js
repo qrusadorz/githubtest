@@ -55,9 +55,6 @@ const sideList = itemgroups => (
           <ListItemIcon><FavoriteIcon /></ListItemIcon>
           <ListItemText primary='お気に入り' />
         </ListItem>
-      </List>
-      <Divider />
-      <List>
         {itemgroups.map((text, index) => (
           <ListItem button key={text} component={Link} to={`/itemgroups/${text.toLowerCase()}`}>
             <ListItemIcon><ShoppingIcon /></ListItemIcon>
