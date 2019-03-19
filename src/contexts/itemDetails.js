@@ -2,10 +2,10 @@ import React from 'react';
 
 import config from '../configs/site';
 
+const localStorageKey = 'getItemDetails';
+
 export let itemDetails = [];
 export let timestamp = 0;
-
-const isDevelop = process.env.NODE_ENV === "development";
 
 export const getItemDetails = async (errorCallback) => {
     if (itemDetails.length > 0) {
@@ -20,12 +20,9 @@ export const getItemDetails = async (errorCallback) => {
         timestamp = data.timestamp;
         console.log('getItemDetails itemDetails:', itemDetails);
 
-        // TODO off line対応として開放を検討。
-        if (isDevelop) {
-            localStorage.setItem('itemDetails', JSON.stringify(itemDetails));
-        }
+        // for offline
+        localStorage.setItem(localStorageKey, JSON.stringify(data));
 
-        return { itemDetails, timestamp };
     } catch (e) {
         // Getting the Error details.
         // const code = e.code;
@@ -42,8 +39,14 @@ export const getItemDetails = async (errorCallback) => {
         if (errorCallback) {
             errorCallback();
         }
-        return { itemDetails: {}, timestamp: Date.now() };
+        // offline対応
+        const data = getItemDetailsFromLocalStorage();
+        itemDetails = data.items; // .sort((a, b) => b.percentage - a.percentage);
+        // store timestamp
+        timestamp = data.timestamp;
+        console.log('getItemDetails itemDetails:', itemDetails);
     }
+    return { itemDetails, timestamp };
 };
 
 async function getItemDetailsFromStorage() {
@@ -65,6 +68,11 @@ async function getItemDetailsFromStorage() {
         json.items = [];
     }
     return json;
+}
+
+const getItemDetailsFromLocalStorage = () => {
+    const data = localStorage.getItem(localStorageKey);
+    return data ? JSON.parse(data) : { items: [], timestamp: Date.now() };
 }
 
 export const ItemDetailsContext = React.createContext({

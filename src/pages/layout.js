@@ -81,7 +81,7 @@ function Layout(props) {
         updateSnackbarMessage: message => setSnackbar(prev => ({ ...prev, snackbarMessage: message })),
     });
 
-    const errorSnackbar = () => snackbar.updateSnackbarMessage('データの取得に失敗しました。ページをリロードしてみてください。');
+    const errorSnackbar = () => snackbar.updateSnackbarMessage('データ取得の失敗により、前回データを表示しています。一度リロードしてみてください。');
     
     const [items, setItems] = React.useState({
         items: [],
