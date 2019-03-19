@@ -7,9 +7,8 @@ export let timestamp = 0;
 
 const isDevelop = process.env.NODE_ENV === "development";
 
-export const getItemDetails = async () => {
+export const getItemDetails = async (errorCallback) => {
     if (itemDetails.length > 0) {
-        // console.log("getItems() cached:", itemDetails);
         console.log("getItemDetails() cached memory:", itemDetails.length);
         return { itemDetails, timestamp } ;
     }
@@ -40,13 +39,16 @@ export const getItemDetails = async () => {
             'fatal': false
           });
         }
+        if (errorCallback) {
+            errorCallback();
+        }
         return { itemDetails: {}, timestamp: Date.now() };
     }
 };
 
 async function getItemDetailsFromStorage() {
     const url = config.itemDetailsUrl;
-    const response = await fetch(url, {
+    const response = await fetch(url + 'xxx', {
         method: 'GET',
         // headers: { "If-Match": "*" },
         // headers: { "If-Modified-Since": "Fri, 19 Feb 2010 22:04:23 GMT"},

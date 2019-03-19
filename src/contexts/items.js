@@ -48,9 +48,8 @@ const isDevelop = process.env.NODE_ENV === "development";
 // TODO もう一つはFunctionsを利用して検索を実行された時のみサーバーで実行してデータをクライアントで持たない。＜＝サーバーレスだとデータ読み取り発生が多くてつらい。
 // TODO コレクションの１MBの制限超過の可能性をどうするか…ドキュメントの読み取り	ドキュメント 100,000 点あたり $0.06
 
-export const getItems = async (id) => {
+export const getItems = async (errorCallback) => {
     if (items.length > 0) {
-        // console.log("getItems() cached:", items);
         console.log("getItems() cached memory:", items.length);
         return { items, timestamp } ;
     }
@@ -83,6 +82,9 @@ export const getItems = async (id) => {
             'description': e,
             'fatal': false
           });
+        }
+        if (errorCallback) {
+            errorCallback();
         }
         return { items: [], timestamp: Date.now() };
     }
