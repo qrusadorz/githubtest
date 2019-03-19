@@ -38,6 +38,8 @@ backup.zip
 .firebaserc
 # firebase local cache
 /.firebase
+# test reports
+/test/reports/
 
 # Logs
 logs

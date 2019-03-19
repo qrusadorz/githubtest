@@ -6,16 +6,17 @@
     "@material-ui/core": "^3.9.2",
     "@material-ui/icons": "^3.0.2",
     "firebase": "^5.9.0",
-    "markdown-to-jsx": "^6.9.2",
+    "markdown-to-jsx": "^6.9.3",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
-    "react-router-dom": "^4.4.0",
+    "react-router-dom": "^5.0.0",
     "react-scripts": "^2.1.8",
     "recharts": "^1.5.0"
   },
   "scripts": {
     "analyze": "webpack-bundle-analyzer build/bundle-stats.json",
     "anabuild": "npm run build -- --stats",
+    "ttest": "node test/test.js",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
@@ -28,6 +29,8 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "testcafe": "^1.1.0",
+    "testcafe-react-selectors": "^3.1.0",
     "webpack-bundle-analyzer": "^3.1.0"
   }
 }

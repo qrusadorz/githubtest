@@ -79,21 +79,21 @@ const styles = theme => ({
 
 const images = [
   {
-    url: '/static/images/grid-list/breakfast.jpg',
-    title: '公式サイト',
+    // url: '/static/images/grid-list/breakfast.jpg',
+    // title: '公式サイト',
     width: '100%',
   },
 ];
 
 function ButtonBases(props) {
-  const { classes, img, url } = props;
+  const { classes, img, url, title } = props;
 
   return (
     <div className={classes.root}>
       {images.map(image => (
         <ButtonBase
           focusRipple
-          key={image.title}
+          key={title}
           className={classes.image}
           focusVisibleClassName={classes.focusVisible}
           style={{
@@ -104,7 +104,6 @@ function ButtonBases(props) {
           <span
             className={classes.imageSrc}
             style={{
-            //   backgroundImage: `url(${image.url})`,
               backgroundImage: `url(${img})`,
             }}
           />
@@ -116,7 +115,7 @@ function ButtonBases(props) {
               color="inherit"
               className={classes.imageTitle}
             >
-              {image.title}
+              {title}
               <OpenInNewIcon />
               <span className={classes.imageMarked} />
             </Typography>
