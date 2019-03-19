@@ -57,11 +57,11 @@ const config = {
         return `アイテム概要を記入すること。SEO対策。`;
     },
     // chart
-    getItemDetailChartFormatXAxis = (tickItem) => 'X軸',
-    getItemDetailChartFormatYAxis = (tickItem) => 'Y軸',
-    getItemDetailChartTooltipFormatXValue = (value, name, props) => ([`X軸：${value}`] ),
-    getItemDetailChartTooltipFormatYValue = (value, name, props) => ([`Y軸：${value}`] ),
-    getItemDetailChartLegendFormat = () => '凡例',
+    getItemDetailChartFormatXAxis: (tickItem) => 'X軸',
+    getItemDetailChartFormatYAxis: (tickItem) => 'Y軸',
+    getItemDetailChartTooltipFormatXValue: (value, name, props) => ([`X軸：${value}`] ),
+    getItemDetailChartTooltipFormatYValue: (value, name, props) => ([`Y軸：${value}`] ),
+    getItemDetailChartLegendFormat: () => '凡例',
 
     // url of items json
     itemsUrl: "https://example.com/latest.json",
