@@ -81,12 +81,14 @@ function Layout(props) {
         updateSnackbarMessage: message => setSnackbar(prev => ({ ...prev, snackbarMessage: message })),
     });
 
+    const errorSnackbar = () => snackbar.updateSnackbarMessage('データ取得の失敗により、前回データを表示しています。一度リロードしてみてください。');
+    
     const [items, setItems] = React.useState({
         items: [],
         timestamp: 0,
         getItemsAsync: async () => {
             console.log("getItems start");
-            const { items, timestamp } = await getItems();
+            const { items, timestamp } = await getItems(errorSnackbar);
             setItems(prev => ({ getItemsAsync: prev.getItemsAsync, items, timestamp }));
         }
     });
@@ -99,7 +101,7 @@ function Layout(props) {
         timestamp: 0,
         getItemDetailsAsync: async () => {
             console.log("getItemDetails start");
-            const { itemDetails, timestamp } = await getItemDetails();
+            const { itemDetails, timestamp } = await getItemDetails(errorSnackbar);
             setItemDetails(prev => ({ getItemDetailsAsync: prev.getItemDetailsAsync, itemDetails, timestamp }));
         }
     });

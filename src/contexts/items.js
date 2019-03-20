@@ -8,11 +8,11 @@ import config from '../configs/site';
 // case storage
 // const storage = firebase.app().storage();
 
+const localStorageKey = 'getItems';
+
 export let items = [];
 export let groups = [];
 export let timestamp = 0;
-
-const isDevelop = process.env.NODE_ENV === "development";
 
 // export const defaultItem = {
 //     // 部分一致検索としてまとまって必須
@@ -48,9 +48,8 @@ const isDevelop = process.env.NODE_ENV === "development";
 // TODO もう一つはFunctionsを利用して検索を実行された時のみサーバーで実行してデータをクライアントで持たない。＜＝サーバーレスだとデータ読み取り発生が多くてつらい。
 // TODO コレクションの１MBの制限超過の可能性をどうするか…ドキュメントの読み取り	ドキュメント 100,000 点あたり $0.06
 
-export const getItems = async (id) => {
+export const getItems = async (errorCallback) => {
     if (items.length > 0) {
-        // console.log("getItems() cached:", items);
         console.log("getItems() cached memory:", items.length);
         return { items, timestamp } ;
     }
@@ -65,12 +64,9 @@ export const getItems = async (id) => {
         // store timestamp
         timestamp = data.timestamp;
 
-        // TODO off line対応として開放を検討。
-        if (isDevelop) {
-            localStorage.setItem('items', JSON.stringify(items));
-        }
+        // for offline
+        localStorage.setItem(localStorageKey, JSON.stringify(data));
 
-        return { items, timestamp };
     } catch (e) {
         // Getting the Error details.
         // const code = e.code;
@@ -84,8 +80,18 @@ export const getItems = async (id) => {
             'fatal': false
           });
         }
-        return { items: [], timestamp: Date.now() };
+        if (errorCallback) {
+            errorCallback();
+        }
+        // offline対応
+        const data = getItemsFromLocalStorage();
+        items = data.items.sort((a, b) => b.percentage - a.percentage);
+        // store groups
+        groups = data.brands || [];
+        // store timestamp
+        timestamp = data.timestamp;
     }
+    return { items, timestamp };
 };
 
 async function getItemsFromStorage() {
@@ -111,13 +117,10 @@ async function getItemsFromStorage() {
     return json;
 }
 
-// const getItemsFromLocalStorage = () => {
-//     const data = localStorage.getItem('items');
-//     if (!data) return [];
-//     const items = JSON.parse(data);
-//     console.log("getItems() cached localstorage:", items.length);
-//     return items;
-// }
+const getItemsFromLocalStorage = () => {
+    const data = localStorage.getItem(localStorageKey);
+    return data ? JSON.parse(data) : { items: [], brands: [], timestamp: Date.now() };
+}
 
 // async function getItemsFromStore() {
 //     const collectionRef = db.collection("items");
