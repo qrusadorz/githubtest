@@ -121,7 +121,7 @@ function SwipeableTemporaryDrawer(props) {
   const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
   // TODO 暫定で毎回取得
-  const itemgroups = config.getGrouppaths(groups).filter(v => !v.custom);
+  const itemgroups = config.getGrouppaths(groups);
 
   return (
       <SwipeableDrawer

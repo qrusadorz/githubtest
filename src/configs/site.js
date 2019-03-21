@@ -50,7 +50,8 @@ const config = {
       return (path.toLowerCase() !== 'top') ? path.toLowerCase() : null;
     },
     getGrouppaths: (groups) => {
-      return groups.map(group => group.path);
+      // filter no custom group.(ex. top, favorite, new)
+      return groups.filter(v => !v.custom).map(group => group.path);
     },
 
     // about detail page.
