@@ -25,7 +25,15 @@ const config = {
       // new item
       if ('new' === groupPath) {
         // 14日間新製品として表示
-        const result = items.filter(item => item.release && new Date() < (new Date(item.release)).setDate(14));
+        // const result = items.filter(item => item.release && new Date() < (new Date(item.release)).setDate(14));
+        const now = Date.now();
+        const result = items.filter(item => {
+          if (!item.release) return false;
+          const newLimitDate = new Date(item.release);
+          newLimitDate.setDate(newLimitDate.getDate() + 14);
+          // console.log(`now:${now}, release:${newLimitDate}`);
+          return now < newLimitDate;
+        });
         return result;
       }
       const value = group.name || group.path;
