@@ -24,8 +24,14 @@ import ImageButton from '../components/imageButton';
 
 import { ItemsContext } from '../contexts/items'
 import { ItemDetailsContext } from '../contexts/itemDetails';
+import { getFromLocalStorage } from '../utils/localstorage';
 
 import config from '../configs/site';
+
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 // import SimpleLineChart from './SimpleLineChart';
 const SimpleLineChart = lazy(() => import('../components/SimpleLineChart'));
@@ -144,6 +150,11 @@ const styles = theme => ({
 //   },
 // ];
 
+// TODO 重複するためどこかにまとめる必要がある
+const getSettingsFromLocalStorage = () => {
+  return getFromLocalStorage('settings');
+}
+
 function ItemDetail(props) {
   const { items = [] } = useContext(ItemsContext);
   const { itemDetails = [], getItemDetailsAsync } = useContext(ItemDetailsContext);
@@ -160,6 +171,9 @@ function ItemDetail(props) {
   const item = items.find(item => item.id === id);
   const { priceChart = null } = itemDetails[id] || {};
   console.log("priceChart:", priceChart);
+
+  const [setting] = React.useState(() => getSettingsFromLocalStorage());
+  const { lightrun = false }  = setting;
 
   useEffect(() => {
     if (item) {
@@ -230,7 +244,7 @@ function ItemDetail(props) {
             {item.name}
           </Typography>
           {/* TODO TEST */}
-          <ImageButton img={item.ogimg} url={item.url} title="公式サイト" />
+          <ImageButton img={lightrun ? '' : item.ogimg} url={item.url} title="公式サイト" />
           <div className={classes.heroDescription}></div>
           {config.getItemDetailDescription(item).map((line, index) => (
             // <Typography variant={line.variant} align="center" color="textSecondary" component="p" key={index} gutterBottom>

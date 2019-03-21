@@ -12,6 +12,7 @@ import FeedbackIcon from '@material-ui/icons/Feedback';
 import HelpIcon from '@material-ui/icons/Help';
 import HomeIcon from '@material-ui/icons/Home';
 import SearchIcon from '@material-ui/icons/Search';
+import SettingIcon from '@material-ui/icons/Settings';
 import ShoppingIcon from '@material-ui/icons/ShoppingCart';
 
 import Typography from '@material-ui/core/Typography';
@@ -48,6 +49,13 @@ const sideList = itemgroups => (
             <ListItemText primary={text} />
           </ListItem>
         ))}
+      </List>
+      <Divider />
+      <List>
+        <ListItem button key='Settings' component={Link} to={`/settings`}>
+          <ListItemIcon><SettingIcon /></ListItemIcon>
+          <ListItemText primary='設定' />
+        </ListItem>
       </List>
       <Divider />
       <List>

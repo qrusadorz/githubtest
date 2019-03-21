@@ -12,6 +12,7 @@ import firebase from '../firebase/firebase'
 
 import Main from './main'
 import itemDetail from './itemDetail'
+import Settings from './settings'
 import SwipeableTemporaryDrawer from '../components/SwipeableTemporaryDrawer'
 import MenuAppBar from '../components/menuappbar';
 import SimpleSnackBar from '../components/snackbar';
@@ -158,10 +159,11 @@ function Layout(props) {
                             <ItemDetailsContext.Provider value={itemDetails}>
                                 <Switch>
                                     {/* <Route exact path="/" component={Main} /> */}
+                                    <Route path="/items/:id" component={itemDetail} />
+                                    <Route path="/itemgroups/:group" component={Main} />
+                                    <Route path="/settings" component={Settings} />
                                     <Route path="/privacy" component={Privacy} />
                                     <Route path="/terms" component={Terms} />
-                                        <Route path="/items/:id" component={itemDetail} />
-                                    <Route path="/itemgroups/:group" component={Main} />
                                     <Route component={Main} />
                                 </Switch>
                             </ItemDetailsContext.Provider>

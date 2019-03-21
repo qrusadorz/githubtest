@@ -5,6 +5,7 @@ import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import HomeIcon from '@material-ui/icons/Home';
 // import SearchIcon from '@material-ui/icons/Search';
+import SettingIcon from '@material-ui/icons/Settings';
 import ShoppingIcon from '@material-ui/icons/ShoppingCart';
 
 import { Link } from "react-router-dom";
@@ -30,8 +31,8 @@ function SimpleBottomNavigation(props) {
 
     console.log("render() SimpleBottomNavigation");
 
-    // TODO 暫定で毎回取得
-    const actions = config.getGrouppaths(groups).slice(2, 4);
+    // TODO 暫定で毎回取得 => 将来的になくなるのでこれでOK
+    const actions = config.getGrouppaths(groups).slice(2, 3);
 
     return (
         <BottomNavigation
@@ -46,6 +47,7 @@ function SimpleBottomNavigation(props) {
         >
             <BottomNavigationAction label="Home" key='Home' component={Link} to={`/`} icon={<HomeIcon />} />
             <BottomNavigationAction label="Favorite" key='Favorite' component={Link} to={`/itemgroups/favorite`}  icon={<FavoriteIcon />} />
+            <BottomNavigationAction label="Settings" key='Settings' component={Link} to={`/settings`}  icon={<SettingIcon />} />
             {actions.map((text, index) => (
                 <BottomNavigationAction key={text} label={text} component={Link} to={`/itemgroups/${text.toLowerCase()}`} icon={<ShoppingIcon />} />
             ))}
