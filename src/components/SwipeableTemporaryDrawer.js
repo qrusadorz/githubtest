@@ -26,6 +26,8 @@ import config from '../configs/site'
 
 import { groups } from '../contexts/items';
 
+import { feedback } from '../firebase/functions';
+
 const styles = {
   list: {
     width: 270,
@@ -35,6 +37,12 @@ const styles = {
   },
 };
 
+
+// TODO feedback test
+const handleFeedback = async () => {
+  const result = await feedback("test");
+  console.log('recieve feedback:', result);
+}
 // const groups = config.getGrouppaths();
 
 const sideList = itemgroups => (
@@ -78,6 +86,7 @@ const sideList = itemgroups => (
       <Divider />
       <List>
         {['ヘルプ', 'フィードバックを送信'].map((text, index) => (
+          // <ListItem button key={text} onClick={handleFeedback}>
           <ListItem button key={text} disabled>
             <ListItemIcon>{index % 2 === 0 ? <HelpIcon /> : <FeedbackIcon />}</ListItemIcon>
             <ListItemText primary={text} />
