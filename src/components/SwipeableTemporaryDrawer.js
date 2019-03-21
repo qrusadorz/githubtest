@@ -11,7 +11,9 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import FeedbackIcon from '@material-ui/icons/Feedback';
 import HelpIcon from '@material-ui/icons/Help';
 import HomeIcon from '@material-ui/icons/Home';
+import NewIcon from '@material-ui/icons/NewReleases';
 import SearchIcon from '@material-ui/icons/Search';
+import SettingIcon from '@material-ui/icons/Settings';
 import ShoppingIcon from '@material-ui/icons/ShoppingCart';
 
 import Typography from '@material-ui/core/Typography';
@@ -51,9 +53,20 @@ const sideList = itemgroups => (
       </List>
       <Divider />
       <List>
+        <ListItem button key='Settings' component={Link} to={`/settings`}>
+          <ListItemIcon><SettingIcon /></ListItemIcon>
+          <ListItemText primary='設定' />
+        </ListItem>
+      </List>
+      <Divider />
+      <List>
         <ListItem button key='Favorite' component={Link} to={`/itemgroups/favorite`}>
           <ListItemIcon><FavoriteIcon /></ListItemIcon>
           <ListItemText primary='お気に入り' />
+        </ListItem>
+        <ListItem button key='New' component={Link} to={`/itemgroups/new`}>
+          <ListItemIcon><NewIcon /></ListItemIcon>
+          <ListItemText primary='新製品' />
         </ListItem>
         {itemgroups.map((text, index) => (
           <ListItem button key={text} component={Link} to={`/itemgroups/${text.toLowerCase()}`}>
@@ -99,7 +112,7 @@ function SwipeableTemporaryDrawer(props) {
   const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
   // TODO 暫定で毎回取得
-  const itemgroups = config.getGrouppaths(groups).slice(2);
+  const itemgroups = config.getGrouppaths(groups).filter(v => !v.custom);
 
   return (
       <SwipeableDrawer

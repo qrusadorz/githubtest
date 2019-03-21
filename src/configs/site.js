@@ -16,9 +16,16 @@ const config = {
       const group = groups[index];
       console.log('group:', group);
       if (!group || "top" === group.path.toLowerCase()) return items;
+      const groupPath = group.path.toLowerCase();
       // favorite
-      if ("favorite" === group.path.toLowerCase()) {
+      if ('favorite' === groupPath) {
         const result = items.filter(item => favorites[item.id]);
+        return result;
+      }
+      // new item
+      if ('new' === groupPath) {
+        // 14日間新製品として表示
+        const result = items.filter(item => item.release && new Date() < (new Date(item.release)).setDate(14));
         return result;
       }
       const value = group.name || group.path;
