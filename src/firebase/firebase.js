@@ -10,6 +10,10 @@ import config from '../configs/firebase';
 // Initialize Firebase
 firebase.initializeApp(config);
 
+// Initialize Cloud Functions through Firebase
+// const functions = firebase.functions();
+export const functions = firebase.app().functions('asia-northeast1');
+
 // // Configure FirebaseUI.
 // export const uiConfig = {
 //     // Popup signin flow rather than redirect flow.

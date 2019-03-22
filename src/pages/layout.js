@@ -19,6 +19,10 @@ import SimpleSnackBar from '../components/snackbar';
 import ButtomNavigation from '../components/bottomNavigation';
 import { ItemsContext, getItems } from '../contexts/items';
 import { ItemDetailsContext, getItemDetails } from '../contexts/itemDetails';
+
+import Dialog from '@material-ui/core/Dialog';
+import FormDialog from '../components/FormDialog';
+
 const Privacy = lazy(() => import('./privacy'));
 const Terms = lazy(() => import('./terms'));
 
@@ -144,6 +148,12 @@ function Layout(props) {
     // console.log("render() layout snackbar:", snackbar);
     // console.log("render() layout user:", user);
 
+    // TODO フィードバック送信の暫定実装
+    const [open, setOpen] = React.useState(false);
+    const handleFeedback = () => {
+      setOpen(true);
+    }
+  
     return (
         <Router>
             <Suspense fallback={<div>Loading...</div>}>
@@ -151,7 +161,7 @@ function Layout(props) {
                     <SnackbarContext.Provider value={snackbar}>
                         <UserContext.Provider value={user}>
                             <DrawerContext.Provider value={drawer}>
-                                <SwipeableTemporaryDrawer />
+                                <SwipeableTemporaryDrawer handleFeedback={handleFeedback} />
                                 <MenuAppBar />
                             </DrawerContext.Provider>
                             <div className={classes.appBarSpacer} />
@@ -170,6 +180,10 @@ function Layout(props) {
                             </ItemsContext.Provider>
                             <ButtomNavigation />
                             <SimpleSnackBar />
+                            {/* // TODO しばらく暫定実装 */}
+                            <Dialog open={open}>
+                                <FormDialog open={open} setOpen={setOpen}/>
+                            </Dialog>
                         </UserContext.Provider>
                     </SnackbarContext.Provider>
                 </SystemContext.Provider>

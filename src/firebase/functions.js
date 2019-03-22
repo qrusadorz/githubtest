@@ -1,10 +1,10 @@
-import firebase from './firebase';
+import { functions } from './firebase';
 
 export const feedback = async (text) => {
-    const func = firebase.functions().httpsCallable('feedback');
+    const func = functions.httpsCallable('feedback');
     try  {
         console.log('send data:', text);
-        const { data } = await func({text});
+        const { data } = await func({ text });
         return data;
         // const sanitizedMessage = result.data.text;
     } catch(error) {
