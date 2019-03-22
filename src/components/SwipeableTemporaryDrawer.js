@@ -26,8 +26,6 @@ import config from '../configs/site'
 
 import { groups } from '../contexts/items';
 
-import { feedback } from '../firebase/functions';
-
 const styles = {
   list: {
     width: 270,
@@ -38,14 +36,9 @@ const styles = {
 };
 
 
-// TODO feedback test
-const handleFeedback = async () => {
-  const result = await feedback("test");
-  console.log('recieve feedback:', result);
-}
 // const groups = config.getGrouppaths();
 
-const sideList = itemgroups => (
+const sideList = (itemgroups, handleFeedback) => (
     <>
       <Typography variant="h3" align="center" gutterBottom component="h2">
         {config.name}
@@ -85,13 +78,22 @@ const sideList = itemgroups => (
       </List>
       <Divider />
       <List>
-        {['ヘルプ', 'フィードバックを送信'].map((text, index) => (
-          // <ListItem button key={text} onClick={handleFeedback}>
-          <ListItem button key={text} disabled>
+        {/* {['ヘルプ', 'フィードバックを送信'].map((text, index) => (
+          <ListItem button key={text} onClick={handleFeedback}>
             <ListItemIcon>{index % 2 === 0 ? <HelpIcon /> : <FeedbackIcon />}</ListItemIcon>
             <ListItemText primary={text} />
           </ListItem>
-        ))}
+        ))} */}
+        {/* <ListItem button key='ヘルプ' component={Link} to={`/help`}> */}
+        <ListItem button key='ヘルプ' disabled>
+          <ListItemIcon><HelpIcon /></ListItemIcon>
+          <ListItemText primary='ヘルプ' />
+        </ListItem>
+        {/* <ListItem button key='フィードバックを送信' component={Link} to={`/feedback`} disabled> */}
+        <ListItem button key='フィードバックを送信' onClick={handleFeedback}>
+          <ListItemIcon><FeedbackIcon /></ListItemIcon>
+          <ListItemText primary='フィードバックを送信' />
+        </ListItem>
       </List>
       <Divider />
       <List>
@@ -105,7 +107,7 @@ const sideList = itemgroups => (
 );
 
 function SwipeableTemporaryDrawer(props) {
-  const { classes } = props;
+  const { classes, handleFeedback } = props;
   const { drawerOpen, closeDrawer, openDrawer } = useContext(DrawerContext);
 
   console.log("render() SwipeableTemporaryDrawer");
@@ -137,7 +139,7 @@ function SwipeableTemporaryDrawer(props) {
           onKeyDown={toggleDrawer('left', false)}
         >
             <div className={classes.list}>
-              {sideList(itemgroups)}
+              {sideList(itemgroups, handleFeedback)}
             </div>
         </div>
       </SwipeableDrawer>
