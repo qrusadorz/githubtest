@@ -235,13 +235,15 @@ function Album(props) {
             {renderItems.map(item => (
               <Grid item key={item.id} sm={6} md={4} lg={3}>
                 <Card className={classes.card}>
-                  <CardMedia
-                    className={classes.cardMedia}
-                    image={!lightrun && item.ogimg ? item.ogimg : noImage}
-                    title="Image title"
-                  />
+                  {!lightrun && 
+                    <CardMedia
+                      className={classes.cardMedia}
+                      image={!lightrun && item.ogimg ? item.ogimg : noImage}
+                      title="Image title"
+                    />
+                  }
                   <CardContent className={classes.cardContent}>
-                    <Typography variant="h5" component="h2">
+                    <Typography variant="h5" component="h2" gutterBottom>
                       {item.name}
                     </Typography>
                     <Typography color="textSecondary">
@@ -255,9 +257,9 @@ function Album(props) {
                     <Button size="small" color="primary" component={Link} to={`/items/${item.id}`}>
                       {config.toItemDetailButton}
                     </Button>
-                    <Button size="small" color="primary" href={item.url} target="_blank" rel="noopener noreferrer nofollow">
+                    {/* <Button size="small" color="primary" href={item.url} target="_blank" rel="noopener noreferrer nofollow">
                       公式<OpenInNewIcon />
-                    </Button>
+                    </Button> */}
                     <IconButton aria-label="Add to favorites" color={favorites[item.id] ? "primary" : "default"} onClick={handleFavorite(item.id)}>
                       {favorites[item.id] ? <FavoriteIcon /> : <FavoriteBorderIcon />}
                     </IconButton>
