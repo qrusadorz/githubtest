@@ -12,7 +12,7 @@ export default class Page {
     this.card = ReactSelector("Card");
     this.cardMedia = ReactSelector("CardMedia");
     this.cardContent = ReactSelector("CardContent");
-    this.cardActions = ReactSelector("CardActions").findReact("Button");
+    this.cardActions = ReactSelector("CardActions").findReact("IconButton");
     this.fabButton = ReactSelector("Fab");
   }
 

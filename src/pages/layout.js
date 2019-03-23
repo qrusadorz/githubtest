@@ -23,6 +23,13 @@ import { ItemDetailsContext, getItemDetails } from '../contexts/itemDetails';
 import Dialog from '@material-ui/core/Dialog';
 import FormDialog from '../components/FormDialog';
 
+// see https://github.com/facebook/create-react-app/issues/3722
+import raw from "raw.macro";
+import Markdown from '../components/Markdown';
+// const Markdown = lazy(() => import('../components/Markdown'));   // 直接URLOK。Drawerからの遷移NGのため様子見
+// const raw  = lazy(() => import(raw.macro));
+const HelpMd = raw('../articles/help.md');
+
 const Privacy = lazy(() => import('./privacy'));
 const Terms = lazy(() => import('./terms'));
 
@@ -174,6 +181,13 @@ function Layout(props) {
                                     <Route path="/settings" component={Settings} />
                                     <Route path="/privacy" component={Privacy} />
                                     <Route path="/terms" component={Terms} />
+                                    {/* <Route path="/help" component={Markdown} children={HelpMd}/> */}
+                                    <Route
+                                        path="/help"
+                                        render={props => <Markdown>{HelpMd}</Markdown>}
+                                        // render={props => <Markdown {...props}>{HelpMd}</Markdown>}
+                                        // render={props => <Markdown {...props} extra={someVariable} />}
+                                    />
                                     <Route component={Main} />
                                 </Switch>
                             </ItemDetailsContext.Provider>

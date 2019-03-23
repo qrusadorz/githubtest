@@ -24,6 +24,7 @@ function FormDialog(props) {
 
   // TODO feedback test
   const handleFeedback = text => async () => {
+    if (!text) return;
     const result = await feedback(text);
     console.log('recieve feedback:', result);
     handleClose();

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ReactMarkdown from 'markdown-to-jsx';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
@@ -27,6 +27,11 @@ const options = {
 };
 
 function Markdown(props) {
+  useEffect(() => {
+    // page遷移後のスクロール復元
+    window.scrollTo(0, 0);
+  }, []);
+
   return <ReactMarkdown options={options} {...props} />;
 }
 

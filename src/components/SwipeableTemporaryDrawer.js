@@ -84,8 +84,8 @@ const sideList = (itemgroups, handleFeedback) => (
             <ListItemText primary={text} />
           </ListItem>
         ))} */}
-        {/* <ListItem button key='ヘルプ' component={Link} to={`/help`}> */}
-        <ListItem button key='ヘルプ' disabled>
+        <ListItem button key='ヘルプ' component={Link} to={`/help`}>
+        {/* <ListItem button key='ヘルプ' disabled> */}
           <ListItemIcon><HelpIcon /></ListItemIcon>
           <ListItemText primary='ヘルプ' />
         </ListItem>
