@@ -26,6 +26,8 @@ import { ItemsContext } from '../contexts/items'
 import { ItemDetailsContext } from '../contexts/itemDetails';
 import { getFromLocalStorage } from '../utils/localstorage';
 
+import { initScrollPosition } from '../utils/seo';
+
 import config from '../configs/site';
 
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
@@ -194,15 +196,13 @@ function ItemDetail(props) {
         }
       }
     }
-    // // page遷移後のスクロール復元
+    // // page遷移後のスクロール復元 => 速すぎるのかNG
     // window.scrollTo(0, 0);
 
   }, [props.location.pathname, item]);
 
-  useEffect(() => {
     // page遷移後のスクロール復元
-    window.scrollTo(0, 0);
-  }, [item]);
+  useEffect(initScrollPosition, [item]);
 
   if (!item) {
     return (
