@@ -1,9 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useEffect } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import SimpleLineChart from '../components/SwitchListSecondary';
 // import SimpleTable from './SimpleTable';
+import { withRouter } from "react-router-dom";
+
+import { titleEffectCallback, schemaEffectCallback } from '../utils/seo';
 
 const styles = theme => ({
   root: {
@@ -30,13 +32,13 @@ const styles = theme => ({
   },
 });
 
-class Dashboard extends React.Component {
-  state = {
-    open: true,
-  };
-
-  render() {
-    const { classes } = this.props;
+function Dashboard(props) {
+    useEffect(() => {
+      titleEffectCallback(props);
+      schemaEffectCallback();
+    }, [props.location.pathname])
+  
+    const { classes } = props;
 
     return (
       <div className={classes.root}>
@@ -56,11 +58,6 @@ class Dashboard extends React.Component {
         </main>
       </div>
     );
-  }
 }
 
-Dashboard.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(Dashboard);
+export default withStyles(styles)(withRouter(Dashboard));

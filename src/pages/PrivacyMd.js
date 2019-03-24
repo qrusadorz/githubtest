@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { withStyles } from '@material-ui/core/styles';
+import { withRouter } from "react-router-dom";
+
+import { titleEffectCallback, schemaEffectCallback } from '../utils/seo';
 
 import Markdown from '../components/Markdown';
 import raw from "raw.macro";
@@ -15,8 +18,13 @@ const styles = theme => ({
 const md = raw('../articles/privacy.md');
 
 function PrivacyMd(props) {
+  useEffect(() => {
+    titleEffectCallback(props);
+    schemaEffectCallback();
+  }, [props.location.pathname])
+
   const { classes } = props;
   return <Markdown className={classes.markdown}>{md}</Markdown>;
 }
 
-export default withStyles(styles)(PrivacyMd);
+export default withStyles(styles)(withRouter(PrivacyMd));

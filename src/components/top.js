@@ -27,6 +27,8 @@ import CustomizedInputBase from './searchField';
 import { ItemsContext, groups } from '../contexts/items';
 import { setToLocalStorage, getFromLocalStorage } from '../utils/localstorage';
 
+import { titleEffectCallback, schemaEffectCallback, initScrollPosition } from '../utils/seo';
+
 import config from '../configs/site'
 
 // const styles = theme => ({
@@ -117,30 +119,8 @@ function Album(props) {
   console.log("top match params:", group, groupIndex);
   const { items = [], timestamp } = useContext(ItemsContext);
 
-  useEffect(() => {
-    document.title = `${config.name}`;
-    window.gtagPageview(props.location.pathname);
-    // TODO 今度まとめる
-    const tag = { name: "Description", nodeName: "META" };
-    for (const node of document.head.childNodes) {
-      if (node.name === tag.name && node.nodeName === tag.nodeName) {
-        node.content = config.description;
-        return;
-      }
-    }
-  }, [props.location.pathname]);
-
-  useEffect(() => {
-    console.log('timestamp:', timestamp);
-    // TODO 今度まとめる
-    for (const node of document.head.childNodes) {
-      if (node.type === "application/ld+json") {
-        const json = config.getSchemaJson(timestamp);
-        node.text = JSON.stringify(json);
-        return;
-      }
-    }
-  }, [timestamp]);
+  useEffect(() => titleEffectCallback(props), [props.location.pathname]);
+  useEffect(() => schemaEffectCallback(timestamp), [timestamp]);
 
   const [favorites, setFavorites] = React.useState(() => getFavoritesFromLocalStorage());
 
@@ -148,10 +128,8 @@ function Album(props) {
   const renderItems = config.getRenderItems(groups, groupIndex, items, favorites);
   console.log("renderItems.length:", renderItems.length);
 
-  useEffect(() => {
-    // page遷移後のスクロール復元
-    window.scrollTo(0, 0);
-  }, [group]);
+  // page遷移後のスクロール復元
+  useEffect(initScrollPosition, [group]);
 
   const handleFavorite = id => () => {
     console.log('favorite id:', id);
