@@ -24,14 +24,16 @@ import Dialog from '@material-ui/core/Dialog';
 import FormDialog from '../components/FormDialog';
 
 // see https://github.com/facebook/create-react-app/issues/3722
-import raw from "raw.macro";
 import Markdown from '../components/Markdown';
 // const Markdown = lazy(() => import('../components/Markdown'));   // 直接URLOK。Drawerからの遷移NGのため様子見
+import raw from "raw.macro";
 // const raw  = lazy(() => import(raw.macro));
-const HelpMd = raw('../articles/help.md');
+// const HelpMd = raw('../articles/help.md');
+// const PrivacyMd = raw('../articles/privacy.md');
+// const TermsMd = raw('../articles/terms.md');
 
-const Privacy = lazy(() => import('./privacy'));
-const Terms = lazy(() => import('./terms'));
+// const Privacy = lazy(() => import('./privacy'));
+// const Terms = lazy(() => import('./terms'));
 
 const styles = theme => ({
     //   root: {
@@ -47,7 +49,17 @@ const styles = theme => ({
         height: '100vh',
         overflow: 'auto',
     },
+    markdown: {
+        padding: `${theme.spacing.unit * 3}px 0`,
+        // for buttom navigation.
+        marginBottom: theme.spacing.unit * 6,
+    },
 });
+
+const markdownReder = (md, classes) => <Markdown className={classes.markdown}>{md}</Markdown>;
+const helpReder = (classes) => markdownReder(raw('../articles/help.md'), classes);
+const privacyReder = (classes) => markdownReder(raw('../articles/privacy.md'), classes);
+const termsReder = (classes) => markdownReder(raw('../articles/terms.md'), classes);
 
 function Layout(props) {
 
@@ -161,6 +173,14 @@ function Layout(props) {
       setOpen(true);
     }
   
+    // const helpReder = (props) => <Markdown className={classes.markdown}>{HelpMd}</Markdown>;
+    // const privacyReder = (props) => <Markdown className={classes.markdown}>{PrivacyMd}</Markdown>;
+    // const termsReder = (props) => <Markdown className={classes.markdown}>{TermsMd}</Markdown>;
+
+    // const HelpMd = raw('../articles/help.md');
+    // const PrivacyMd = raw('../articles/privacy.md');
+    // const TermsMd = raw('../articles/terms.md');
+
     return (
         <Router>
             <Suspense fallback={<div>Loading...</div>}>
@@ -179,12 +199,12 @@ function Layout(props) {
                                     <Route path="/items/:id" component={itemDetail} />
                                     <Route path="/itemgroups/:group" component={Main} />
                                     <Route path="/settings" component={Settings} />
-                                    <Route path="/privacy" component={Privacy} />
-                                    <Route path="/terms" component={Terms} />
+                                    {/* <Route path="/privacy" component={Privacy} /> */}
+                                    {/* <Route path="/terms" component={Terms} /> */}
+                                    <Route path="/privacy" render={props => privacyReder(classes)} />
+                                    <Route path="/terms" render={props => termsReder(classes)} />
                                     {/* <Route path="/help" component={Markdown} children={HelpMd}/> */}
-                                    <Route
-                                        path="/help"
-                                        render={props => <Markdown>{HelpMd}</Markdown>}
+                                    <Route path="/help" render={props => helpReder(classes)}
                                         // render={props => <Markdown {...props}>{HelpMd}</Markdown>}
                                         // render={props => <Markdown {...props} extra={someVariable} />}
                                     />
