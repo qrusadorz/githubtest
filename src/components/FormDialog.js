@@ -39,7 +39,7 @@ function FormDialog(props) {
         <DialogTitle id="form-dialog-title">フィードバックを送信</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            現在テスト中のため、しばらくお待ちください。
+            試験運用中。個人情報は含めないでください。
           </DialogContentText>
           <TextField
             autoFocus

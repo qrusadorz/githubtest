@@ -1,3 +1,7 @@
+# ヘルプ
+
+
+
 # MarkDown
 
 see [Markdown](https://daringfireball.net/projects/markdown/basics)
@@ -5,13 +9,17 @@ see [Markdown](https://daringfireball.net/projects/markdown/basics)
 # 段落、ヘッダー、ブロック引用
 
 A First Level Header  
-===
+===   
+
 # A First Level Header  
+
 # A First Level Header #  
 
 A Second Level Header  
----
+---  
+
 ## A Second Level Header  
+
 ## A Second Level Header ##  
 
 normal

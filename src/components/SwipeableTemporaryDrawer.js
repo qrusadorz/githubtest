@@ -97,11 +97,18 @@ const sideList = (itemgroups, handleFeedback) => (
       </List>
       <Divider />
       <List>
-        {['プライバシーポリシー', '利用規約'].map((text, index) => (
+        <ListItem button key='プライバシーポリシー' component={Link} to={`/privacy`}>
+          <ListItemText primary='プライバシーポリシー' />
+        </ListItem>
+        <ListItem button key='利用規約' component={Link} to={`/terms`}>
+          <ListItemText primary='利用規約' />
+        </ListItem>
+
+        {/* {['プライバシーポリシー', '利用規約'].map((text, index) => (
           <ListItem button key={text} disabled>
             <ListItemText primary={text} />
           </ListItem>
-        ))}
+        ))} */}
       </List>
     </>
 );
