@@ -45,10 +45,10 @@ const config = {
       const index = groups.findIndex(group => group.path.toLowerCase() === grouppath);
       return Math.max(index, 0);
     },
-    getIndexToGrouppath: (groups, index) => {
-      const { path } = groups[index];
-      return (path.toLowerCase() !== 'top') ? path.toLowerCase() : null;
-    },
+    // getIndexToGrouppath: (groups, index) => {
+    //   const { path } = groups[index];
+    //   return (path.toLowerCase() !== 'top') ? path.toLowerCase() : null;
+    // },
     getGrouppaths: (groups) => {
       // filter no custom group.(ex. top, favorite, new)
       return groups.filter(v => !v.custom).map(group => group.path);

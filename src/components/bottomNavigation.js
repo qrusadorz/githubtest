@@ -20,26 +20,26 @@ const styles = {
 
 function SimpleBottomNavigation(props) {
     const { classes } = props;
-    const [value, setValue] = React.useState(0);
+    // const [value, setValue] = React.useState(0);
 
-    const handleChange = (event, newValue) => () => {
-        console.log('newValue:', newValue);
-        setValue(newValue);
-    }
-    
+    // no fire action, when use component={Link}
+    // const handleChange = (event, newValue) => () => {
+    //     console.log('newValue:', newValue);
+    //     setValue(newValue);
+    // }
+
     console.log("render() SimpleBottomNavigation");
 
     return (
         <BottomNavigation
-            value={value}
-            onChange={handleChange}
+            // value={value}
+            // onChange={handleChange}
             showLabels
             className={classes.root}
-            position="fixed"
         >
             <BottomNavigationAction label="Home" key='Home' component={Link} to={`/`} icon={<HomeIcon />} />
-            <BottomNavigationAction label="Favorite" key='Favorite' component={Link} to={`/itemgroups/favorite`}  icon={<FavoriteIcon />} />
-            <BottomNavigationAction label="Settings" key='Settings' component={Link} to={`/settings`}  icon={<SettingIcon />} />
+            <BottomNavigationAction label="Favorite" key='Favorite' component={Link} to={`/itemgroups/favorite`} icon={<FavoriteIcon />} />
+            <BottomNavigationAction label="Settings" key='Settings' component={Link} to={`/settings`} icon={<SettingIcon />} />
             {/* {actions.map((text, index) => (
                 <BottomNavigationAction key={text} label={text} component={Link} to={`/itemgroups/${text.toLowerCase()}`} icon={<ShoppingIcon />} />
             ))} */}
