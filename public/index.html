@@ -30,10 +30,12 @@
     <!--
       AdSense
     -->
-    <!-- <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <script>
-      (adsbygoogle = window.adsbygoogle || []).push({google_ad_client: '%REACT_APP_GOOGLE_AD_CLIENT%',enable_page_level_ads: true});
-    </script> -->
+      // (adsbygoogle = window.adsbygoogle || []).push({google_ad_client: '%REACT_APP_GOOGLE_AD_CLIENT%',enable_page_level_ads: true});
+      adsbygoogle = window.adsbygoogle || [];
+      function adsPush(){adsbygoogle.push({google_ad_client: '%REACT_APP_GOOGLE_AD_CLIENT%',enable_page_level_ads: true});};
+    </script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=%REACT_APP_GOOGLE_AN_CLIENT%"></script>
     <script>
