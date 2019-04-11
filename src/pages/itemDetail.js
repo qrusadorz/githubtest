@@ -181,6 +181,7 @@ function ItemDetail(props) {
     if (item) {
       document.title = config.getItemTitle(item);
     window.gtagPageview(props.location.pathname);
+      window.adsPush();
 
       // TODO 今度まとめる
       const tag = { name: "Description", nodeName: "META" };

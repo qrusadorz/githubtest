@@ -3,6 +3,7 @@ import config from '../configs/site'
 export const titleEffectCallback = (props) => {
     document.title = `${config.name}`;
     window.gtagPageview(props.location.pathname);
+    window.adsPush();
     const tag = { name: "Description", nodeName: "META" };
     for (const node of document.head.childNodes) {
         if (node.name === tag.name && node.nodeName === tag.nodeName) {

@@ -144,11 +144,11 @@ function Album(props) {
     // console.log('favorite:', favorites);
   }
 
-  function handleChange(event, newValue) {
-    const path = config.getIndexToGrouppath(groups, newValue);
-    console.log('path:', path);
-    props.history.push(path ? `/itemgroups/${path}`: "");
-  }
+  // function handleChange(event, newValue) {
+  //   const path = config.getIndexToGrouppath(groups, newValue);
+  //   console.log('path:', path);
+  //   props.history.push(path ? `/itemgroups/${path}`: "");
+  // }
 
   const [setting] = React.useState(() => getSettingsFromLocalStorage());
   const { lightrun = false }  = setting;
@@ -203,14 +203,14 @@ function Album(props) {
         <div className={classes.tabs}>
           <Tabs
             value={groupIndex}
-            onChange={handleChange}
+            // onChange={handleChange}
             variant="scrollable"
             scrollButtons="on"
             indicatorColor="primary"
             textColor="primary"
             // centered
           >
-            {groups.map((group, index) => (<Tab label={group.path} key={group.path}/>))}
+            {groups.map((group, index) => (<Tab label={group.path} key={group.path} component={Link} to={group.path.toLowerCase() === "top" ? "" : `/itemgroups/${group.path.toLowerCase()}`}/>))}
           </Tabs>
         </div>
         <div className={classNames(classes.layout, classes.cardGrid)}>

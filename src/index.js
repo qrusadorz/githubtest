@@ -6,10 +6,11 @@ import * as serviceWorker from './serviceWorker';
 
 // disable the production enviroment log
 process.env.NODE_ENV !== "development" && (console.log = () => {});
-// disable the production enviroment analytics
+// disable the production enviroment analytics and ads
 if (process.env.NODE_ENV === "development") {
     window.gtagPageview = (path) => { /*console.log("pageview:", path);*/ };
     window.gtagFavoriteEvent = () => {};
+    window.adsPush = () => { /*console.log("push ads:", window.adsbygoogle);*/ };
 }
 
 ReactDOM.render(<Index />, document.getElementById('root'));
